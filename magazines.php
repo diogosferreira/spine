@@ -67,8 +67,8 @@
 
 
         <script type="text/javascript" language="javascript">
-            
-            
+
+
             for (i = 0; i < 8; i++) {
                 var palmas = <?php echo json_encode($didi); ?>;
                 //console.log("i é: " +palmas[i].categoria);
@@ -88,7 +88,7 @@
                 if (divNome === 'all') {
                     showAll();
                 } else {
-                    
+
                     for (i = 0; i < 8; i++) {
 
                     var codBarras = palmas[i].codBarras;
@@ -117,7 +117,7 @@
                 });
 
 
-            
+
             function showAll (){
                 for (i = 0; i < 8; i++) {
                     var codBarras = palmas[i].codBarras;
@@ -128,8 +128,6 @@
                     }).appendTo('#posts'); //id/class so sitio
 
                     $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-
-
                 }
             }
 
