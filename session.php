@@ -1,14 +1,14 @@
 <?php
    include('config.php');
-   
+    session_start();
 
     //-- SELECT USER CARACTERISTICS --
 
    $user_check = $_SESSION['login_user'];
    
-   $ses_sql = mysqli_query($db,"select * from Utilizador where userName = '$user_check' ");
+   $ses_sql = $conn->query("select * from Utilizador where userName = '$user_check' ");
    
-   $ses_row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+   $ses_row = $ses_sql->fetch_assoc();
    
    $login_session = $ses_row['userName'];
    $login_email = $ses_row['userEmail'];
@@ -23,7 +23,7 @@
 
     //-- SELECT USER MESSAGES --
 
-   $result = mysqli_query($db,"select * from Utilizador_Msg where userName = '$user_check' ORDER BY `date` ASC ");
+   $result = $conn->query("select * from Utilizador_Msg where userName = '$user_check' ORDER BY `date` ASC ");
 
     $contador=0;
     if ($result->num_rows > 0) {

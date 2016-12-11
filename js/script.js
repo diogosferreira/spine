@@ -1,7 +1,3 @@
-
-
-
-
 var imgi=2;
 
 //-- IMAGES CHANGING --

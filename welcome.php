@@ -4,18 +4,6 @@
     if($login_type == 1){
       header("location:welcomeowner.php");
    }
-
-
-
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "spine";    
-$bd = new mysqli($servername, $username, $password, $dbname);
-            
-          
-
-
 ?>
     <html>
 
@@ -121,20 +109,25 @@ $bd = new mysqli($servername, $username, $password, $dbname);
 
 
             //-- PROFILE --
-            update();
-            function update() {
-                var username = <?php echo json_encode($login_session); ?>;
-                var email = <?php echo json_encode($login_email); ?>;
-                var nif = <?php echo json_encode($login_nif); ?>;
-                var address = <?php echo json_encode($login_address); ?>;
+            var username = <?php echo json_encode($login_session); ?>;
+            var email = <?php echo json_encode($login_email); ?>;
+            var nif = <?php echo json_encode($login_nif); ?>;
+            var address = <?php echo json_encode($login_address); ?>;
+            var ba = <?php echo json_encode($ses_sql); ?>;
+            var us = <?php echo json_encode($user_check); ?>;
+            console.log(us);
+            console.log(ba);
+            console.log(username);
+                        console.log(email);
+                        console.log(nif);
+                        console.log(address);
+            $('#profile-name').text(username);
 
-                $('#profile-name').text(username);
-
-                $('#username').attr("placeholder", username);
-                $('#email').attr("placeholder", email);
-                $('#nif').attr("placeholder", nif);
-                $('#address').attr("placeholder", address);
-            }
+            $('#username').attr("placeholder", username);
+            $('#email').attr("placeholder", email);
+            $('#nif').attr("placeholder", nif);
+            $('#address').attr("placeholder", address);
+            
 
             //-- EDIT PROFILE --
             $('#button').on("click", function () {
@@ -196,19 +189,19 @@ $bd = new mysqli($servername, $username, $password, $dbname);
                 $changeaddress = "UPDATE Utilizador SET morada = '$newaddress' WHERE userName='bibs'";  
             }
             
-            if ($bd->query($changepasssword) === TRUE) {
+            if ($conn->query($changepasssword) === TRUE) {
                 $m1 = "Records were updated successfully.";
             } else {
                 $m1 = "ERROR: Could not able to execute $changepasssword. ";
             } 
             
-            if ($bd->query($changenif) === TRUE) {
+            if ($conn->query($changenif) === TRUE) {
                 $m2 = "Records were updated successfully.";
             } else {
                 $m2 = "ERROR: Could not able to execute $changenif. ";
             }            
             
-            if ($bd->query($changeaddress) === TRUE) {
+            if ($conn->query($changeaddress) === TRUE) {
                 $m3 = "Records were updated successfully.";
             } else {
                 $m3 = "ERROR: Could not able to execute $changeaddress. ";
