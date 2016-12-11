@@ -1,0 +1,111 @@
+.welcome {
+    width: 80vh;
+    height: auto;
+    padding: 0 20vw;
+    padding-top: 20vh;
+    font-size: 16pt;
+}
+
+
+
+/* PROFILE */
+#main {
+    width: 100%;
+    height: 35vh;
+}
+
+#profile-pic {
+    display: inline-block;
+    float: left;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: url(../images/profile.JPG);
+}
+
+
+#profile-main {
+    width: 60%;
+    text-align: center;
+    display: inline-block;
+}
+
+#profile-name {
+    font-size: 26pt;
+    margin-top: 7vh;
+}
+
+#edit-button {
+    font-size: 18pt;
+    padding: 2%;
+    margin: 0 30%;
+    margin-top: 4vh;
+    border: 1px solid black;
+}
+
+#edit-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+.line {
+    width: 100%;
+    margin: 1vh 0;
+    padding: 1vh 1vw;    
+}
+
+label {
+    width: 30%;
+    display: inline-block;
+    float: left;
+}
+
+input {
+    width: 70%;
+    border: none;
+    font-size: 14pt;
+    color: black;
+    background-color: #F2F1EF;
+    border-bottom: 1px solid #F2F1EF;    
+}
+
+
+.enabled {
+    border-bottom: 1px solid black;    
+}
+
+
+input:focus {
+    color: lightgray;
+    border-color: lightgray;
+    outline-color: transparent;
+    outline-style: none;
+    transform-origin:  0% 50%;
+}
+
+
+/*input[type=submit] {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 6vh;
+    padding: 2vh 0;
+    border: 1px solid black;
+}
+
+input[type=submit]:hover {
+    text-decoration: underline;
+}*/
+
+
+
+
+/* MESSAGES */
+
+
+
+/* ORDERS */
+
