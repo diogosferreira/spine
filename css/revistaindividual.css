@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.column {
+    width: 49vw;
+    margin: 0 auto;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 18vh 0;
+
+}
+
+
+#left {
+    float: left;
+}
+
+.cover {
+    max-width: 90%;
+    margin-top: 30px;
+    padding-left: 5vw;
+    margin-bottom: 22vh;
+
+}
+
+
+
+#right{
+    float: right;
+    overflow-y: scroll;
+}
+
+#text{
+    padding-right: 8vw;
+    overflow-y: scroll;
+    margin-bottom: 25vh;
+}
+
+p {
+    margin-left: 0;
+    font-size: 12pt;
+    font-family: Century Gothic;
+    font-weight: bold;
+}
+
+#nome {
+    font-size: 20pt;
+}
+
+
+#preco {
+    text-decoration: underline;
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+
+
+/*#voltar {
+    text-decoration: underline;
+}*/
+
+@media screen and (max-width: 600px) {
+    .revista {
+        margin: 0 auto;
+        width: 92%;
+         min-width: 50px;
+    }
+}

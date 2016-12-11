@@ -1,0 +1,21 @@
+@font-face {
+    font-family: Century Gothic;
+    src: url(../fonts/gothicb.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Frutiger LT Std;
+    src: url(../fonts/FrutigerLTStd-Roman.otf);
+    font-weight: roman;
+}
+
+@font-face {
+    font-family: Frutiger LT Std;
+    src: url(../fonts/FrutigerLTStd-Italic.otf);
+    font-weight: roman;
+    font-style: italic;
+}
+
+/* search icon font */
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);

@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li:nth-child(2) {
+    text-decoration: underline;
+}
+
+
+.about {
+    margin: 0 auto;
+    font-size: 18pt;
+}
+
+#about {
+    margin: 0 auto;
+    width: 70%;
+    padding: 4vh 0vh;
+}
+
+#aboutimage {
+    padding-top: 4vh;
+    margin-left:15%;
+    max-width: 70%;
+}
