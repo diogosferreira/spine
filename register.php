@@ -1,6 +1,5 @@
 <?php
 include("config.php");
-session_start();
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
@@ -44,6 +43,9 @@ session_start();
                 $endresult = mysqli_query($db, $query);
                 if($endresult){
                     $msg = "User Created Successfully!";
+                    $querytext = "INSERT INTO `Utilizador_Msg` (`userName`, `message`, `date`) VALUES ('$myusername', 'Congratulations! You have now created your account, be free to shop as much as you want.', CURRENT_DATE())"; 
+                    $textresult = mysqli_query($db, $querytext);
+
                 }else{
                     $msg ="Sorry, user Registration Failed.";
                 }
