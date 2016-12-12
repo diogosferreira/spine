@@ -6,6 +6,10 @@
 
    $user_check = $_SESSION['login_user'];
    
+    if(empty($user_check))
+        header('login.php');
+
+    
    $ses_sql = $conn->query("select * from Utilizador where userName = '$user_check' ");
    
    $ses_row = $ses_sql->fetch_assoc();

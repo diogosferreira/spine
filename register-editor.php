@@ -18,7 +18,7 @@ include("config.php");
             $myusername = mysqli_real_escape_string($conn,$_POST['username']);
             $myemail = mysqli_real_escape_string($conn,$_POST['email']);
             $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
-            $owner = 1;
+            $owner = 0;
  
             //check if the username exists
             $sql1 = "SELECT * FROM Utilizador WHERE userName = '$myusername'";
@@ -56,4 +56,5 @@ include("config.php");
      }
     }
     }
+    
 ?>

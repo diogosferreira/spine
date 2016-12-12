@@ -1,6 +1,6 @@
 <?php   
 include('session.php');
-include('registor-editor.php');
+include('register-editor.php');
 session_start();
 ?>
 
@@ -45,6 +45,7 @@ session_start();
             </form>
             <div id="profile-main">
                 <div id="profile-name"> Beatriz Lacerda </div>
+                <input class="button" type="submit" name="submit" value="Edit" />
                 <input class="button" type="submit" name="submit" value="Edit" />
             </div>
         </div>
@@ -206,7 +207,7 @@ session_start();
 
 
         //-- EDIT PROFILE --
-        $('.button').on("click", function () {
+        $('#button').on("click", function () {
             $(".changeable").toggleClass('enabled');
             $("#profile-pic").toggleClass('profile-pic-enabled');
 
@@ -219,6 +220,10 @@ session_start();
                 $("form input").prop('disabled', true);
             }
         });
+        
+        $('#cancel-button').on("click", function () {
+            $("form input").prop('disabled', false);
+        }
 
 
         //-- MESSAGES --

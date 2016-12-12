@@ -66,14 +66,14 @@ else
             <!--  cria as divs aqui   -->
 
         </div>
-        
-        
-        
-        
+
+
+
+
         <div id="left" class="column">
-            
+
         </div>
-        
+
     </section>
 
 
@@ -85,81 +85,80 @@ else
         if (user)
             $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
         console.log(user);
-    
-        
+
+
         for (i = 0; i < 8; i++) {
             var palmas = <?php echo json_encode($didi); ?>;
             //console.log("i é: " +palmas[i].categoria);
         }
-            showAll();
-            //ver qual a categoria selecionada
+        showAll();
+        //ver qual a categoria selecionada
 
-            $("#list li").on("click", function () {
-                //console.log($(this).attr('id'));
-                var divNome = $(this).attr('id');
-
-
-                //esconder as outras divs
-                $(".post").remove();
-
-                if (divNome === 'all') {
-                    showAll();
-                } else {
-
-                    for (i = 0; i < 8; i++) {
-
-                        var codBarras = palmas[i].codBarras;
-
-                        //  console.log("divnome==" + divNome);
-                        if (divNome === palmas[i].categoria) {
-                            //console.log(i + " é " + divNome);
-
-                            jQuery('<div/>', {
-                                id: 'div' + i,
-                                class: 'post',
-                                // text: 'div bem criada' + i
-                            }).appendTo('#posts'); //id/class so sitio
+        $("#list li").on("click", function () {
+            //console.log($(this).attr('id'));
+            var divNome = $(this).attr('id');
 
 
-                            //só meter id e imagem em variável
+            //esconder as outras divs
+            $(".post").remove();
 
-                            $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+            if (divNome === 'all') {
+                showAll();
+            } else {
+
+                for (i = 0; i < 8; i++) {
+
+                    var codBarras = palmas[i].codBarras;
+
+                    //  console.log("divnome==" + divNome);
+                    if (divNome === palmas[i].categoria) {
+                        //console.log(i + " é " + divNome);
+
+                        jQuery('<div/>', {
+                            id: 'div' + i,
+                            class: 'post',
+                            // text: 'div bem criada' + i
+                        }).appendTo('#posts'); //id/class so sitio
 
 
-                        }
+                        //só meter id e imagem em variável
+
+                        $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+
 
                     }
-                }
 
-            });
-
-            
-
-
-            function showAll() {
-                for (i = 0; i < 8; i++) {
-                    var codBarras = palmas[i].codBarras;
-                    jQuery('<div/>', {
-                        id: 'div' + i,
-                        class: 'post',
-                        // text: 'div bem criada' + i
-                    }).appendTo('#posts'); //id/class so sitio
-
-                    $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
                 }
             }
-            
-        
-            
-            
-            
-            
-            //teste de mostrar revista
-            console.log("corre");
-            var codBarras = palmas[1].codBarras;
-            $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-            
-        </script>
+
+        });
+
+
+
+        //mostrar todas as revistas
+        function showAll() {
+            for (i = 0; i < 8; i++) {
+                var codBarras = palmas[i].codBarras;
+                jQuery('<div/>', {
+                    id: 'div' + i,
+                    class: 'post',
+                    // text: 'div bem criada' + i
+                }).appendTo('#posts'); //id/class so sitio
+
+                $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+            }
+        }
+
+
+
+
+
+
+        //teste de mostrar revista
+        console.log("corre");
+        var codBarras = palmas[1].codBarras;
+        $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+    </script>
 
 </body>
 

@@ -104,6 +104,14 @@
         </div>
 
 
+        <div id="popup">
+            <h1 id="x">&times;</h1>
+            <p id="welcome-msg"> </p>
+            <div id="button" class="popdisap">
+                <button class="btn" type="button"> Back </button>
+            </div>
+        </div>
+
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="js/script.js"></script>
@@ -174,15 +182,15 @@
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             if(!empty($_POST['password'])) {
                 $newpassword = $_POST['password'];
-                $changepasssword = "UPDATE Utilizador SET userPassword = '$newpassword' WHERE userName='bibs'";  
+                $changepasssword = "UPDATE Utilizador SET userPassword = '$newpassword' WHERE userName='$login_session'";  
             }
             if(!empty($_POST['nif'])){
                 $newnif = $_POST['nif'];
-                $changenif = "UPDATE Utilizador SET nif = '$newnif' WHERE userName='bibs'";  
+                $changenif = "UPDATE Utilizador SET nif = '$newnif' WHERE userName='$login_session'";  
             }
             if(!empty($_POST['address'])){
                 $newaddress = $_POST['address'];
-                $changeaddress = "UPDATE Utilizador SET morada = '$newaddress' WHERE userName='bibs'";  
+                $changeaddress = "UPDATE Utilizador SET morada = '$newaddress' WHERE userName='$login_session'";  
             }
             
             if ($conn->query($changepasssword) === TRUE) {
