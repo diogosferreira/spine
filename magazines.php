@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php 
+include('categorias.php'); 
+session_start();
+
+if(!empty($_SESSION['login_user']))
+    $user = true;
+else
+    $user = false;
+?>
+
+
 <html>
 
 <head>
