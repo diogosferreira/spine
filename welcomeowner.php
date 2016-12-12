@@ -45,8 +45,8 @@ session_start();
             </form>
             <div id="profile-main">
                 <div id="profile-name"> Beatriz Lacerda </div>
-                <input class="button" type="submit" name="submit" value="Edit" />
-                <input class="button" type="submit" name="submit" value="Edit" />
+                <input class="button" id="button" type="submit" name="submit" value="Edit" />
+                <!--<input class="button" id="cancel-button" type="submit" name="submit" value="Cancel" />-->
             </div>
         </div>
         <div id="info">
@@ -221,9 +221,10 @@ session_start();
             }
         });
         
-        $('#cancel-button').on("click", function () {
+        /*$('#cancel-button').on("click", function () {
+            
             $("form input").prop('disabled', false);
-        }
+        });*/
 
 
         //-- MESSAGES --
