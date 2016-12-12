@@ -19,8 +19,6 @@
 
 
 
-
-
     //-- SELECT USER MESSAGES --
 
    $result = $conn->query("select * from Utilizador_Msg where userName = '$user_check' ORDER BY `date` ASC ");
@@ -40,7 +38,4 @@
 
 
 
-   if(!isset($_SESSION['login_user'])){
-      header("location:login.php");
-   }
 ?>

@@ -2,14 +2,15 @@
    include('session.php');
     session_start();
 
-    if($login_type==1)
-      header("location:welcomeowner.php");
-   
-
-   if(!isset($_SESSION['login_user'])){
-      header("location:login.php");
-   }
 ?>
+    <script type="text/javascript" language="javascript">
+        var type = <?php echo json_encode($login_type); ?>;
+        console.log("type: " + type);
+        if (type == 1)
+            location.href = "welcomeowner.php";
+    </script>
+
+
     <html>
 
     <head>
@@ -114,16 +115,8 @@
             var email = <?php echo json_encode($login_email); ?>;
             var nif = <?php echo json_encode($login_nif); ?>;
             var address = <?php echo json_encode($login_address); ?>;
-            var type = <?php echo json_encode($login_type); ?>;
-            var ba = <?php echo json_encode($ses_sql); ?>;
-            var us = <?php echo json_encode($user_check); ?>;
-            console.log(us);
-            console.log(ba);
-            console.log(username);
-            console.log(email);
-            console.log(nif);
-            console.log(address);
-            console.log("type:" + type);
+
+
             $('#profile-name').text(username);
 
             $('#username').attr("placeholder", username);
