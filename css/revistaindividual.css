@@ -23,9 +23,9 @@ section {
 }
 
 .cover {
-    max-width: 90%;
-    margin-top: 30px;
-    padding-left: 5vw;
+    max-width: 70%;
+    margin-top: 7vh;
+    padding-left: 10vw;
     margin-bottom: 22vh;
 
 }
@@ -52,6 +52,7 @@ p {
 
 #nome {
     font-size: 20pt;
+    margin-top: 6vh;
 }
 
 

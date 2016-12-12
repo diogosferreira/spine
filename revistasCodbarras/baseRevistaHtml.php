@@ -16,9 +16,10 @@
 </head>
 
 <body class="index">
+    
     <header>
-        <a href="../index.html"> <img src="../images/logo.png" alt="spinelogo" id="logo"> </a>
-        <div id="login"> <a href="#"> Login </a> </div>
+        <a href="../index.php"> <img src="../images/logo.png" alt="spinelogo" id="logo"> </a>
+        <div id="login"> <a href="../login.php">Login</a> / <a href="../register.php">Register</a></div>
     </header>
 
 
