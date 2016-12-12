@@ -25,10 +25,10 @@
     float: left;
     width: 20vw;
     height: 20vw;
-    min-height: 234px;
-    min-width: 234px;
-    max-height: 270px;
-    max-width: 270px;
+    min-height: 179px;
+    min-width: 179px;
+    max-height: 180px;
+    max-width: 180px;
     border-radius: 50%;
     background: url(../images/profile.JPG) no-repeat center center;
     background-size: cover;
