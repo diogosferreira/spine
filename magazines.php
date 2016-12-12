@@ -70,16 +70,17 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="js/script.js"></script>
 
-
-    <?php include('categorias.php'); ?>
-
-
-        <script type="text/javascript" language="javascript">
-            for (i = 0; i < 8; i++) {
-                var palmas = <?php echo json_encode($didi); ?>;
-                //console.log("i é: " +palmas[i].categoria);
-            }
-
+    <script type="text/javascript" language="javascript">
+        var user = <?php echo json_encode($user); ?>;
+        if (user)
+            $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
+        console.log(user);
+    
+        
+        for (i = 0; i < 8; i++) {
+            var palmas = <?php echo json_encode($didi); ?>;
+            //console.log("i é: " +palmas[i].categoria);
+        }
             showAll();
             //ver qual a categoria selecionada
 
