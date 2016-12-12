@@ -1,0 +1,250 @@
+.welcome {
+    width: 65vw;
+    height: auto;
+    padding-left: 20vw;
+    padding-right: 15vw;
+    padding-top: 20vh;
+    font-size: 16pt;
+}
+
+
+/* PROFILE */
+
+#main {
+    width: 100%;
+    height: 35vh;
+}
+
+
+#profile-pic-button{
+    display: none;
+}
+
+#profile-pic {
+    display: inline-block;
+    float: left;
+    width: 20vw;
+    height: 20vw;
+    min-height: 234px;
+    min-width: 234px;
+    max-height: 270px;
+    max-width: 270px;
+    border-radius: 50%;
+    background: url(../images/profile.JPG) no-repeat center center;
+    background-size: cover;
+    margin-bottom: 3vh;
+}
+
+.profile-pic-enabled:hover {
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+#profile-main {
+    width: 60%;
+    text-align: center;
+    display: inline-block;
+}
+
+#profile-name {
+    font-size: 26pt;
+    margin-top: 7vh;
+}
+
+.button {
+    font-size: 18pt;
+    padding: 2%;
+    width: 30%;
+    margin-top: 4vh;
+    border: 2px solid black;
+}
+
+.button:focus {
+    color: black;
+}
+
+.button:hover, input[type=submit]:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+input[type=submit]{
+    font-size: 18pt;
+    font-family: Century Gothic;
+}
+
+input[type=submit]:focus {
+    border-color: black;
+}
+
+
+.line {
+    width: 100%;
+    margin: 1vh 0;
+    padding: 1vh 1vw;
+}
+
+label,
+.date {
+    width: 30%;
+    display: inline-block;
+    float: left;
+}
+
+input {
+    font-size: 16pt;
+}
+
+input,
+.msg {
+    width: 70%;
+    border: none;
+    color: black;
+    background-color: #F2F1EF;
+    border-bottom: 1px solid #F2F1EF;
+}
+
+.enabled {
+    border-bottom: 1px solid black;
+}
+
+input:focus {
+    color: lightgray;
+    border-color: lightgray;
+    outline-color: transparent;
+    outline-style: none;
+    transform-origin: 0% 50%;
+}
+
+
+/*input[type=submit] {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 6vh;
+    padding: 2vh 0;
+    border: 1px solid black;
+}
+
+input[type=submit]:hover {
+    text-decoration: underline;
+}*/
+
+
+/* MESSAGES & ORDERS */
+
+h2 {
+    padding-bottom: 1vh;
+    border-bottom: 4px solid black;
+    margin-bottom: 4vh;
+}
+
+
+/* MESSAGES */
+
+.msg {
+    height: auto;
+    float: left;
+    font-family: BlinkMacSystemFont;
+    font-weight: normal;
+    margin-bottom: 6vh;
+}
+
+
+/* ORDERS */
+
+
+
+
+/* EDITOR */
+
+.add-button {
+    width: auto;
+    text-align: center;
+    margin-top: 6vh;
+}
+
+
+
+/* DROP DOWN MENU */
+
+#dropdown-list {
+    width: 185px;
+    display: block;
+    text-align: center;
+    font-size: 14pt;
+    display: inline-block;
+    float: right;
+}
+
+.dropdown {
+    text-align: left;
+    color: #343C3F;
+    border: 2px solid black;
+}
+
+.dropdown.closed .dropdown-menu {
+    margin-top: 0px;
+}
+
+.dropdown.closed .dropdown-menu li {
+    height: 0px;
+}
+
+.dropdown.closed .title {
+    border-bottom: none;
+}
+
+.dropdown.closed .title:after {
+    margin-top: -20px;
+    transform: rotate(0deg);
+}
+
+.dropdown .title {
+    width: 100%;
+    position: relative;
+    height: 40px;
+    padding: 9px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #D9E1E4;
+}
+
+.dropdown .title:after {
+    display: block;
+    content: "▾";
+    position: absolute;
+    right: 35px;
+    margin-top: -20px;
+    transform: rotate(180deg);
+}
+
+.dropdown .dropdown-menu {
+    position: relative;
+    overflow: hidden;
+    max-height: 160px;
+    transition: all 0.2s;
+    box-sizing: "border-box";
+}
+
+.dropdown ul {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.dropdown ul li {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #cac9c7;
+    padding: 0 12px;
+    vertical-align: top;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #F2F1EF;
+    transition: margin-top 0.5s, height 0.5s;
+}
+
+.dropdown ul li:hover {
+    background-color: #cac9c7;
+    color: #343C3F;
+}

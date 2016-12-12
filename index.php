@@ -1,4 +1,12 @@
-<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<?php 
+include('db.php'); 
+session_start();
+
+if(!empty($_SESSION['login_user']))
+    $user = true;
+else
+    $user = false;
+?>
 
 <html>
 
@@ -24,7 +32,7 @@
     <p class="dbresult"></p>
 
 
-    
+
     <nav>
         <ul>
             <li> <a href="magazines.php"> Magazines </a></li>
@@ -36,27 +44,25 @@
     <section id="firstPage" class="fullPage"></section>
 
 
-    
-     
+
+
     <!--teste ler revistas———————————————————-->
-    
+
     <a href="lerrevistahtml.php"> ler revistas </a>
-    
+
     <!--teste ler revistas fim ———————————————————-->
-    
-    
-    
+
+
+
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="js/script.js"></script>
-    <?php include('db.php'); ?>
-
-        <script type="text/javascript" language="javascript">
-            for (i = 0; i < 13; i++) {
-                var palmas = <?php echo json_encode($didi); ?>;
-                $('.dbresult').text("user: "+ palmas[i].Id + " and userPassword: "+palmas[i].Name);
-            }
-        </script>
+    <script>
+        var user = <?php echo json_encode($user); ?>;
+        if (user)
+            $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
+        console.log(user);
+    </script>
 </body>
 
 
