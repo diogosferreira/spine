@@ -51,7 +51,7 @@
     margin-top: 7vh;
 }
 
-#button {
+.button {
     font-size: 18pt;
     padding: 2%;
     width: 30%;
@@ -59,11 +59,11 @@
     border: 1px solid black;
 }
 
-#button:focus {
+.button:focus {
     color: black;
 }
 
-#button:hover, input[type=submit]:hover {
+.button:hover, input[type=submit]:hover {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -147,3 +147,14 @@ h2 {
 
 
 /* ORDERS */
+
+
+
+
+/* EDITOR */
+
+#add-button {
+    width: 20%;
+    text-align: center;
+    margin-top: 6vh;
+}

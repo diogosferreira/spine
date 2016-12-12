@@ -1,8 +1,13 @@
 <?php
    include('session.php');
+    session_start();
 
-    if($login_type == 1){
+    if($login_type==1)
       header("location:welcomeowner.php");
+   
+
+   if(!isset($_SESSION['login_user'])){
+      header("location:login.php");
    }
 ?>
     <html>
@@ -24,7 +29,7 @@
     <body class="index">
         <header>
             <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-            <div id="login"> <a href="logout.php"> Logout </a> </div>
+            <div id="login"> <a href="magazines.php">Magazines</a> / <a href="logout.php">Logout</a> </div>
         </header>
 
 
@@ -33,8 +38,6 @@
                 <li> <a href="#profile"> Profile </a></li>
                 <li> <a href="#messages"> Messages </a></li>
                 <li> <a href="#cart"> Cart </a></li>
-                <br>
-                <li> <a href="magazines.php"> Magazines </a></li>
             </ul>
         </nav>
 
@@ -46,7 +49,7 @@
                 </form>
                 <div id="profile-main">
                     <div id="profile-name"> Beatriz Lacerda </div>
-                    <input id="button" type="submit" name="submit" value="Edit" />
+                    <input class="button" type="submit" name="submit" value="Edit" />
                 </div>
             </div>
             <div id="info">
@@ -106,31 +109,31 @@
 
 
         <script type="text/javascript" language="javascript">
-
-
             //-- PROFILE --
             var username = <?php echo json_encode($login_session); ?>;
             var email = <?php echo json_encode($login_email); ?>;
             var nif = <?php echo json_encode($login_nif); ?>;
             var address = <?php echo json_encode($login_address); ?>;
+            var type = <?php echo json_encode($login_type); ?>;
             var ba = <?php echo json_encode($ses_sql); ?>;
             var us = <?php echo json_encode($user_check); ?>;
             console.log(us);
             console.log(ba);
             console.log(username);
-                        console.log(email);
-                        console.log(nif);
-                        console.log(address);
+            console.log(email);
+            console.log(nif);
+            console.log(address);
+            console.log("type:" + type);
             $('#profile-name').text(username);
 
             $('#username').attr("placeholder", username);
             $('#email').attr("placeholder", email);
             $('#nif').attr("placeholder", nif);
             $('#address').attr("placeholder", address);
-            
+
 
             //-- EDIT PROFILE --
-            $('#button').on("click", function () {
+            $('.button').on("click", function () {
                 $(".changeable").toggleClass('enabled');
                 $("#profile-pic").toggleClass('profile-pic-enabled');
 
