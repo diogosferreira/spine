@@ -56,6 +56,14 @@
             <!--  cria as divs aqui   -->
 
         </div>
+        
+        
+        
+        
+        <div id="left" class="column">
+            
+        </div>
+        
     </section>
 
 
@@ -67,8 +75,6 @@
 
 
         <script type="text/javascript" language="javascript">
-
-
             for (i = 0; i < 8; i++) {
                 var palmas = <?php echo json_encode($didi); ?>;
                 //console.log("i é: " +palmas[i].categoria);
@@ -91,34 +97,35 @@
 
                     for (i = 0; i < 8; i++) {
 
-                    var codBarras = palmas[i].codBarras;
+                        var codBarras = palmas[i].codBarras;
 
-                    //  console.log("divnome==" + divNome);
-                    if (divNome === palmas[i].categoria) {
-                        //console.log(i + " é " + divNome);
+                        //  console.log("divnome==" + divNome);
+                        if (divNome === palmas[i].categoria) {
+                            //console.log(i + " é " + divNome);
 
-                        jQuery('<div/>', {
-                            id: 'div' + i,
-                            class: 'post',
-                            // text: 'div bem criada' + i
-                        }).appendTo('#posts'); //id/class so sitio
-
-
-                        //só meter id e imagem em variável
-
-                        $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+                            jQuery('<div/>', {
+                                id: 'div' + i,
+                                class: 'post',
+                                // text: 'div bem criada' + i
+                            }).appendTo('#posts'); //id/class so sitio
 
 
-                    }
+                            //só meter id e imagem em variável
+
+                            $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+
+
+                        }
 
                     }
                 }
 
-                });
+            });
+
+            
 
 
-
-            function showAll (){
+            function showAll() {
                 for (i = 0; i < 8; i++) {
                     var codBarras = palmas[i].codBarras;
                     jQuery('<div/>', {
@@ -130,63 +137,17 @@
                     $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
                 }
             }
-
-
-            /*
-
-
-                        for (i = 0; i < 8; i++) {
-                            var palmas = <?php echo json_encode($didi); ?>;
-                            $('.dbresult').text("idrevista: " + palmas[i].categoria);
-
-                        }
-
-
-                        //————— mostrar nos p´s
-
-                        $('.dbresult').text("idrevista: " + palmas[0].categoria);
-
-                        $('.codbarras').text("codbarras: " + palmas[0].codBarras);
-
-
-
-
-                        */
-
-
-
-
-
-
-
-
-
-            //  Criar uma div com id e class na div posts
-
-            /*         for (i = 0; i < 2; i++) { //numero de divs
-                         jQuery('<div/>', {
-                             id: 'div' + i,
-                             class: 'post',
-                             text: 'sou uma nova div' + i
-                         }).appendTo('#posts'); //id/class so sitio
-                     }
-
-
-                     //Meter imagem na div que criei
-
-                     for (i = 0; i < 2; i++) {
-                         //console.log("iiiii" + i);
-                         //$('#div' + i).prepend('<img id="theImg" src="images/magazine1.jpg" />');
-
-                         // $('#div' + i).prepend('<a href="revistas/frankie.html"> <img src="images/frankie.jpg"></a>');
-
-                         $('#div' + i).prepend("<a href='revistas/frankie' + '.html'> <img src='images/frankie.jpg'> </a>");
-                         // $('<img src= ' + nome + '>').appendTo(".img");
-                     }
-
-
-
-             */
+            
+        
+            
+            
+            
+            
+            //teste de mostrar revista
+            console.log("corre");
+            var codBarras = palmas[1].codBarras;
+            $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+            
         </script>
 
 </body>
