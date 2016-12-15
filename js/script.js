@@ -2,6 +2,7 @@ var imgi=2;
 
 //-- IMAGES CHANGING --
 
+ //$('#preco').text(testeaula);
 
 setInterval( function(){
     var src = "images/magazine" + imgi + ".jpg";
@@ -13,8 +14,8 @@ setInterval( function(){
     if(imgi==5)
         imgi=1;
 },2000);
-
-
+ 
+console.log(testeaula);
 
 //-- SMOOTH SCROLLING --
 
@@ -32,7 +33,6 @@ $(function() {
     }
   });
 });
-
 
 //-- DROP DOWN MENU --
 
@@ -120,3 +120,11 @@ $(document).ready(function() {
         });
     } 
 });
+
+
+
+////////////// ze
+
+function agora(){
+    alert(testeaula);
+}

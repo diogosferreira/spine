@@ -75,7 +75,7 @@
             }
 
 
-
+    agora();
             //Selecionar a imagem com o codigo de barras
 
             var codBarras = palmas[1].codBarras;
@@ -90,9 +90,8 @@
             console.log(descricao);
 
             $('#descricao').text(descricao);
+           
         </script>
-
-
 
 </body>
 

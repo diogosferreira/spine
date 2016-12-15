@@ -62,7 +62,7 @@ else
 
         <section id="postPage">
             <div id="posts">
-
+                teste umdoisquatro
                 <!--  cria as divs aqui   -->
 
             </div>
@@ -78,9 +78,10 @@ else
 
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="js/script.js"></script>
+
 
         <script type="text/javascript" language="javascript">
+            var testeaula = $('#posts').text();
             var user = <?php echo json_encode($user); ?>;
             if (user)
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
@@ -142,7 +143,9 @@ else
                         // text: 'div bem criada' + i
                     }).appendTo('#posts'); //id/class so sitio
 
-                    $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+                    //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+
+                   $('#div' + i).prepend("<a href='revistasCodbarras/baseRevistaHtml.php'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
                 }
             }
 
@@ -151,7 +154,17 @@ else
             /*console.log("corre");
             var codBarras = palmas[1].codBarras;
             $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");*/
+
+
+
+            $("#div1").on("click", function () {
+                        alert.log("testeeeeeeee");
+                    });
         </script>
+
+
     </body>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     </html>
