@@ -66,18 +66,8 @@ else
                 <!--  cria as divs aqui   -->
 
             </div>
-<<<<<<< HEAD
-        </div>
-    </nav>
 
-
-
-    <section id="postPage">
-        <div id="posts">
-
-            <!--  cria as divs aqui   -->
-
-        </div>
+        </section>
 
 
 
@@ -85,8 +75,6 @@ else
         <div id="left" class="column">
 
         </div>
-
-    </section>
 
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -105,39 +93,7 @@ else
         }
         showAll();
         //ver qual a categoria selecionada
-=======
 
-
-
-
-            <div id="left" class="column">
-
-            </div>
-
-        </section>
-
-
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="js/script.js"></script>
-
-        <script type="text/javascript" language="javascript">
-            var user = <?php echo json_encode($user); ?>;
-            if (user)
-                $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
-            console.log(user);
-
-
-            for (i = 0; i < 8; i++) {
-                var palmas = <?php echo json_encode($didi); ?>;
-                //console.log("i é: " +palmas[i].categoria);
-            }
-            showAll();
-            //ver qual a categoria selecionada
-
-            $("#list li").on("click", function () {
-                //console.log($(this).attr('id'));
-                var divNome = $(this).attr('id');
->>>>>>> d6bb90b87019a7dc9b18451cf8f8c65cf7f83473
 
         $("#list li").on("click", function () {
             //console.log($(this).attr('id'));
@@ -178,10 +134,7 @@ else
 
         });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d6bb90b87019a7dc9b18451cf8f8c65cf7f83473
 
 
         //mostrar todas as revistas
@@ -196,30 +149,17 @@ else
 
                 $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
             }
-<<<<<<< HEAD
         }
-=======
->>>>>>> d6bb90b87019a7dc9b18451cf8f8c65cf7f83473
 
 
 
 
 
-
-<<<<<<< HEAD
         //teste de mostrar revista
-        console.log("corre");
+        /*console.log("corre");
         var codBarras = palmas[1].codBarras;
-        $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+        $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");*/
     </script>
-=======
-            //teste de mostrar revista
-            // console.log("corre");
-            //var codBarras = palmas[1].codBarras;
-            //$('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-        </script>
->>>>>>> d6bb90b87019a7dc9b18451cf8f8c65cf7f83473
-
-    </body>
+     </body>
 
     </html>
