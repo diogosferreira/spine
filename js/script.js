@@ -4,9 +4,10 @@ var imgi = 2;
 
 //-- IMAGES CHANGING --
 
+$('#firstPage').css('background-image', 'url(images/mags/1.jpg)');
+
 setInterval(function () {
-    var src = "images/magazine" + imgi + ".jpg";
-    //  console.log("changed orb image to: "+ src);
+    var src = "images/mags/" + imgi + ".jpg";
 
     $('#firstPage').css('background-image', 'url(' + src + ')');
 
