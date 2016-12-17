@@ -1,4 +1,12 @@
-<?php include('revista.php');?>
+<?php 
+include('revista.php');
+session_start();
+
+if(!empty($_SESSION['login_user']))
+    $user = true;
+else
+    $user = false;
+?>
 
     <html>
 
@@ -19,7 +27,7 @@
     <body class="index">
         <header>
             <a href="../index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-            <div id="login"> <a href="#"> Login </a> </div>
+            <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
         </header>
 
 
@@ -38,16 +46,26 @@
 
         <section>
             <div id="left" class="column">
-                <img id="imagem" class="cover" src="images/mags/1.jpg" alt="Adbusters">
+                <img id="imagem" class="cover" src="" alt="Adbusters">
+                
+                <!-- <div id="heart">
+                    <input type="checkbox" id="like" />
+                    <label for="like">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31z" />
+                        </svg>
+                    </label>
+                </div> -->
             </div>
 
             <div id="right" class="column">
                 <div id="text">
                     <p id="nome"> </p>
                     <br>
-                    <p> <span id="t-preco"> </span>€ <a id="preco" href="#"> BUY NOW </a></p>
+                    <p id="compra"> <span id="t-preco"> </span>€ <a id="preco" href="#"> BUY NOW </a></p>
                     <br>
 
+                    <!-- pre serve para separar o texto em paragrafos -->
                     <pre><p id="descricao">
                     </p></pre>
 
@@ -63,14 +81,27 @@
         <script>
             var till = <?php echo json_encode($contador); ?>;
             var id = <?php echo json_encode($id); ?>;
-            for (i = 0; i < till; i++) 
+            for (i = 0; i < till; i++)
                 var palmas = <?php echo json_encode($didi); ?>;
-            
-                
-            $('#imagem').attr('src', 'images/mags/'+id+'.jpg');
-            $('#nome').text(palmas[0].nome+" #"+palmas[0].num);
+
+
+            $('#imagem').attr('src', 'images/mags/' + id + '.jpg');
+            $('#nome').text(palmas[0].nome + " #" + palmas[0].num);
             $('#t-preco').text(palmas[0].preco);
             $('#descricao').text(palmas[0].descricao);
+
+
+            /*var heart = document.getElementById("heart");
+
+            heart.onclick = function () {
+                console.log('click');
+                if (heart.className == "active") {
+                    heart.className = "";
+                } else {
+                    heart.className = "active";
+                }
+
+            };*/
         </script>
 
     </body>

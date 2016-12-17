@@ -23,11 +23,10 @@ section {
 }
 
 .cover {
-    max-width: 70%;
-    margin-top: 7vh;
+    max-width: 75%;
+    max-height: 75%;
     padding-left: 10vw;
-    margin-bottom: 22vh;
-
+    margin-top: 1vh;
 }
 
 
@@ -51,27 +50,25 @@ p {
 }
 
 #nome {
-    font-size: 20pt;
-    margin-top: 6vh;
+    font-size: 32pt;
+    margin-top: 1vh;
+}
+
+#compra {
+    font-size: 18pt;
 }
 
 
 #preco {
+    color: red;
+    padding-left: 3%;
     text-decoration: underline;
 }
 
 
-::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
-}
-/* optional: show position indicator in red */
-::-webkit-scrollbar-thumb {
-    background: #FF0000;
-}
-
 
 pre {
+    padding-top: 3vh;
  white-space: pre-wrap;       /* css-3 */
  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
  white-space: -pre-wrap;      /* Opera 4-6 */
@@ -91,4 +88,50 @@ pre {
         width: 92%;
          min-width: 50px;
     }
+}
+
+
+
+
+/* HEART ANIMATION */
+
+
+
+input[type=checkbox] {
+	clear: both;
+	display: none;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label svg {
+	display: inline-flex;
+	vertical-align: middle;
+	width: 35px;
+	fill: rgb(167, 167, 167);
+}
+
+#heart {
+  position: absolute;
+  display: block;
+  padding: 40vh 48vw;
+  fill: #CDCDCD;
+  transition: fill 200ms;
+  z-index: 1;
+}
+
+#heart.active {
+  fill: #FFA600;
+  animation: fav 600ms ease;
+}
+
+@keyframes fav {
+  15% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
 }
