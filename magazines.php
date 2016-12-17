@@ -56,14 +56,27 @@ else
 
                 </div>
             </div>
+
+
+            <!--  search   -->
+            <!--<form action="form.php" method="post">-->
+            <form method="post">
+                Search:
+                <input type="text" name="option" />
+                <br />
+                <input type="submit" value="Search" />
+            </form>
+            <!--  search   -->
+
         </nav>
 
-
+        
+        
+    
 
         <section id="postPage">
             <div id="posts">
                 <!--  cria as divs aqui   -->
-
             </div>
 
         </section>
@@ -98,7 +111,7 @@ else
             $("#list li").on("click", function () {
                 var divNome = $(this).attr('id');
 
-
+$( "div" ).remove( ".post" );
                 if (divNome === 'all') {
                     showAll();
                 } else {
@@ -135,10 +148,9 @@ else
 
                     //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
 
-                   $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+                    $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
                 }
             }
-
         </script>
 
 
