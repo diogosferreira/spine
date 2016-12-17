@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php 
+include('db.php'); 
+session_start();
+
+if(!empty($_SESSION['login_user']))
+    $user = true;
+else
+    $user = false;
+?>
+
 <html>
 
 <head>
@@ -17,16 +26,16 @@
 
 <body class="index">
     <header>
-        <a href="index.html"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-        <div id="login"> <a href="#"> Login </a> </div>
+        <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+        <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
     </header>
 
 
     <nav>
         <ul>
-            <li> <a href="magazines.html"> Magazines </a></li>
-            <li> <a href="about.html"> About </a></li>
-            <li> <a href="contacts.html"> Contact </a></li>
+            <li> <a href="magazines.php"> Magazines </a></li>
+            <li> <a href="about.php"> About </a></li>
+            <li> <a href="contacts.php"> Contact </a></li>
         </ul>
     </nav>
 

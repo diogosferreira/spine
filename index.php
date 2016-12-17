@@ -36,8 +36,8 @@ else
     <nav>
         <ul>
             <li> <a href="magazines.php"> Magazines </a></li>
-            <li> <a href="about.html"> About </a></li>
-            <li> <a href="contacts.html"> Contact </a></li>
+            <li> <a href="about.php"> About </a></li>
+            <li> <a href="contacts.php"> Contact </a></li>
         </ul>
     </nav>
 

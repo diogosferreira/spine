@@ -34,9 +34,9 @@ else
 
         <nav>
             <ul>
-                <li> <a href="magazines.html"> Magazines </a></li>
-                <li> <a href="about.html"> About </a></li>
-                <li> <a href="contacts.html"> Contact </a></li>
+                <li> <a href="magazines.php"> Magazines </a></li>
+                <li> <a href="about.php"> About </a></li>
+                <li> <a href="contacts.php"> Contact </a></li>
             </ul>
 
             <br>
@@ -62,7 +62,6 @@ else
 
         <section id="postPage">
             <div id="posts">
-                teste umdoisquatro
                 <!--  cria as divs aqui   -->
 
             </div>
@@ -97,35 +96,26 @@ else
 
 
             $("#list li").on("click", function () {
-                //console.log($(this).attr('id'));
                 var divNome = $(this).attr('id');
-
-
-                //esconder as outras divs
-                $(".post").remove();
 
 
                 if (divNome === 'all') {
                     showAll();
                 } else {
-
                     for (i = 0; i < 8; i++) {
+                        var id = palmas[i].id;
 
-                        var codBarras = palmas[i].codBarras;
-
-                        //  console.log("divnome==" + divNome);
                         if (divNome === palmas[i].categoria) {
-                            //console.log(i + " é " + divNome);
-
                             jQuery('<div/>', {
-                                id: 'div' + i,
+                                id: '' + id,
                                 class: 'post',
                                 // text: 'div bem criada' + i
                             }).appendTo('#posts'); //id/class so sitio
 
                             // meter id e imagem em variável
 
-                            $('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+                            $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+
                         }
                     }
                 }
@@ -136,30 +126,19 @@ else
             //mostrar todas as revistas
             function showAll() {
                 for (i = 0; i < 8; i++) {
-                    var codBarras = palmas[i].codBarras;
+                    var id = palmas[i].id;
                     jQuery('<div/>', {
-                        id: 'div' + i,
+                        id: '' + id,
                         class: 'post',
                         // text: 'div bem criada' + i
                     }).appendTo('#posts'); //id/class so sitio
 
                     //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
 
-                   $('#div' + i).prepend("<a href='revistasCodbarras/baseRevistaHtml.php'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+                   $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
                 }
             }
 
-
-            //teste de mostrar revista
-            /*console.log("corre");
-            var codBarras = palmas[1].codBarras;
-            $('#left').prepend("<img class='cover' src='imagesCodbarras/" + codBarras + ".jpg'> </a>");*/
-
-
-
-            $("#div1").on("click", function () {
-                        alert.log("testeeeeeeee");
-                    });
         </script>
 
 

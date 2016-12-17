@@ -1,26 +1,17 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "spine";
-$contador = 0;
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-//echo "Connected successfully";
+include('db.php');
 
 
-$sql = "SELECT categoria, codBarras FROM revistaNum";
+$sql = "SELECT categoria, idRevista FROM revistaNum";
 $result = $conn->query($sql);
 
+
+$contador=0;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
        // $d = $row["email"];
         //echo "nome: " . $row["email"]. " - pass: " . $row["userPassword"]. "<br>";
-        $didi[$contador] = array("categoria"=>$row["categoria"], "codBarras"=>$row["codBarras"]);
+        $didi[$contador] = array("categoria"=>$row["categoria"], "id"=>$row["idRevista"]);
 
         $contador++;
     }
