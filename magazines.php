@@ -58,6 +58,9 @@ else
                 </form>
 
                 
+                
+                <!--funciona lá, anda-->
+                
 
                 <div id="dropdown-list">
                     <div class="dropdown closed">
@@ -75,7 +78,6 @@ else
                         </div>
                     </div>
                 </div>
-
 
 
 
