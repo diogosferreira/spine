@@ -23,10 +23,11 @@ section {
 }
 
 .cover {
-    max-width: 75%;
-    max-height: 75%;
+    max-width: 60%;
+    max-height: 60%;
     padding-left: 10vw;
     margin-top: 1vh;
+    float: right;
 }
 
 
@@ -37,7 +38,8 @@ section {
 }
 
 #text{
-    padding-right: 8vw;
+    float: right;
+    padding-right: 4vw;
     overflow-y: scroll;
     margin-bottom: 25vh;
 }
