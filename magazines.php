@@ -133,13 +133,14 @@ else
 
 
             <script type="text/javascript" language="javascript">
-                /* ———————  search magazines  ————————— */
+                /* ———————————————————  search magazines  ————————————————————————— */
 
 
 
                 for (i = 0; i < 8; i++) {
                     var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
                     //var procura = resultadoPesquisa[i].id;
+                    $("div").remove(".post");
                 }
 
                 var tamanho = resultadoPesquisa.length;
@@ -148,21 +149,20 @@ else
 
 
 
-
                 for (i = 0; i < tamanho; i++) {
                     console.log("top  " + resultadoPesquisa[i].id);
-                    
+
                     var procura = resultadoPesquisa[i].id;
 
 
                     jQuery('<div/>', {
                         id: '' + procura,
                         class: 'post',
-                         text: 'div bem criada' + i
-                    }).appendTo('#posts'); 
+                        text: 'div bem criada' + i
+                    }).appendTo('#posts');
                     $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + procura + ".jpg'> </a>");
-                    
-                    
+
+
 
 
 
@@ -170,7 +170,7 @@ else
                 }
 
 
-                /* ———————  search magazines  ————————— */
+                /* ———————————————————  search magazines  ————————————————————————————————— */
 
 
 
