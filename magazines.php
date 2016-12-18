@@ -142,9 +142,14 @@ else
                     //var procura = resultadoPesquisa[i].id;
                 }
                 
+                var tamanho = resultadoPesquisa.length;
+                //console.log("tamanho  " + tamanho);
                 
                 
-                for (i = 0; i < 8; i++) {
+                
+                
+                
+                for (i = 0; i < tamanho ; i++) {
                  console.log("top  " + resultadoPesquisa[i].id);
                 
                 
