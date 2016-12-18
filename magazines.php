@@ -10,9 +10,6 @@ else
 
 
 
-
-
-
     <html>
 
     <head>
@@ -68,15 +65,16 @@ else
                 <div class="dropdown closed">
                     <div class="title">Pick Category</div>
 
-                    <div class="dropdown-menu">
-                        <ul id="list">
-                            <li id="all">All</li>
-                            <li id="design">Design</li>
-                            <li id="social">Social</li>
-                            <li id="illustration">Illustration</li>
-                        </ul>
+                    <div class="piro">
+                        <div class="dropdown-menu">
+                            <ul id="list">
+                                <li id="all">All</li>
+                                <li id="design">Design</li>
+                                <li id="social">Social</li>
+                                <li id="illustration">Illustration</li>
+                            </ul>
+                        </div>
                     </div>
-
                 </div>
             </div>
 
@@ -128,32 +126,21 @@ else
 
             <!--—————————————   Search   ————————————————————-->
 
-
             <section id="postPage">
                 <div id="posts">
                     <!--  cria as divs aqui   -->
                 </div>
-
             </section>
 
 
-
-
-            <div id="left" class="column">
-
-            </div>
+            <div id="left" class="column"></div>
 
 
             <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-
             <script type="text/javascript" language="javascript">
                 /* ———————————————————  search magazines  ————————————————————————— */
 
 
-
-
-                var testarcenas = 0;
 
                 for (i = 0; i < 8; i++) {
                     var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
@@ -166,19 +153,6 @@ else
 
 
                 $(".post").remove();
-
-
-                $(".btn").on("click", function () {
-                    console.log("pir");
-                    testarcenas = 1;
-                });
-
-
-
-                $(".ropdown-menu").on("click", function () {
-                    console.log("pir");
-                    testarcenas = 2;
-                });
 
 
 
@@ -197,19 +171,23 @@ else
                     $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + procura + ".jpg'> </a>");
 
 
-
-
-
-
                 }
 
 
-                /* ———————————————————  search magazines  ————————————————————————————————— */
 
 
 
 
-                if (testarcenas > 1) {
+
+                /* ———————————————————  search magazines FIM  —————————————————————————— */
+
+
+
+
+                $("#list li").on("click", function () {
+                    console.log("cenas cenas");
+
+                    $(".post").remove();
 
 
                     var testeaula = $('#posts').text();
@@ -223,11 +201,39 @@ else
                         var palmas = <?php echo json_encode($didi); ?>;
                         //console.log("i é: " +palmas[i].categoria);
                     }
-                    showAll();
+                    //showAll();
                     //ver qual a categoria selecionada
+                   
+                    
+                    
+                    
+                    var divNome = $(this).attr('id');
 
+                    $("div").remove(".post");
+                    if (divNome === 'all') {
+                        showAll();
+                    } else {
+                        for (i = 0; i < 8; i++) {
+                            var id = palmas[i].id;
 
-                    $("#list li").on("click", function () {
+                            if (divNome === palmas[i].categoria) {
+                                jQuery('<div/>', {
+                                    id: '' + id,
+                                    class: 'post',
+                                    // text: 'div bem criada' + i
+                                }).appendTo('#posts'); //id/class so sitio
+
+                                // meter id e imagem em variável
+
+                                $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+
+                            }
+                        }
+                    }
+
+                    
+                
+                   /* $("#list li").on("click", function () {
                         var divNome = $(this).attr('id');
 
                         $("div").remove(".post");
@@ -252,7 +258,7 @@ else
                             }
                         }
                     });
-
+*/
 
 
                     //mostrar todas as revistas
@@ -271,21 +277,17 @@ else
                         }
                     }
 
-
-
-
-                }
+                });
             </script>
 
 
 
 
-            <!--   p da pesquisa      -->
+            <!--————————  p da pesquisa ————————————-->
 
 
             <script>
                 $("#enter").hide();
-                console.log("pilas");
 
                 $(".inputtext").on("click", function () {
                     $("#enter").fadeIn("slow");
@@ -296,6 +298,7 @@ else
                 });
             </script>
 
+            <!--———————— FIM p da pesquisa ————————————-->
 
     </body>
     <script src="js/script.js"></script>
