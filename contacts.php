@@ -27,7 +27,7 @@ else
 <body class="index">
     <header>
         <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-        <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
+        
     </header>
 
 
@@ -37,6 +37,8 @@ else
             <li> <a href="about.php"> About </a></li>
             <li> <a href="contacts.php"> Contact </a></li>
         </ul>
+        
+        <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
     </nav>
 
 
