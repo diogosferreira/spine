@@ -83,7 +83,7 @@
                     </div>-->
                 </form>
             </div>
-
+            <p class="answer"></p>
         </div>
 
 
@@ -115,8 +115,18 @@
             var email = <?php echo json_encode($login_email); ?>;
             var nif = <?php echo json_encode($login_nif); ?>;
             var address = <?php echo json_encode($login_address); ?>;
-
-
+            
+            
+            //change message when data edited
+            var newmsg = <?php echo json_encode($_SESSION['welcome-msg']); ?>;
+            if(newmsg!=null)
+                $('.answer').text(newmsg);
+            
+            setTimeout(function(){
+                $('.answer').fadeOut();
+            }, 2000);
+            
+            
             $('#profile-name').text(username);
 
             $('#username').attr("placeholder", username);
@@ -175,46 +185,36 @@
             if(!empty($_POST['password'])) {
                 $newpassword = $_POST['password'];
                 $changepasssword = "UPDATE Utilizador SET userPassword = '$newpassword' WHERE userName='$login_session'";  
+                
+                if ($conn->query($changepasssword) === TRUE) 
+                    $m1 = "Changed password. ";
+                else 
+                    $m1 = "Couldn't change password. ";
             }
             if(!empty($_POST['nif'])){
                 $newnif = $_POST['nif'];
-                $changenif = "UPDATE Utilizador SET nif = '$newnif' WHERE userName='$login_session'";  
+                $changenif = "UPDATE Utilizador SET nif = '$newnif' WHERE userName='$login_session'"; 
+                
+                if ($conn->query($changenif) === TRUE) 
+                    $m2 = "Changed nif. ";
+                else 
+                    $m2 = "Couldn't change nif. ";
             }
             if(!empty($_POST['address'])){
                 $newaddress = $_POST['address'];
                 $changeaddress = "UPDATE Utilizador SET morada = '$newaddress' WHERE userName='$login_session'";  
+                
+                if ($conn->query($changeaddress) === TRUE) 
+                    $m3 = "Changed address. ";
+                else 
+                    $m3 = "Couldn't change address. ";
             }
             
-            if ($conn->query($changepasssword) === TRUE) {
-                $m1 = "Records were updated successfully.";
-            } else {
-                $m1 = "ERROR: Could not able to execute $changepasssword. ";
-            } 
+            $msg = $m1 . $m2 . $m3;
+            $_SESSION['welcome-msg'] = $msg;
+    
+            echo"<script language='javascript'> window.location.href = 'welcome.php'; </script> ";
             
-            if ($conn->query($changenif) === TRUE) {
-                $m2 = "Records were updated successfully.";
-            } else {
-                $m2 = "ERROR: Could not able to execute $changenif. ";
-            }            
-            
-            if ($conn->query($changeaddress) === TRUE) {
-                $m3 = "Records were updated successfully.";
-            } else {
-                $m3 = "ERROR: Could not able to execute $changeaddress. ";
-            }
-            
-            
-            
-            
-//$change = "UPDATE Utilizador SET userPassword = '$newpassword'".", nif = '$newnif'".", morada = '$newaddress'"."WHERE userName='bibs'";
-            
-            //$change = "UPDATE Utilizador SET userPassword = 'bibz'".", nif = '44'".", morada = 'dz'"."WHERE userName='bibs'";
-
-            /*if ($bd->query($change) === TRUE) {
-                echo "Records were updated successfully.";
-            } else {
-                echo "ERROR: Could not able to execute $change. " . mysqli_error($link);
-            }*/
 
         }
         ?>

@@ -3,7 +3,25 @@ include('session.php');
 session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    if($_REQUEST['btn-submit']=="Add") {
+if($_REQUEST['btn-submit']=="Hidden") {
+    if(!empty($_POST['password'])) {
+        $newpassword = $_POST['password'];
+        $changepasssword = "UPDATE Utilizador SET userPassword = '$newpassword' WHERE userName='$login_session'";  
+
+        if ($conn->query($changepasssword) === TRUE) 
+            $msg0 = "Changed password.";
+        else 
+            $msg0 = "Couldn't change password.";
+    }
+
+    $_SESSION['welcomeowner-msg0'] = $msg0;
+    $_SESSION['welcomeowner-msg1'] = '';
+    $_SESSION['welcomeowner-msg2'] = '';
+
+    echo"<script language='javascript'> window.location.href = 'welcomeowner.php'; </script> ";
+            
+
+} else if($_REQUEST['btn-submit']=="Add") {
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
     if(empty($_POST['username']) && empty($_POST['email']) && empty($_POST['password']))
         $msg ="Insert values please.";
@@ -53,10 +71,16 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
             }
         }
     }
+    
+    $_SESSION['welcomeowner-msg0'] = '';
+    $_SESSION['welcomeowner-msg1'] = $msg;
+    $_SESSION['welcomeowner-msg2'] = '';
+
+    echo"<script language='javascript'> window.location.href = 'welcomeowner.php'; </script> ";
  }
 }
     
-       else if($_REQUEST['btn-submit']=="Add Magazine") {
+else if($_REQUEST['btn-submit']=="Add Magazine") {
 if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) && isset($_POST['price']) && isset($_POST['category']) && isset($_POST['quantity']) && isset($_POST['description'])){
     if(empty($_POST['name']) || empty($_POST['issue']) || empty($_POST['barcode']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['quantity']) || empty($_POST['description']))
         $msg2 ="Insert all values please.";
@@ -97,6 +121,12 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             }
         }
     }
+    
+    $_SESSION['welcomeowner-msg0'] = '';
+    $_SESSION['welcomeowner-msg1'] = '';
+    $_SESSION['welcomeowner-msg2'] = $msg2;
+
+    echo"<script language='javascript'> window.location.href = 'welcomeowner.php'; </script> ";
  }
 }
 }
@@ -154,7 +184,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                 </div>
             </div>
             <div id="info">
-                <form action="register-editor.php" method="post">
+                <form action="" method="post">
                     <div class="line">
                         <label for="username"> Username </label>
                         <input type="text" id="username" name="username" placeholder="" disabled>
@@ -170,7 +200,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                     <input style="display:none;" id="hidden-button" type="submit" name="btn-submit" value="Hidden" />
                 </form>
             </div>
-
+            <p class="answer" id="answer0"></p>
         </div>
 
 
@@ -195,9 +225,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                     </div>
                 </form>
             </div>
-            <p class="answer">
-                <?php echo $msg; ?>
-            </p>
+            <p class="answer" id="answer1"></p>
         </div>
 
         <div class="welcome" id="add-mag">
@@ -250,14 +278,16 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                         <label for="description"> Description </label>
                         <textarea type="text" name="description" placeholder="Description"></textarea>
                     </div>
+                    <div class="line">
+                        <label for="image"> Image </label>
+                        <textarea type="text" name="image" placeholder="Image"></textarea>
+                    </div>
                     <div class="button add-button" id="btn-add-mag">
                         <input type="submit" name="btn-submit" value="Add Magazine">
                     </div>
                 </form>
             </div>
-            <p class="answer">
-                <?php echo $msg2; ?>
-            </p>
+            <p class="answer" id="answer2"></p>
         </div>
 
 
@@ -277,13 +307,23 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             var username = <?php echo json_encode($login_session); ?>;
             var email = <?php echo json_encode($login_email); ?>;
 
-            /*$(document).ready(function () {
-                console.log(addedusername);
-                if (addedusername !== null) {
-                    window.location.href = window.location;
-                }
-            });*/
+            
+            //change message when data edited
+            var newmsg0 = <?php echo json_encode($_SESSION['welcomeowner-msg0']); ?>;
+            var newmsg1 = <?php echo json_encode($_SESSION['welcomeowner-msg1']); ?>;
+            var newmsg2 = <?php echo json_encode($_SESSION['welcomeowner-msg2']); ?>;
+            if(newmsg0 != null)
+                $('#answer0').text(newmsg0);
+            if(newmsg1 != null)
+                $('#answer1').text(newmsg1);
+            if(newmsg2 != null)
+                $('#answer2').text(newmsg2);
+            
+            setTimeout(function(){
+                $('.answer').fadeOut();
+            }, 2000);
 
+            
 
             $('#profile-name').text(username);
 

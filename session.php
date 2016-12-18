@@ -10,7 +10,7 @@
         header('login.php');
 
     
-   $ses_sql = $conn->query("select * from Utilizador where userName = '$user_check' ");
+   $ses_sql = $conn->query("select * from Utilizador where userName = '$user_check' or userEmail = '$user_check'");
    
    $ses_row = $ses_sql->fetch_assoc();
    
@@ -25,7 +25,7 @@
 
     //-- SELECT USER MESSAGES --
 
-   $result = $conn->query("select * from Utilizador_Msg where userName = '$user_check' ORDER BY `date` ASC ");
+   $result = $conn->query("select * from Utilizador_Msg where userName = '$login_session' ORDER BY `date` ASC ");
 
     $contador=0;
     if ($result->num_rows > 0) {

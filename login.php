@@ -23,7 +23,10 @@ session_start();
          $_SESSION['login_pass'] = $mypassword;
          
          
-         echo "<script> window.location.href='welcome.php';  </script>";
+         echo "<script> 
+                    localStorage.setItem('msg-welcome', '');
+                    window.location.href='welcome.php';  
+               </script>";
 
       }else {
          $error = "Your Login Name or Password is invalid";
