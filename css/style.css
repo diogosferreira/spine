@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+
 /*-- BODY --*/
 
 body {
@@ -23,6 +24,7 @@ a:hover {
     cursor: pointer;
 }
 
+
 /*-- HEADER --*/
 
 header {
@@ -34,8 +36,10 @@ header {
 }
 
 header img {
+    margin-left: 10px;
+    /*anda la*/
     width: auto;
-    height: 100px;
+    height: 50px;
 }
 
 #login {
@@ -44,7 +48,6 @@ header img {
     padding-right: 5vw;
     padding-top: 2vh;
 }
-
 
 
 /*-- NAV --*/
@@ -61,7 +64,6 @@ nav {
 
 ul {
     list-style-type: none;
-
 }
 
 a {
@@ -88,12 +90,11 @@ section {
 }
 
 h3 {
-  font-size: 26pt;
-  margin-bottom: .8em;
-  margin-top: .4em;
-  font-weight: 100;
+    font-size: 26pt;
+    margin-bottom: .8em;
+    margin-top: .4em;
+    font-weight: 100;
 }
-
 
 
 /*-- FIRSTPAGE --*/
@@ -114,4 +115,14 @@ h3 {
     max-height: 94vh;
 }
 
-
+.inputtext {
+    font-family: Century Gothic;
+    font-size: 11pt;
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 10px 20px;
+    border: none;
+    color: rgba(0, 0, 0, 1);
+    background: rgba(220, 220, 220, 1);
+    outline: none;
+}
