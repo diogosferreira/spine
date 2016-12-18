@@ -156,7 +156,6 @@ else
 
 
 
-
                 for (i = 0; i < tamanho; i++) {
                     console.log("top  " + resultadoPesquisa[i].id);
 
@@ -175,12 +174,7 @@ else
 
 
 
-
-
-
-
                 /* ———————————————————  search magazines FIM  —————————————————————————— */
-
 
 
 
@@ -203,10 +197,8 @@ else
                     }
                     //showAll();
                     //ver qual a categoria selecionada
-                   
-                    
-                    
-                    
+
+
                     var divNome = $(this).attr('id');
 
                     $("div").remove(".post");
@@ -231,9 +223,7 @@ else
                         }
                     }
 
-                    
-                
-                   /* $("#list li").on("click", function () {
+                    /* $("#list li").on("click", function () {
                         var divNome = $(this).attr('id');
 
                         $("div").remove(".post");
@@ -260,7 +250,6 @@ else
                     });
 */
 
-
                     //mostrar todas as revistas
                     function showAll() {
                         for (i = 0; i < 8; i++) {
@@ -279,8 +268,6 @@ else
 
                 });
             </script>
-
-
 
 
             <!--————————  p da pesquisa ————————————-->
