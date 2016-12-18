@@ -2,8 +2,6 @@
 include('session.php');
 session_start();
 
-$msg = '';
-
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($_REQUEST['btn-submit']=="Add") {
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
@@ -129,7 +127,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
 
     <body class="index">
         <header>
-            <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            <a href="#"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
             <div id="login"> <a href="logout.php"> Logout </a> </div>
         </header>
 
@@ -139,7 +137,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                 <li> <a href="#profile"> Profile </a></li>
                 <li> <a href="#add-editor"> Add Editor </a></li>
                 <li> <a href="#add-mag"> Add Mag </a></li>
-                <li> <a href="#edit-mag"> Edit Mag </a></li>
+                <li> <a href="magazines-editor.php"> Edit Mag </a></li>
             </ul>
         </nav>
 
@@ -222,13 +220,13 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                         <label for="price"> Price </label>
                         <input type="text" name="price" placeholder="Price">
                     </div>
-                    <div class="line" id="line-category">
+                    <div class="line extra-line">
                         <label for="category"> Category </label>
                         <input id="category-chosen" type="text" name="category" style="display:none;">
 
                         <div id="dropdown-list">
                             <div class="dropdown closed">
-                                <div class="title">Pick Magazine</div>
+                                <div class="title">Pick Category</div>
 
                                 <div class="dropdown-menu">
                                     <ul id="list">
@@ -262,66 +260,6 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             </p>
         </div>
 
-        <!--
-        <div class="welcome" id="edit-mag">
-            <h2> Edit Magazine 
-        
-        <div id="dropdown-list">
-            <div class="dropdown closed">
-                <div class="title">Pick Magazine</div>
-
-                <div class="dropdown-menu">
-                    <ul id="list">
-                        <li id="all">All</li>
-                        <li id="design">Design</li>
-                        <li id="social">Social</li>
-                        <li id="illustration">Illustration</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-        </h2>
-            <div id="info">
-                <form action="" method="post">
-                    <div class="line">
-                        <label for="name"> Name </label>
-                        <input type="text" name="name" placeholder="Name">
-                    </div>
-                    <div class="line">
-                        <label for="issue"> Issue </label>
-                        <input type="text" name="issue" placeholder="Issue">
-                    </div>
-                    <div class="line">
-                        <label for="barcode"> Bar Code </label>
-                        <input type="text" name="barcode" placeholder="Bar Code">
-                    </div>
-                    <div class="line">
-                        <label for="price"> Price </label>
-                        <input type="text" name="price" placeholder="Price">
-                    </div>
-                    <div class="line">
-                        <label for="category"> Category </label>
-                        <input type="text" name="category" placeholder="Category">
-                    </div>
-                    <div class="line">
-                        <label for="description"> Description </label>
-                        <input type="text" name="description" placeholder="Description">
-                    </div>
-                    <div class="button add-button" id="btn-edit-mag">
-                        <input onclick="return check()" type="submit" name="btn-submit" value="Save Magazine">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <div id="popup-container">
-            <div id="popup">
-                <h1 id="x">&times;</h1>
-                <p id="welcome-msg"> </p>
-            </div>
-        </div>-->
 
         <br>
         <br>

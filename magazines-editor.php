@@ -27,48 +27,29 @@ else
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/magazines.css">
+        <link rel="stylesheet" href="css/welcome.css">
     </head>
 
     <body class="index">
         <header>
-            <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-
-
-            <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
-
-
+            <a href="#"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            <div id="login"> <a href="logout.php"> Logout </a> </div>
         </header>
 
 
         <nav>
             <ul>
-                <li> <a href="magazines.php"> Magazines </a></li>
-                <li> <a href="about.php"> About </a></li>
-                <li> <a href="contacts.php"> Contact </a></li>
+                <li> <a href="welcomeowner.php#profile"> Profile </a></li>
+                <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
+                <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>
+                <li> <a href="#"> Edit Mag </a></li>
             </ul>
-
-            <br>
-
-            <div id="dropdown-list">
-                <div class="dropdown closed">
-                    <div class="title">Pick Category</div>
-
-                    <div class="dropdown-menu">
-                        <ul id="list">
-                            <li id="all">All</li>
-                            <li id="design">Design</li>
-                            <li id="social">Social</li>
-                            <li id="illustration">Illustration</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
+        </nav>
 
 
             <!--  search   -->
             <!--<form action="form.php" method="post">-->
-            <form method="post">
+            <!--<form method="post">
                 Search:
                 <br>
                 <br>
@@ -76,10 +57,8 @@ else
                 <br/>
                 <br>
                 <input class="btn" type="submit" value="Search" />
-            </form>
+            </form>-->
             <!--  search   -->
-
-        </nav>
 
 
         <!--————————————————   Search   —————————————————-->
@@ -102,7 +81,7 @@ else
                 
                 $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"]);
                 $contador++; 
-                echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
+                //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
             
             }
         } else {
@@ -177,9 +156,8 @@ else
                     jQuery('<div/>', {
                         id: '' + procura,
                         class: 'post',
-                        //text: 'div bem criada' + i
                     }).appendTo('#posts');
-                    $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + procura + ".jpg'> </a>");
+                    $('#' + procura).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + procura + ".jpg'> </a>");
 
 
 
@@ -231,7 +209,7 @@ else
 
                                     // meter id e imagem em variável
 
-                                    $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+                                    $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + id + ".jpg'> </a>");
 
                                 }
                             }
@@ -252,7 +230,7 @@ else
 
                             //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
 
-                            $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+                            $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + id + ".jpg'> </a>");
                         }
                     }
 

@@ -144,18 +144,3 @@ $(".post").on("click", function () {
     document.cookie = "mag_chosen=" + magId;
 });
 
-
-
-//SHOW POP UP WINDOW
-$('#add-button').on("click", function () {
-    $('#popup').css('display', 'block');
-});
-
-$('#popup-btn').on("click", function () {
-    $('#popup').css('display', 'none');
-});
-
-$('#x').on("click", function () {
-    console.log("clique certo");
-    $('#popup').css('display', 'none');
-});
