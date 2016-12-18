@@ -27,6 +27,7 @@ else
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/magazines.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body class="index">
@@ -34,10 +35,24 @@ else
             <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
 
 
+
+
+
             <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
 
 
+            <form class="pesquisa" method="post">
+                <i class="material-icons md-30">search</i>
+                <input class="inputtext" type="text" name="option" placeholder="Search Products" />
+                <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
+                <!--<input class="btn" type="submit" value="Search" />-->
+
+            </form>
+
         </header>
+
+
+
 
 
         <nav>
@@ -68,7 +83,7 @@ else
 
             <!--  search   -->
             <!--<form action="form.php" method="post">-->
-            <form method="post">
+            <!--<form method="post">
                 Search:
                 <br>
                 <br>
@@ -76,7 +91,7 @@ else
                 <br/>
                 <br>
                 <input class="btn" type="submit" value="Search" />
-            </form>
+            </form>-->
             <!--  search   -->
 
         </nav>
@@ -157,9 +172,9 @@ else
                     console.log("pir");
                     testarcenas = 1;
                 });
-                
-                
-                
+
+
+
                 $(".ropdown-menu").on("click", function () {
                     console.log("pir");
                     testarcenas = 2;
@@ -260,6 +275,27 @@ else
 
 
                 }
+            </script>
+
+
+
+
+            <!--   p da pesquisa      -->
+
+
+            <script>
+                $("#enter").hide();
+                console.log("pilas");
+
+                $(".inputtext").on("click", function () {
+                    $("#enter").fadeIn("slow");
+                });
+
+                $("#postPage").on("click", function () {
+                    $("#enter").fadeOut("slow");
+                });
+
+
             </script>
 
 

@@ -144,3 +144,7 @@ $(".post").on("click", function () {
     document.cookie = "mag_chosen=" + magId;
 });
 
+
+
+
+
