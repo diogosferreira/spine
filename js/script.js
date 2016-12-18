@@ -43,7 +43,8 @@ $(function () {
 
 var $container = $('.dropdown-menu'),
     $list = $('.dropdown-menu ul'),
-    listItem = $list.find('li');
+    listItem = $list.find('li'),
+    category = '';
 
 $(".dropdown .title").click(function () {
     if ($container.height() > 0) {
@@ -58,6 +59,9 @@ $(".dropdown-menu li").click(function () {
 });
 
 function closeMenu(el) {
+    category = $(el).attr('id');
+    updateVal(category);
+    
     $(el).closest('.dropdown').toggleClass("closed").find(".title").text($(el).text());
     $container.css("height", 0);
     $list.css("top", 0);
@@ -79,6 +83,13 @@ function openMenu(el) {
             $list.css("top", -top);
         });
 }
+
+function updateVal(category) {
+    $('#category-chosen').val(category);
+    console.log('chose category '+ category);
+}
+
+
 
 
 
@@ -130,5 +141,21 @@ $(document).ready(function () {
 
 $(".post").on("click", function () {
     var magId = $(this).attr('id');
-    document.cookie="mag_chosen="+magId;
+    document.cookie = "mag_chosen=" + magId;
+});
+
+
+
+//SHOW POP UP WINDOW
+$('#add-button').on("click", function () {
+    $('#popup').css('display', 'block');
+});
+
+$('#popup-btn').on("click", function () {
+    $('#popup').css('display', 'none');
+});
+
+$('#x').on("click", function () {
+    console.log("clique certo");
+    $('#popup').css('display', 'none');
 });

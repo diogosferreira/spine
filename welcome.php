@@ -6,8 +6,9 @@
     <script type="text/javascript" language="javascript">
         var type = <?php echo json_encode($login_type); ?>;
         console.log("type: " + type);
-        if (type == 1)
+        if (type == 1) 
             location.href = "welcomeowner.php";
+        
     </script>
 
 
@@ -100,15 +101,6 @@
             </div>
             <div class="line" id="total">
                 Your total is 0 euros.
-            </div>
-        </div>
-
-
-        <div id="popup">
-            <h1 id="x">&times;</h1>
-            <p id="welcome-msg"> </p>
-            <div id="button" class="popdisap">
-                <button class="btn" type="button"> Back </button>
             </div>
         </div>
 

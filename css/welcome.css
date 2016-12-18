@@ -15,20 +15,19 @@
     height: 35vh;
 }
 
-
-#profile-pic-button{
+#profile-pic-button {
     display: none;
 }
 
 #profile-pic {
     display: inline-block;
     float: left;
-    width: 20vw;
-    height: 20vw;
+    width: 30vw;
+    height: 30vw;
     min-height: 179px;
     min-width: 179px;
-    max-height: 180px;
-    max-width: 180px;
+    max-height: 230px;
+    max-width: 230px;
     border-radius: 50%;
     background: url(../images/profile.JPG) no-repeat center center;
     background-size: cover;
@@ -63,24 +62,38 @@
     color: black;
 }
 
-.button:hover, input[type=submit]:hover {
+.button:hover,
+input[type=submit]:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-input[type=submit]{
+input[type=submit] {
     font-size: 18pt;
     font-family: Century Gothic;
 }
 
 input[type=submit]:focus {
-    border-color: black;
+    color: black;
+    border: none;
 }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background: none;
+    background-color: #F2F1EF;
+}
+
+.answer {
+    text-align: center;
+    padding-top: 3vh;
+    font-size: 12pt;
+}
 
 .line {
     width: 100%;
-    margin: 1vh 0;
+    margin: 2vh 0;
     padding: 1vh 1vw;
 }
 
@@ -91,12 +104,12 @@ label,
     float: left;
 }
 
-input {
-    font-size: 16pt;
+input, textarea {
+    font-size: 14pt;
 }
 
 input,
-.msg {
+textarea {
     width: 70%;
     border: none;
     color: black;
@@ -104,13 +117,17 @@ input,
     border-bottom: 1px solid #F2F1EF;
 }
 
+.msg {
+    width: 70%;
+}
+
 .enabled {
     border-bottom: 1px solid black;
 }
 
-input:focus {
-    color: lightgray;
-    border-color: lightgray;
+input:focus, textarea:focus {
+    color: #929292;
+    border-color: #929292;
     outline-color: transparent;
     outline-style: none;
     transform-origin: 0% 50%;
@@ -128,6 +145,12 @@ input:focus {
 input[type=submit]:hover {
     text-decoration: underline;
 }*/
+
+textarea {
+    font-size: 16pt;
+    height: auto;
+    resize: vertical;
+}
 
 
 /* MESSAGES & ORDERS */
@@ -153,8 +176,6 @@ h2 {
 /* ORDERS */
 
 
-
-
 /* EDITOR */
 
 .add-button {
@@ -164,22 +185,25 @@ h2 {
 }
 
 
-
 /* DROP DOWN MENU */
 
+#line-category {
+    position: relative;
+    padding-bottom: 4vh;
+}
+
 #dropdown-list {
-    width: 185px;
+    position: absolute;
+    width: 70%;
     display: block;
-    text-align: center;
     font-size: 14pt;
+    text-align: center;
     display: inline-block;
     float: right;
 }
 
 .dropdown {
     text-align: left;
-    color: #343C3F;
-    border: 2px solid black;
 }
 
 .dropdown.closed .dropdown-menu {
@@ -202,10 +226,11 @@ h2 {
 .dropdown .title {
     width: 100%;
     position: relative;
-    height: 40px;
-    padding: 9px 12px;
+    padding-bottom: 8px;
     cursor: pointer;
-    border-bottom: 1px solid #D9E1E4;
+    color: #929292;
+    font-family: BlinkMacSystemFont;
+    font-weight: normal;
 }
 
 .dropdown .title:after {
@@ -220,7 +245,7 @@ h2 {
 .dropdown .dropdown-menu {
     position: relative;
     overflow: hidden;
-    max-height: 160px;
+    max-height: 120px;
     transition: all 0.2s;
     box-sizing: "border-box";
 }
@@ -240,12 +265,59 @@ h2 {
     vertical-align: top;
     overflow: hidden;
     cursor: pointer;
-    background-color: #F2F1EF;
+    background-color: #d1d1d1;
     transition: margin-top 0.5s, height 0.5s;
 }
 
 .dropdown ul li:hover {
-    background-color: #cac9c7;
-    color: #343C3F;
+    background-color: #929292;
+    color: black;
 }
 
+
+/*pop up -———————————*/
+
+#popup-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+#popup {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 50, 50, 0.9);
+    position: fixed;
+    z-index: 100000;
+}
+
+#popup h1 {
+    width: 5vh;
+    float: right;
+    font-size: 25pt;
+    text-align: right;
+    padding-right: 3vw;
+    padding-top: 92vh;
+    cursor: pointer;
+}
+
+#popup p {
+    cursor: pointer;
+    font-size: 16pt;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 45vh;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+/*
+#back-button {
+    background: none;
+    width: 20%;
+    padding: 1.5%;
+}
+*/
