@@ -141,37 +141,35 @@ else
                     var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
                     //var procura = resultadoPesquisa[i].id;
                 }
-                
+
                 var tamanho = resultadoPesquisa.length;
                 //console.log("tamanho  " + tamanho);
-                
-                
-                
-                
-                
-                for (i = 0; i < tamanho ; i++) {
-                 console.log("top  " + resultadoPesquisa[i].id);
-                
-                
-                var procura = resultadoPesquisa[i].id;
 
-                            
-                                jQuery('<div/>', {
-                                    id: '' + procura,
-                                    class: 'post',
-                                    // text: 'div bem criada' + i
-                                }).appendTo('#posts'); //id/class so sitio
 
-                                // meter id e imagem em variável
 
-                                $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + procura + ".jpg'> </a>");
-                            
-                
-                
-                
+
+
+                for (i = 0; i < tamanho; i++) {
+                    console.log("top  " + resultadoPesquisa[i].id);
+                    
+                    var procura = resultadoPesquisa[i].id;
+
+
+                    jQuery('<div/>', {
+                        id: '' + procura,
+                        class: 'post',
+                         text: 'div bem criada' + i
+                    }).appendTo('#posts'); 
+                    $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + procura + ".jpg'> </a>");
+                    
+                    
+
+
+
+
                 }
-                
-                
+
+
                 /* ———————  search magazines  ————————— */
 
 
