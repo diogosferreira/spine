@@ -28,12 +28,74 @@ else
     </head>
 
     <body class="index">
-        <header>
+
+
+        <!--barra de menu  ———————————————————————————————-->
+
+        <div class="barraMenu">
+            <header>
+                <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            </header>
+
+
+            <nav>
+                <ul>
+                    <li> <a href="magazines.php"> Magazines </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
+                </ul>
+
+
+                <br>
+                <form class="pesquisa" method="post">
+                    <i class="material-icons md-30">search</i>
+                    <input class="inputtext" type="text" name="option" placeholder="Search Products " />
+                    <br>
+
+                    <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
+                    <!--<input class="btn" type="submit" value="Search" />-->
+
+                </form>
+
+                
+
+                <div id="dropdown-list">
+                    <div class="dropdown closed">
+                        <div class="title">Pick Category</div>
+
+                        <div class="piro">
+                            <div class="dropdown-menu">
+                                <ul id="list">
+                                    <li id="all">All</li>
+                                    <li id="design">Design</li>
+                                    <li id="social">Social</li>
+                                    <li id="illustration">Illustration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
+
+
+        </div>
+
+
+
+        </nav>
+
+
+
+        <!--barra de menu FIM ———————————————————————————————-->
+
+
+        <!--  <header>
             <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-
-
-
-
 
             <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
 
@@ -41,8 +103,9 @@ else
             <form class="pesquisa" method="post">
                 <i class="material-icons md-30">search</i>
                 <input class="inputtext" type="text" name="option" placeholder="Search Products" />
+                <br>
                 <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
-                <!--<input class="btn" type="submit" value="Search" />-->
+                <input class="btn" type="submit" value="Search" />
 
             </form>
 
@@ -77,11 +140,11 @@ else
                     </div>
                 </div>
             </div>
-
-
-            <!--  search   -->
-            <!--<form action="form.php" method="post">-->
-            <!--<form method="post">
+        </nav>
+-->
+        <!--  search   -->
+        <!--<form action="form.php" method="post">-->
+        <!--<form method="post">
                 Search:
                 <br>
                 <br>
@@ -90,9 +153,9 @@ else
                 <br>
                 <input class="btn" type="submit" value="Search" />
             </form>-->
-            <!--  search   -->
+        <!--  search   -->
 
-        </nav>
+
 
 
         <!--————————————————   Search   —————————————————-->

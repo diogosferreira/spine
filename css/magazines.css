@@ -13,11 +13,12 @@ nav ul li:nth-child(1) {
 }
 
 #posts {
-    padding: 5vh 8vw;
+    padding: 2vh 5vw;
     text-align: center;
 }
 
 .post {
+    
     position: relative;
     line-height: 0;
     display: inline-block;
@@ -26,8 +27,8 @@ nav ul li:nth-child(1) {
 }
 
 .post img {
-    max-height: 400px !important;
-    max-width: 400px !important;
+    max-height: 350px !important;
+    max-width: 350px !important;
 }
 
 * {
@@ -40,18 +41,24 @@ nav ul li:nth-child(1) {
 /* STYLES */
 
 #dropdown-list {
+    position: absolute;
     width: 180px;
     display: block;
     margin: 50px auto;
     text-align: center;
     margin-left: -8px;
     font-size: 12pt;
+    margin-bottom: 25vh;
 }
 
 .dropdown {
+    margin-left: 8px;
+    width: 190px;
     text-align: left;
-    color: #343C3F;
-    border: 2px solid black;
+    
+    /* color: #343C3F; */
+    border: 2px solid #b7b7b7;
+    background: rgba(220, 220, 220, 1);
 }
 
 .dropdown.closed .dropdown-menu {
@@ -72,6 +79,7 @@ nav ul li:nth-child(1) {
 }
 
 .dropdown .title {
+    font-size: 11pt;
     width: 100%;
     position: relative;
     height: 40px;

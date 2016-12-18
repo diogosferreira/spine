@@ -18,6 +18,7 @@ body {
 p {
     font-family: Frutiger LT Std;
     padding: 0px 15px;
+    font-size: 11pt;
 }
 
 a:hover {
@@ -30,7 +31,7 @@ a:hover {
 
 header {
     /*background-color: #F2F1EF;*/
-    width: 100vw;
+    width: 250px;
     position: fixed;
     z-index: 2;
     /*    margin: 1vh 3vw;
@@ -40,17 +41,16 @@ header {
 }
 
 header img {
-    margin-left: 50px;
+    margin-left: 2vw;
     width: auto;
-    height: 50px;
+    height: 70px;
     float: left;
 }
 
 #login {
-    float: right;
-    font-size: 15pt;
+    font-size: 11pt;
     padding-right: 5vw;
-    padding-top: 2vh;
+    padding-top: 55vh;
 }
 
 
@@ -59,10 +59,10 @@ header img {
 nav {
     position: fixed;
     z-index: 2;
-    margin-top: 13vh;
+    margin-top: 90px;
     width: 20vw;
-    padding-left: 4vw;
-    font-size: 15pt;
+    padding-left: 2vw;
+    font-size: 12pt;
     line-height: 18pt;
 }
 
@@ -127,21 +127,23 @@ h3 {
     font-size: 11pt;
     display: inline-block;
     box-sizing: content-box;
-    padding: 10px 20px;
+    /*padding: 0px 20px;*/
     border: none;
     color: rgba(0, 0, 0, 1);
     background: rgba(220, 220, 220, 1);
     outline: none;
     width: 30vw;
-    max-width: 250px;
+    max-width: 150px;
 }
 
 .pesquisa {
+    width: 190px;
     margin-top: -3px;
-    float: left;
+    /*float: left;*/
     top: 0px;
-    padding-left: 80px;
+    /*padding-left: 80px;*/
     height: 50px;
+    background: rgba(220, 220, 220, 1);
 }
 
 .btn {
@@ -161,6 +163,7 @@ h3 {
 }
 
 .material-icons {
+    padding-left: 2px;
     padding-top: 12px;
     font-size: 11pt;
     color: gray;
@@ -168,6 +171,14 @@ h3 {
 }
 
 #spanSearch {
-    margin-top: 20px;
-    float: right;
+    margin-top: 40px;
+}
+
+.barraMenu {
+    width: 22vw;
+    height: 100vh;
+    float: left;
+}
+#enter {
+    margin-top: 15px;
 }
