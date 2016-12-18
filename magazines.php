@@ -75,7 +75,7 @@ else
                 <input class="inputtext" type="text" name="option" placeholder="Search Products" />
                 <br/>
                 <br>
-                <input type="submit" value="Search" />
+                <input class="btn" type="submit" value="Search" />
             </form>
             <!--  search   -->
 
@@ -137,6 +137,9 @@ else
 
 
 
+
+                var testarcenas = 0;
+
                 for (i = 0; i < 8; i++) {
                     var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
                     //var procura = resultadoPesquisa[i].id;
@@ -145,6 +148,22 @@ else
 
                 var tamanho = resultadoPesquisa.length;
                 //console.log("tamanho  " + tamanho);
+
+
+                $(".post").remove();
+
+
+                $(".btn").on("click", function () {
+                    console.log("pir");
+                    testarcenas = 1;
+                });
+                
+                
+                
+                $(".ropdown-menu").on("click", function () {
+                    console.log("pir");
+                    testarcenas = 2;
+                });
 
 
 
@@ -175,64 +194,71 @@ else
 
 
 
-
-                var testeaula = $('#posts').text();
-                var user = <?php echo json_encode($user); ?>;
-                if (user)
-                    $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
-                console.log(user);
+                if (testarcenas > 1) {
 
 
-                for (i = 0; i < 8; i++) {
-                    var palmas = <?php echo json_encode($didi); ?>;
-                    //console.log("i é: " +palmas[i].categoria);
-                }
-                showAll();
-                //ver qual a categoria selecionada
+                    var testeaula = $('#posts').text();
+                    var user = <?php echo json_encode($user); ?>;
+                    if (user)
+                        $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
+                    console.log(user);
 
 
-                $("#list li").on("click", function () {
-                    var divNome = $(this).attr('id');
+                    for (i = 0; i < 8; i++) {
+                        var palmas = <?php echo json_encode($didi); ?>;
+                        //console.log("i é: " +palmas[i].categoria);
+                    }
+                    showAll();
+                    //ver qual a categoria selecionada
 
-                    $("div").remove(".post");
-                    if (divNome === 'all') {
-                        showAll();
-                    } else {
-                        for (i = 0; i < 8; i++) {
-                            var id = palmas[i].id;
 
-                            if (divNome === palmas[i].categoria) {
-                                jQuery('<div/>', {
-                                    id: '' + id,
-                                    class: 'post',
-                                    // text: 'div bem criada' + i
-                                }).appendTo('#posts'); //id/class so sitio
+                    $("#list li").on("click", function () {
+                        var divNome = $(this).attr('id');
 
-                                // meter id e imagem em variável
+                        $("div").remove(".post");
+                        if (divNome === 'all') {
+                            showAll();
+                        } else {
+                            for (i = 0; i < 8; i++) {
+                                var id = palmas[i].id;
 
-                                $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+                                if (divNome === palmas[i].categoria) {
+                                    jQuery('<div/>', {
+                                        id: '' + id,
+                                        class: 'post',
+                                        // text: 'div bem criada' + i
+                                    }).appendTo('#posts'); //id/class so sitio
 
+                                    // meter id e imagem em variável
+
+                                    $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+
+                                }
                             }
                         }
+                    });
+
+
+
+                    //mostrar todas as revistas
+                    function showAll() {
+                        for (i = 0; i < 8; i++) {
+                            var id = palmas[i].id;
+                            jQuery('<div/>', {
+                                id: '' + id,
+                                class: 'post',
+                                // text: 'div bem criada' + i
+                            }).appendTo('#posts'); //id/class so sitio
+
+                            //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+
+                            $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
+                        }
                     }
-                });
 
 
 
-                //mostrar todas as revistas
-                function showAll() {
-                    for (i = 0; i < 8; i++) {
-                        var id = palmas[i].id;
-                        jQuery('<div/>', {
-                            id: '' + id,
-                            class: 'post',
-                            // text: 'div bem criada' + i
-                        }).appendTo('#posts'); //id/class so sitio
 
-                        //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-
-                        $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + id + ".jpg'> </a>");
-                    }
                 }
             </script>
 
