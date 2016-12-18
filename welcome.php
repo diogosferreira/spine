@@ -6,9 +6,8 @@
     <script type="text/javascript" language="javascript">
         var type = <?php echo json_encode($login_type); ?>;
         console.log("type: " + type);
-        if (type == 1) 
+        if (type == 1)
             location.href = "welcomeowner.php";
-        
     </script>
 
 
@@ -46,16 +45,16 @@
         <div class="welcome" id="profile">
             <div id="main">
                 <form method="post" enctype="multipart/form-data">
-                    <input id="profile-pic-button" type="file" name="file" accept="image/*" />
-                    <input id="profile-pic" onclick="document.getElementById('profile-pic-button').click();" />
+                    <input id="profile-pic" onclick="document.getElementById('profile-pic-button').click();"/>
                 </form>
                 <div id="profile-main">
-                    <div id="profile-name"> Beatriz Lacerda </div>
+                    <div id="profile-name"> </div>
                     <input class="button" type="submit" name="submit" value="Edit" />
                 </div>
             </div>
             <div id="info">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input class="changeable" id="profile-pic-button" type="file" name="image" onchange="previewFile()" disabled accept=".jpg, .jpeg, .png"/>
                     <div class="line">
                         <label for="username"> Username </label>
                         <input type="text" id="username" name="username" placeholder="" disabled>
@@ -111,28 +110,30 @@
 
         <script type="text/javascript" language="javascript">
             //-- PROFILE --
+            var pic = <?php echo json_encode($login_pic); ?>;
             var username = <?php echo json_encode($login_session); ?>;
             var email = <?php echo json_encode($login_email); ?>;
             var nif = <?php echo json_encode($login_nif); ?>;
             var address = <?php echo json_encode($login_address); ?>;
-            
-            
+
+
             //change message when data edited
             var newmsg = <?php echo json_encode($_SESSION['welcome-msg']); ?>;
-            if(newmsg!=null)
+            if (newmsg != null)
                 $('.answer').text(newmsg);
-            
-            setTimeout(function(){
+
+            setTimeout(function () {
                 $('.answer').fadeOut();
             }, 2000);
-            
-            
-            $('#profile-name').text(username);
 
+
+            $('#profile-name').text(username);
+            $('#profile-pic').css("background-image", "url('images/users/"+pic+"')");
             $('#username').attr("placeholder", username);
             $('#email').attr("placeholder", email);
             $('#nif').attr("placeholder", nif);
             $('#address').attr("placeholder", address);
+
 
 
             //-- EDIT PROFILE --
@@ -149,6 +150,25 @@
                     $("form input").prop('disabled', true);
                 }
             });
+
+
+            //PROFILE PHOTO
+            function previewFile() {
+                var preview = document.querySelector('#profile-pic'); //selects the query named img
+                var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.style.backgroundImage = "url("+reader.result+")";
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    preview.style.backgroundImage = "url('')";
+                }
+            }
+
 
 
             //-- MESSAGES --
@@ -179,9 +199,42 @@
         </script>
 
         <?php 
-        
-        
+
         if($_SERVER["REQUEST_METHOD"] == "POST") {
+           if(isset($_FILES['image'])){
+               
+              $errors= array();
+              $file_size = $_FILES['image']['size'];
+              $file_tmp = $_FILES['image']['tmp_name'];
+              $file_type = $_FILES['image']['type'];
+              $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+
+              $expensions= array("jpeg","jpg","png");
+
+              if(in_array($file_ext,$expensions)=== false){
+                 $errors[]="Extension not allowed, please choose a JPEG or PNG file. ";
+                 $m01 ="Extension not allowed, please choose a JPEG or PNG file. ";
+              }
+
+              if($file_size > 2097152) {
+                 $errors[]='File size must be inferior to 2 MB';
+                 $m02 ='File size must be inferior to 2 MB';
+              }
+
+              if(empty($errors)==true) {
+                 $directory = $login_session . "." . $file_ext;
+                 move_uploaded_file($file_tmp,"images/users/" . $directory);
+                 $changeimage = "UPDATE Utilizador SET userImage = '$directory' WHERE userName='$login_session'";  
+                 
+                if ($conn->query($changeimage) === TRUE) 
+                    $m0 = "Changed image. ";
+                else 
+                    $m0 = "Couldn't change image. ";
+              }else{
+                 $m0 = $m01 . $m02;
+              }
+           }
+            
             if(!empty($_POST['password'])) {
                 $newpassword = $_POST['password'];
                 $changepasssword = "UPDATE Utilizador SET userPassword = '$newpassword' WHERE userName='$login_session'";  
@@ -210,7 +263,8 @@
                     $m3 = "Couldn't change address. ";
             }
             
-            $msg = $m1 . $m2 . $m3;
+            
+            $msg = $m0 . $m1 . $m2 . $m3;
             $_SESSION['welcome-msg'] = $msg;
     
             echo"<script language='javascript'> window.location.href = 'welcome.php'; </script> ";

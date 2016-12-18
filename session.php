@@ -14,6 +14,7 @@
    
    $ses_row = $ses_sql->fetch_assoc();
    
+   $login_pic = $ses_row['userImage'];
    $login_session = $ses_row['userName'];
    $login_email = $ses_row['userEmail'];
    $login_password = $ses_row['userPassword'];
