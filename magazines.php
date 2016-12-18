@@ -294,8 +294,6 @@ else
                 $("#postPage").on("click", function () {
                     $("#enter").fadeOut("slow");
                 });
-
-
             </script>
 
 

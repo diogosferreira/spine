@@ -29,7 +29,7 @@ a:hover {
 /*-- HEADER --*/
 
 header {
-    background-color: #F2F1EF;
+    /*background-color: #F2F1EF;*/
     width: 100vw;
     position: fixed;
     z-index: 2;
