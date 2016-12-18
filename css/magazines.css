@@ -8,17 +8,16 @@ nav ul li:nth-child(1) {
 }
 
 #postPage {
-    width: 100vw;
+    width: 77vw;
     height: 100%;
+    float: right;
 }
 
 #posts {
-    padding: 2vh 5vw;
     text-align: center;
 }
 
 .post {
-    
     position: relative;
     line-height: 0;
     display: inline-block;
@@ -55,7 +54,6 @@ nav ul li:nth-child(1) {
     margin-left: 8px;
     width: 190px;
     text-align: left;
-    
     /* color: #343C3F; */
     border: 2px solid #b7b7b7;
     background: rgba(220, 220, 220, 1);

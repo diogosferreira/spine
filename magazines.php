@@ -49,7 +49,7 @@ else
                 <br>
                 <form class="pesquisa" method="post">
                     <i class="material-icons md-30">search</i>
-                    <input class="inputtext" type="text" name="option" placeholder="Search Products " />
+                    <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
                     <br>
 
                     <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
