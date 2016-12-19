@@ -4,10 +4,9 @@ include_once("functions.php");
 include_once("paypal.class.php");
 
 	$paypal= new MyPayPal();
-	
 	//Post Data received from product list page.
 	if(_GET('paypal')=='checkout'){
-		
+
 		//-------------------- prepare products -------------------------
 		
 		//Mainly we need 4 variables from product page Item Name, Item Price, Item Number and Item Quantity.

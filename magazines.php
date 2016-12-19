@@ -78,6 +78,7 @@
         <div class="barraMenu">
             <header>
                 <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+                <a href="paypal/index%202.php"> <img src="images/cart.png" alt="cart" id="cart"> </a>
             </header>
 
 

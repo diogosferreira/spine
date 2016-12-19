@@ -224,17 +224,14 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             <nav>
                 <ul id="nav-menu">
                     <li> <a href="magazines.php"> Magazines </a></li>
-                    <li> <a href="about.php"> About </a></li>
-                    <li> <a href="contacts.php"> Contact </a></li>
-                    <li> --- </li>
-                <li> <a href="#profile"> Profile </a></li>
-                <li> <a href="#add-editor"> Add Editor </a></li>
-                <li> <a href="#add-mag"> Add Mag </a></li>
-                <li> <a href="magazines-editor.php"> Edit Mag </a></li>
-            </ul>
-                
+                    <li> <a href="#profile"> Profile </a></li>
+                    <li> <a href="#add-editor"> Add Editor </a></li>
+                    <li> <a href="#add-mag"> Add Mag </a></li>
+                    <li> <a href="magazines-editor.php"> Edit Mag </a></li>
+                </ul>
+
                 <div id="login"> <a href="logout.php">Logout</a></div>
-   </nav>
+            </nav>
         </div>
         <div class="welcome" id="profile">
             <div id="main">
@@ -249,7 +246,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             </div>
             <div id="info">
                 <form action="" method="post" enctype="multipart/form-data">
-                    <input class="changeable" id="profile-pic-button" type="file" name="image" onchange="previewFile()" disabled accept=".jpg, .jpeg, .png"/>
+                    <input class="changeable" id="profile-pic-button" type="file" name="image" onchange="previewFile()" disabled accept=".jpg, .jpeg, .png" />
                     <div class="line">
                         <label for="username"> Username </label>
                         <input type="text" id="username" name="username" placeholder="" disabled>
@@ -345,8 +342,8 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                     </div>
                     <div class="line">
                         <label for="image"> Image </label>
-                        <input id="mag-pic" onclick="document.getElementById('mag-pic-button').click();" placeholder="Choose Image"/>
-                        <input onchange="pressed()" style="display:none;" id="mag-pic-button" type="file" name="magimage" accept=".jpg, .jpeg, .png"/>
+                        <input id="mag-pic" onclick="document.getElementById('mag-pic-button').click();" placeholder="Choose Image" />
+                        <input onchange="pressed()" style="display:none;" id="mag-pic-button" type="file" name="magimage" accept=".jpg, .jpeg, .png" />
                     </div>
                     <div class="button add-button" id="btn-add-mag">
                         <input type="submit" name="btn-submit" value="Add Magazine">
@@ -393,7 +390,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
 
 
             $('#profile-name').text(username);
-            $('#profile-pic').css("background-image", "url('images/users/"+pic+"')");
+            $('#profile-pic').css("background-image", "url('images/users/" + pic + "')");
             $('#username').attr("placeholder", username);
             $('#email').attr("placeholder", email);
 
@@ -421,7 +418,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                 var reader = new FileReader();
 
                 reader.onloadend = function () {
-                    preview.style.backgroundImage = "url("+reader.result+")";
+                    preview.style.backgroundImage = "url(" + reader.result + ")";
                 }
 
                 if (file) {
@@ -430,22 +427,21 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                     preview.style.backgroundImage = "url('')";
                 }
             }
-            
-            
-            
+
+
+
             //-- MAGAZINES --
-            
-            function pressed(){
+
+            function pressed() {
                 var a = document.getElementById('mag-pic-button');
-                if(a.value == "")
-                    $("#mag-pic").attr("placeholder", "Choose Image"); 
+                if (a.value == "")
+                    $("#mag-pic").attr("placeholder", "Choose Image");
                 else {
                     var theSplit = a.value.split('\\');
-                    var theSplitofSplits = theSplit[theSplit.length-1];
-                    $("#mag-pic").attr("placeholder", theSplitofSplits); 
+                    var theSplitofSplits = theSplit[theSplit.length - 1];
+                    $("#mag-pic").attr("placeholder", theSplitofSplits);
                 }
-            };            
-            
+            };
         </script>
     </body>
 

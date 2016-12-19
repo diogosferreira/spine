@@ -37,9 +37,6 @@
             <nav>
                 <ul id="nav-menu">
                     <li> <a href="magazines.php"> Magazines </a></li>
-                    <li> <a href="about.php"> About </a></li>
-                    <li> <a href="contacts.php"> Contact </a></li>
-                    <li> --- </li>
                     <li> <a href="#profile"> Profile </a></li>
                     <li> <a href="#messages"> Messages </a></li>
                     <li> <a href="paypal/index%202.php"> Cart </a></li>
