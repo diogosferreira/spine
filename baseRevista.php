@@ -95,7 +95,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </form>
                     </div>
                     <br>
-                    <p id="compra"> <span id="t-preco"> </span>€ <a id="preco" href="#"> BUY NOW </a></p>
+                    <!--      <p id="compra"> <span id="t-preco"> </span>€ <a id="preco" href="#"> BUYY NOW </a></p>-->
+                    <p id="compra"> <span id="t-preco"> </span>€ </p>
+
+
+                    <form id="pagamento" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="R2QKGRBY9GMLJ">
+                        <input type="image" style="width:70px;" src="images/buynow.png" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+
+
+
+
                     <br>
 
                     <!-- pre serve para separar o texto em paragrafos -->
@@ -112,17 +125,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script type="text/javascript" language="javascript">
             var user = <?php echo json_encode($user); ?>;
             var usertype = <?php echo json_encode($sessionusertype); ?>;
-                console.log("userrr: "+usertype);
+            console.log("userrr: " + usertype);
             if (user) {
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
-            console.log(user);
-                
-                if(usertype == 0)
-                    $('#heart').css("display","block");
+                console.log(user);
+
+                if (usertype == 0)
+                    $('#heart').css("display", "block");
                 else
-                    $('#heart').css("display","none");
+                    $('#heart').css("display", "none");
             } else
-                $('#heart').css("display","none");
+                $('#heart').css("display", "none");
 
 
             var till = <?php echo json_encode($contador); ?>;
@@ -137,12 +150,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             var favourite = <?php echo json_encode($favourite); ?>;
-            if(favourite) 
+            if (favourite)
                 $('svg').addClass('active');
-            
 
-            
-            
+
+
+
             $('svg').on("click", function () {
                 console.log('rumor');
                 $(this).toggleClass('active');

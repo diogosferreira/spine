@@ -188,3 +188,7 @@ input::-webkit-input-placeholder {
 #enter {
     margin-top: 15px;
 }
+
+#pagamento {
+    float: right;
+}

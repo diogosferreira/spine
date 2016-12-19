@@ -52,6 +52,7 @@ p {
 
 #compra {
     font-size: 18pt;
+    float:left;
 }
 
 #preco {
