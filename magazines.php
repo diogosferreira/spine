@@ -90,6 +90,16 @@ else
 
 
         </nav>
+        
+        
+        
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="SGHN5EBG6FA7Y">
+<input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+</form>
+
 
 
 
