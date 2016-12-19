@@ -1,4 +1,4 @@
-    <?php 
+<?php 
     include('categorias.php'); 
     session_start();
 
@@ -146,8 +146,6 @@
 
 
             <div id="infoEcistencia"></div>
-
-
         </section>
 
 
@@ -155,7 +153,6 @@
 
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
 
 
         <script type="text/javascript" language="javascript">
@@ -224,9 +221,12 @@
             }
 
 
+            /* ———————————————————  search magazines FIM  —————————————————————————— */
 
 
-            /* ———————————————————  search categories   —————————————————————————— */
+
+
+            /* ———————————————————  Mostrar categorias   —————————————————————————— */
 
             $("#list li").on("click", function () {
                 $(".post").remove();
@@ -305,10 +305,12 @@
                 }
             });
 
+            /* ———————————————————  Mostrar categorias FIM —————————————————————— */
 
 
 
-            //  -- p da pesquisa 
+            //  -- p da pesquisa  PRESS ENTER TO SEARCH
+
             $("#enter").hide();
 
             $(".inputtext").on("click", function () {
@@ -318,6 +320,8 @@
             $("#postPage").on("click", function () {
                 $("#enter").fadeOut("slow");
             });
+
+            //  -- p da pesquisa  PRESS ENTER TO SEARCH
         </script>
 
 
