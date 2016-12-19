@@ -29,13 +29,19 @@
     max-height: 230px;
     max-width: 230px;
     border-radius: 50%;
-    background: url(../images/profile.JPG) no-repeat center center;
+    /*background: url(../images/profile.JPG) no-repeat center center;*/
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
     margin-bottom: 3vh;
 }
 
 .profile-pic-enabled:hover {
     opacity: 0.4;
+    cursor: pointer;
+}
+
+#mag-pic:hover {
     cursor: pointer;
 }
 
@@ -75,7 +81,7 @@ input[type=submit] {
 
 input[type=submit]:focus {
     color: black;
-    border: none;
+    border-color: black;
 }
 
 input:-webkit-autofill,
@@ -86,6 +92,8 @@ select:-webkit-autofill {
 }
 
 .answer {
+    width: 65vw;
+    position: absolute;
     text-align: center;
     padding-top: 3vh;
     font-size: 12pt;
@@ -147,7 +155,9 @@ input[type=submit]:hover {
 }*/
 
 textarea {
-    font-size: 16pt;
+    font-family: BlinkMacSystemFont;
+    font-weight: normal;
+    font-size: 14pt;
     height: auto;
     resize: vertical;
 }
@@ -229,7 +239,7 @@ h2 {
     position: relative;
     padding-bottom: 8px;
     cursor: pointer;
-    color: #929292;
+    color: #9f9f9f;
     font-family: BlinkMacSystemFont;
     font-weight: normal;
 }
@@ -260,6 +270,7 @@ h2 {
 .dropdown ul li {
     width: 100%;
     height: 40px;
+    font-size: 12pt;
     line-height: 40px;
     border-bottom: 1px solid #cac9c7;
     padding: 0 12px;

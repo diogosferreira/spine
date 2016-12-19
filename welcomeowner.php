@@ -4,16 +4,52 @@ session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 if($_REQUEST['btn-submit']=="Hidden") {
+    
+           if(isset($_FILES['image'])){
+              $errors= array();
+              $file_size = $_FILES['image']['size'];
+              $file_tmp = $_FILES['image']['tmp_name'];
+              $file_type = $_FILES['image']['type'];
+              $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+
+              $expensions= array("jpeg","jpg","png");
+
+              if(in_array($file_ext,$expensions)=== false){
+                 $errors[]="Extension not allowed, please choose a JPEG or PNG file. ";
+                 $m01 ="Extension not allowed, please choose a JPEG or PNG file. ";
+              }
+
+              if($file_size > 2097152) {
+                 $errors[]='File size must be inferior to 2 MB';
+                 $m02 ='File size must be inferior to 2 MB';
+              }
+
+              if(empty($errors)==true) {
+                 $directory = $login_session . "." . $file_ext;
+                 move_uploaded_file($file_tmp,"images/users/" . $directory);
+                 $changeimage = "UPDATE Utilizador SET userImage = '$directory' WHERE userName='$login_session'";  
+                 
+                if ($conn->query($changeimage) === TRUE) 
+                    $m0 = "Changed image. ";
+                else 
+                    $m0 = "Couldn't change image. ";
+              }else{
+                 $m0 = $m01 . $m02;
+              }
+           }
+    
     if(!empty($_POST['password'])) {
         $newpassword = $_POST['password'];
         $changepasssword = "UPDATE Utilizador SET userPassword = '$newpassword' WHERE userName='$login_session'";  
 
         if ($conn->query($changepasssword) === TRUE) 
-            $msg0 = "Changed password.";
+            $m1 = "Changed password.";
         else 
-            $msg0 = "Couldn't change password.";
+            $m1 = "Couldn't change password.";
     }
 
+    $msg0 = $m0 . $m1;
+    
     $_SESSION['welcomeowner-msg0'] = $msg0;
     $_SESSION['welcomeowner-msg1'] = '';
     $_SESSION['welcomeowner-msg2'] = '';
@@ -81,8 +117,8 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
 }
     
 else if($_REQUEST['btn-submit']=="Add Magazine") {
-if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) && isset($_POST['price']) && isset($_POST['category']) && isset($_POST['quantity']) && isset($_POST['description'])){
-    if(empty($_POST['name']) || empty($_POST['issue']) || empty($_POST['barcode']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['quantity']) || empty($_POST['description']))
+if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) && isset($_POST['price']) && isset($_POST['category']) && isset($_POST['quantity']) && isset($_POST['description']) && isset($_FILES['magimage'])){
+    if(empty($_POST['name']) || empty($_POST['issue']) || empty($_POST['barcode']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['quantity']) || empty($_POST['description']) || ($_FILES['magimage']['size'] == 0))
         $msg2 ="Insert all values please.";
     else {
 
@@ -104,18 +140,41 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
         $sql4 = "SELECT * FROM RevistaNum WHERE (nomeRevista = '$magname' and numRevista = '$magissue')";
         $result4 = mysqli_query($conn,$sql4);
         $count4 = mysqli_num_rows($result4);
-              
-              
-              
-        if($count3 != 0) {
+        
+        
+          $errors= array();
+          $file_size = $_FILES['magimage']['size'];
+          $file_tmp = $_FILES['magimage']['tmp_name'];
+          $file_type = $_FILES['magimage']['type'];
+          $file_ext=strtolower(end(explode('.',$_FILES['magimage']['name'])));
+
+          $expensions= array("jpeg","jpg","png");
+
+          if(in_array($file_ext,$expensions)=== false){
+             $errors[]="Extension not allowed, please choose a JPEG or PNG file. ";
+             $m01 ="Extension not allowed, please choose a JPEG or PNG file. ";
+          }
+
+          if($file_size > 2097152) {
+             $errors[]='File size must be inferior to 2 MB. ';
+             $m02 ='File size must be inferior to 2 MB. ';
+          }
+
+          
+        if(empty($errors)==false) {
+            $msg2 = 'Sorry, could not upload image. ' . $m01 . $m02;
+        } else if($count3 != 0) {
             $msg2 = 'Sorry, the barcode already exists.';
         } else if($count4 != 0) {
             $msg2 = 'Sorry, the issue for this magazine already exists.';
         } else {
-            $query = "INSERT INTO `RevistaNum` (`codBarras`, `nomeRevista`, `numRevista`, `preco`, `quantExistente`, `categoria`, `descricao`) VALUES ('$magbarcode', '$magname', '$magissue', '$magprice', '$magquantity', '$magcategory', '$magdescription')";
+            $directory = $magbarcode . "." . $file_ext;
+            $query = "INSERT INTO `RevistaNum` (`codBarras`, `nomeRevista`, `numRevista`, `imgRevista`, `preco`, `quantExistente`, `categoria`, `descricao`) VALUES ('$magbarcode', '$magname', '$magissue', '$directory', '$magprice', '$magquantity', '$magcategory', '$magdescription')";
             $endresult = mysqli_query($conn, $query);
+            
             if($endresult){
                 $msg2 = "Magazine created successfully!";
+                move_uploaded_file($file_tmp,"images/mags/" . $directory);
             }else{
                 $msg2 ="Sorry, magazine creation failed.";
             }
@@ -174,7 +233,6 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
         <div class="welcome" id="profile">
             <div id="main">
                 <form method="post" enctype="multipart/form-data">
-                    <input id="profile-pic-button" type="file" name="file" accept="image/*" />
                     <input id="profile-pic" onclick="document.getElementById('profile-pic-button').click();" />
                 </form>
                 <div id="profile-main">
@@ -184,7 +242,8 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                 </div>
             </div>
             <div id="info">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input class="changeable" id="profile-pic-button" type="file" name="image" onchange="previewFile()" disabled accept=".jpg, .jpeg, .png"/>
                     <div class="line">
                         <label for="username"> Username </label>
                         <input type="text" id="username" name="username" placeholder="" disabled>
@@ -231,7 +290,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
         <div class="welcome" id="add-mag">
             <h2> Add Magazine </h2>
             <div id="info">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="line">
                         <label for="name"> Name </label>
                         <input type="text" name="name" placeholder="Name">
@@ -280,7 +339,8 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                     </div>
                     <div class="line">
                         <label for="image"> Image </label>
-                        <textarea type="text" name="image" placeholder="Image"></textarea>
+                        <input id="mag-pic" onclick="document.getElementById('mag-pic-button').click();" placeholder="Choose Image"/>
+                        <input onchange="pressed()" style="display:none;" id="mag-pic-button" type="file" name="magimage" accept=".jpg, .jpeg, .png"/>
                     </div>
                     <div class="button add-button" id="btn-add-mag">
                         <input type="submit" name="btn-submit" value="Add Magazine">
@@ -303,30 +363,31 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
 
         <script type="text/javascript" language="javascript">
             //-- PROFILE --
+            var pic = <?php echo json_encode($login_pic); ?>;
             var addedusername = <?php echo json_encode($myusername); ?>;
             var username = <?php echo json_encode($login_session); ?>;
             var email = <?php echo json_encode($login_email); ?>;
 
-            
+
             //change message when data edited
             var newmsg0 = <?php echo json_encode($_SESSION['welcomeowner-msg0']); ?>;
             var newmsg1 = <?php echo json_encode($_SESSION['welcomeowner-msg1']); ?>;
             var newmsg2 = <?php echo json_encode($_SESSION['welcomeowner-msg2']); ?>;
-            if(newmsg0 != null)
+            if (newmsg0 != null)
                 $('#answer0').text(newmsg0);
-            if(newmsg1 != null)
+            if (newmsg1 != null)
                 $('#answer1').text(newmsg1);
-            if(newmsg2 != null)
+            if (newmsg2 != null)
                 $('#answer2').text(newmsg2);
-            
-            setTimeout(function(){
+
+            setTimeout(function () {
                 $('.answer').fadeOut();
             }, 2000);
 
-            
+
 
             $('#profile-name').text(username);
-
+            $('#profile-pic').css("background-image", "url('images/users/"+pic+"')");
             $('#username').attr("placeholder", username);
             $('#email').attr("placeholder", email);
 
@@ -347,32 +408,38 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             });
 
 
+            //PROFILE PHOTO
+            function previewFile() {
+                var preview = document.querySelector('#profile-pic'); //selects the query named img
+                var file = document.querySelector('#profile-pic-button').files[0]; //sames as here
+                var reader = new FileReader();
 
-            //-- MESSAGES --
+                reader.onloadend = function () {
+                    preview.style.backgroundImage = "url("+reader.result+")";
+                }
 
-            var msg_amount = <?php echo json_encode($contador); ?>;
-            for (i = 0; i < msg_amount; i++) {
-                var palmas = <?php echo json_encode($didi); ?>;
+                if (file) {
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    preview.style.backgroundImage = "url('')";
+                }
             }
-
-            console.log(msg_amount);
-            console.log(palmas);
-
-            for (i = 0; i < msg_amount; i++) {
-                var date = palmas[i].date;
-                var msg = palmas[i].message;
-
-                jQuery('<div/>', {
-                    id: 'msg' + i,
-                    class: 'line',
-                    // text: 'div bem criada' + i
-                }).appendTo('#msg-container'); //id/class so sitio
-
-
-                $('#msg' + i).prepend("<div class='date'> " + date + "</div> <div class='msg'> " + msg + " </div>");
-
-
-            }
+            
+            
+            
+            //-- MAGAZINES --
+            
+            function pressed(){
+                var a = document.getElementById('mag-pic-button');
+                if(a.value == "")
+                    $("#mag-pic").attr("placeholder", "Choose Image"); 
+                else {
+                    var theSplit = a.value.split('\\');
+                    var theSplitofSplits = theSplit[theSplit.length-1];
+                    $("#mag-pic").attr("placeholder", theSplitofSplits); 
+                }
+            };            
+            
         </script>
     </body>
 

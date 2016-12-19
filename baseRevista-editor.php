@@ -3,7 +3,11 @@ include('revista.php');
 session_start();
 
 $id = $_COOKIE['mag_chosen'];
-//echo "cookie " . $id;
+
+    $_SESSION['welcomeowner-msg0'] = '';
+    $_SESSION['welcomeowner-msg1'] = '';
+    $_SESSION['welcomeowner-msg2'] = '';
+
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($_REQUEST['btn-submit']=="Save Magazine") {

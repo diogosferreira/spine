@@ -6,6 +6,10 @@ if(!empty($_SESSION['login_user']))
     $user = true;
 else
     $user = false;
+
+    $_SESSION['welcomeowner-msg0'] = '';
+    $_SESSION['welcomeowner-msg1'] = '';
+    $_SESSION['welcomeowner-msg2'] = '';
 ?>
 
 
