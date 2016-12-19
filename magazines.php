@@ -47,7 +47,7 @@
             //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
         }
     } else {
-        echo "No products were found matching your selection.";
+        $no = "No products were found matching your selection.";
     }
 
     ?>
@@ -117,7 +117,7 @@
                 </div>
 
 
-                <!--filtros-->
+                <!--filtros
 
                 <select>
                     <option value="data">Data</option>
@@ -142,6 +142,8 @@
         <p id="warning"> Couldn't connect to database, try later. </p>
 
         <section id="postPage">
+            
+        <p id="msg"> <?php echo $no;?> </p>
             <div id="posts">
                 <!--  cria as divs aqui   -->
             </div>

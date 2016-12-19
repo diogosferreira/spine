@@ -38,6 +38,11 @@ nav ul li:nth-child(1) {
 }
 
 
+
+#msg {
+    padding-left: 20vh;
+    padding-top: 40vh;
+}
 /* STYLES */
 
 #dropdown-list {
