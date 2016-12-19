@@ -48,7 +48,14 @@ header img {
     position: absolute;
     top: 78vh;
     padding-left: 2vw;
+}
 
+#cart {
+    position: absolute;
+    top: 3vh;
+    left: 86vw;
+    width: 50px;
+    height: 50px;
 }
 
 
@@ -123,8 +130,9 @@ h3 {
 
 
 /*—————————————————      pesquisa    ——————————————————————*/
+
 input::-webkit-input-placeholder {
-  color: black;
+    color: black;
 }
 
 .inputtext {
@@ -185,6 +193,7 @@ input::-webkit-input-placeholder {
     height: 100vh;
     float: left;
 }
+
 #enter {
     margin-top: 15px;
 }

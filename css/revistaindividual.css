@@ -51,6 +51,8 @@ p {
 }
 
 #compra {
+width: 100%;
+    margin-bottom: 5vh;
     font-size: 18pt;
     float:left;
 }
