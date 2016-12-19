@@ -206,7 +206,7 @@ else
                     <!--  cria as divs aqui   -->
                 </div>
             </section>
-
+ 
 
             <div id="left" class="column"></div>
 
