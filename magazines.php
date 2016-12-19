@@ -2,10 +2,55 @@
 include('categorias.php'); 
 session_start();
 
-if(!empty($_SESSION['login_user']))
+if(!empty($_SESSION['login_user'])) {
     $user = true;
+    $sessionusername = $_SESSION['login_user'];
+}
 else
     $user = false;
+
+
+
+
+// -- FAVORITOS
+    
+//$sql2 = "SELECT idRevista FROM Utilizador_RevistaNum WHERE userName = '$sessionusername'";
+$sql2 = "SELECT userName, u.idRevista, imgRevista FROM RevistaNum r JOIN Utilizador_RevistaNum u on (u.idRevista = r.idRevista) WHERE userName = '$sessionusername'";
+$result2 = $conn->query($sql2);
+
+
+$contador2=0;
+if ($result2->num_rows > 0) {
+    while($row2 = $result2->fetch_assoc()) {
+        $didi2[$contador2] = array("id"=>$row2["idRevista"], "img"=>$row2["imgRevista"]);
+
+        $contador2++;
+    }
+} else {
+    //echo "0 results";
+}
+
+
+
+
+// -- SEARCH
+
+
+$option = $_POST["option"];  //o que foi escrito na pesquisa
+$sql = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
+$result = $conn->query($sql);
+$contador=0;
+
+if ($result->num_rows > 0  ) {
+    while($row = $result->fetch_assoc()) {
+        $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
+        $contador++; 
+        //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
+    }
+} else {
+    echo "No products were found matching your selection.";
+}
+
 ?>
 
 
@@ -84,10 +129,6 @@ else
         </div>
 
 
-
-
-        <!--—————————————   Search   ————————————————————-->
-
         <section id="postPage">
             <div id="posts">
                 <!--  cria as divs aqui   -->
@@ -99,28 +140,6 @@ else
 
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-
-        <!--————————————————   Search   —————————————————-->
-
-        <?php 
-        
-        $option = $_POST["option"];  //o que foi escrito na pesquisa
-        $sql = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
-        $result = $conn->query($sql);
-        $contador=0;
-
-        if ($result->num_rows > 0  ) {
-            while($row = $result->fetch_assoc()) {
-                $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
-                $contador++; 
-                //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
-            }
-        } else {
-            echo "No products were found matching your selection.";
-        }
-        
-        ?>
 
 
 
@@ -167,7 +186,29 @@ else
 
             }
 
+            
+            
+            //  mostrar todas as revistas
+            var palmas = <?php echo json_encode($didi); ?>;
+            var cont1 = <?php echo json_encode($contador); ?>;
+            function showAll() {
+                for (i = 0; i < cont1; i++) {
+                    var id = palmas[i].id;
+                    var img = palmas[i].img;
+                    jQuery('<div/>', {
+                        id: '' + id,
+                        class: 'post',
+                        // text: 'div bem criada' + i
+                    }).appendTo('#posts'); //id/class so sitio
 
+                    //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
+
+                    $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                }
+            }
+            
+            
+            
 
             /* ———————————————————  search categories   —————————————————————————— */
 
@@ -175,24 +216,33 @@ else
                 $(".post").remove();
 
 
-                var testeaula = $('#posts').text();
-
-
                 for (i = 0; i < 8; i++) {
-                    var palmas = <?php echo json_encode($didi); ?>;
-                    //console.log("i é: " +palmas[i].categoria);
+                    var palmas2 = <?php echo json_encode($didi2); ?>;
+                    var cont2 = <?php echo json_encode($contador2); ?>;
                 }
-                //showAll();
-                //ver qual a categoria selecionada
-
-
+                    
+                    
                 var divNome = $(this).attr('id');
 
                 $("div").remove(".post");
                 if (divNome === 'all') {
                     showAll();
+                } else if (divNome === 'favourites') {
+                    for (i = 0; i < cont2; i++) {
+                        var img = palmas2[i].img;
+                        console.log("img: "+img);
+                        var id = palmas2[i].id;
+                        console.log("id: "+id);
+                        jQuery('<div/>', {
+                            id: '' + id,
+                            class: 'post',
+                            // text: 'div bem criada' + i
+                        }).appendTo('#posts'); //id/class so sitio
+
+                        $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                    }                
                 } else {
-                    for (i = 0; i < 8; i++) {
+                    for (i = 0; i < cont1; i++) {
                         var id = palmas[i].id;
                         var img = palmas[i].img;
 
@@ -212,22 +262,7 @@ else
                 }
             });
 
-            //mostrar todas as revistas
-            function showAll() {
-                for (i = 0; i < 8; i++) {
-                    var id = palmas[i].id;
-                    var img = palmas[i].img;
-                    jQuery('<div/>', {
-                        id: '' + id,
-                        class: 'post',
-                        // text: 'div bem criada' + i
-                    }).appendTo('#posts'); //id/class so sitio
 
-                    //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-
-                    $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
-                }
-            }
 
 
             //  -- p da pesquisa 
