@@ -42,7 +42,7 @@
                     <li> --- </li>
                     <li> <a href="#profile"> Profile </a></li>
                     <li> <a href="#messages"> Messages </a></li>
-                    <li> <a href="#cart"> Cart </a></li>
+                    <li> <a href="paypal/index%202.php"> Cart </a></li>
                 </ul>
 
 
@@ -101,18 +101,6 @@
             <div class="welcome" id="messages">
                 <h2> Messages </h2>
                 <div id="msg-container"></div>
-            </div>
-
-
-            <div class="welcome" id="cart">
-                <h2> Cart </h2>
-                <div class="line">
-                    <div class="date"></div>
-                    <div class="msg"></div>
-                </div>
-                <div class="line" id="total">
-                    Your total is 0 euros.
-                </div>
             </div>
 
 

@@ -1,0 +1,57 @@
+table {
+    font-size: 16pt;
+}
+
+
+
+
+/*LABEL*/
+
+.label {
+    width: 40%;
+}
+
+label {
+    width: 100%;
+}
+
+
+
+
+
+/*QUANT and BUY*/
+
+form {
+    text-align: right;
+}
+
+
+
+/*QUANT*/
+
+.quant {
+    text-align: right;
+    font-size: 12pt;
+    width: 30%;
+}
+
+
+
+/*BUY*/
+
+.buy {
+    width: 30%;
+}
+
+.dw_button {
+    width: 100%;
+    color: red;
+    text-decoration: underline;
+}
+
+
+input[type=submit] {
+    text-align: right;
+    font-size: 12pt;
+    font-family: Century Gothic;
+}

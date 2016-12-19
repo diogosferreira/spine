@@ -99,13 +99,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p id="compra"> <span id="t-preco"> </span>€ </p>
 
 
-                    <form id="pagamento" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <!--<form id="pagamento" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
                         <input type="hidden" name="cmd" value="_s-xclick">
                         <input type="hidden" name="hosted_button_id" value="R2QKGRBY9GMLJ">
                         <input type="image" style="width:70px;" src="images/buynow.png" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!">
                         <img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-                    </form>
+                    </form>-->
 
+                    <div class="btn-wrapper-right highlightable hotspot pp-checkout-btn">
+                        <div onclick="window.parent.location.href = '/us/demo/navigation?merchant=bigbox&amp;page=classicCheckout';gaClickHotspot('bigbox','Shopping Cart Page - Checkout with PayPal');">
+                            <a class="pp-checkout btn">Check Out with PayPal</a>
+                            <div class="gotonextstep checkout">
+                                <span class="gotonextstep-text">Go to Next Step</span>
+                            </div>
+                        </div>
+                        <div class="gotonextstep" id="ppcheckreview" hidden=""></div>
+                    </div>
 
 
 
