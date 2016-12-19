@@ -50,8 +50,9 @@
 
             </nav>
         </div>
+        <p id="warning"> Couldn't connect to database, try later. </p>
 
-            <div class="welcome" id="profile">
+        <div class="welcome" id="profile">
                 <div id="main">
                     <form method="post" enctype="multipart/form-data">
                         <input id="profile-pic" onclick="document.getElementById('profile-pic-button').click();" />
@@ -106,6 +107,11 @@
 
 
             <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if (connfailed)
+                $('#warning').fadeIn();                
+                
+                
                 //-- PROFILE --
                 var pic = <?php echo json_encode($login_pic); ?>;
                 var username = <?php echo json_encode($login_session); ?>;

@@ -8,7 +8,10 @@ $contador = 0;
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    //die("Connection failed: " . $conn->connect_error);
+    $failed = true;
+} else
+    $failed = false;
+
 //echo "Connected successfully";
 ?>

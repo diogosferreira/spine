@@ -130,6 +130,12 @@ h3 {
 }
 
 
+
+#contacts input::-webkit-input-placeholder {
+    color: #9f9f9f;
+}
+
+
 /*—————————————————      pesquisa    ——————————————————————*/
 
 input::-webkit-input-placeholder {
@@ -201,4 +207,18 @@ input::-webkit-input-placeholder {
 
 #pagamento {
     float: right;
+}
+
+
+
+#warning {
+    font-family: century gothic;
+    display: none;
+    font-size: 20pt;
+    padding-top: 45vh;
+    position: absolute;
+    width: 100vw;
+    height: 55vh;
+    text-align: center;
+    background-color: rgba(200,0,0,0.8);
 }

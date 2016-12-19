@@ -20,10 +20,10 @@ if ($sessionusercart != NULL) {
             $selected[$contador] = array("id"=>$row["idRevista"], "name"=>$row["nomeRevista"], "num"=>$row["numRevista"], "price"=>$row["preco"], "quant"=>$row["quantExistente"]);
 
             $contador++;
-            echo "results ";
+            //echo "results ";
         }
     } else {
-        echo "0 results";
+        //echo "0 results";
     }
     
 } else {
@@ -63,19 +63,20 @@ if ($sessionusercart != NULL) {
                     <li> <a href="../magazines.php"> Magazines </a></li>
                     <li> <a href="../welcome.php#profile"> Profile </a></li>
                     <li> <a href="../welcome.php#messages"> Messages </a></li>
-                    <li> <a href="#"> Cart </a></li>
+                    <li> <a href="index%202.php"> Cart </a></li>
                 </ul>
 
                 <div id="login"> <a href="../logout.php">Logout</a></div>
             </nav>
         </div>
 
+        <p id="warning" class="server"> Server loading.. </p>
+        <p id="warning"> Couldn't connect to database, try later. </p>
 
         <div class="welcome">
             <h2> Cart </h2>
             <table class="table-header">
                 <tr>
-                    <td class="remove"> Remove </td>
                     <td class="label"> Item </td>
                     <td class="price"> Price </td>
                     <td class="quant"> Quantity </td>
@@ -83,12 +84,14 @@ if ($sessionusercart != NULL) {
                 </tr>
             </table>
 
-            <table class="line">
-                <tr>
-                    <form method="post" action="process.php?paypal=checkout">
+            <p id="none">
+                <?php echo msg; ?>
+            </p>
 
-                        <td class="remove">
-                            <input type="checkbox" name="itemcheck" /> </td>
+
+            <table id="div0" class="line">
+                <tr>
+                    <form id="this0" method="post" action="process.php?paypal=checkout">
 
                         <td class="label">
                             <input type="text" name="itemname" value="Nikon COOLPIX" disabled/> </td>
@@ -107,45 +110,16 @@ if ($sessionusercart != NULL) {
                                 <option value="3">3</option>
                             </select>
                         </td>
+                        
                         <td class="buy">
-                            <input class="dw_button" type="submit" name="submitbutton" value="Buy" />
+                            <input id="0" class="dw-button" type="button" name="button" value="Buy" />
                         </td>
 
                     </form>
                 </tr>
             </table>
-            
-            <table id="0" class="line">
-                <tr>
-                    <form method="post" action="">
 
-                        <td class="remove">
-                            <input type="checkbox" name="itemcheck" /> </td>
-
-                        <td class="label">
-                            <input type="text" name="itemname" value="Nikon COOLPIX" disabled/> </td>
-
-                        <td class="id">
-                            <input type="hidden" name="itemnumber" value="20000" /> </td>
-
-                        <td class="price">
-                            <input type="text" name="itemprice" value="109.99" disabled/> </td>
-
-
-                        <td class="quant">
-                            <select name="itemQty">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </td>
-                        <td class="buy">
-                            <input class="dw_button" type="submit" name="submitbutton" value="Buy" />
-                        </td>
-
-                    </form>
-                </tr>
-            </table>
+            <input id="input0" type="submit" name="submitbutton" value="Buy" form="this0" style="display:none;" />
         </div>
 
 
@@ -153,34 +127,45 @@ if ($sessionusercart != NULL) {
         <script src="../js/script.js"></script>
 
         <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if(connfailed)
+                $('#warning').fadeIn();
+            
             var cont = <?php echo json_encode($contador); ?>;
             var items = <?php echo json_encode($selected); ?>;
-            var link = "process.php?paypal=checkout";
 
             if (cont == 0)
-                $('#none').css('display','block');
+                $('#none').css('display', 'block');
             else {
-                $('#none').css('display','none');
                 for (i = 0; i < cont; i++) {
                     var thisid = items[i].id;
                     var thisname = items[i].name + " " + items[i].num;
                     var thisprice = items[i].price;
                     var thisquant = items[i].quant;
-
+                    console.log("id: " + thisid);
+                    console.log(thisname);
+                    console.log(thisprice);
 
                     jQuery('<table/>', {
-                        id: '' + thisid,
+                        id: 'div' + thisid,
                         class: 'line',
                     }).appendTo('.welcome');
-                    $('#' + thisid).prepend("<tr><form method='post' action='"+link+"'><td class='remove'><input type='checkbox' name='itemcheck' /> </td><td class='label'><input type='text' name='itemname' value='" + thisname + "' disabled/> </td><td class='id'><input type='hidden' name='itemnumber' value='" + thisid + "' /> </td><td class='price'><input type='text' name='itemprice' value='" + thisprice + "' disabled/> </td><td class='quant'><select name='itemQty'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select></td><td class='buy'><input class='dw_button' type='submit' name='submitbutton' value='Buy' /></td></form></tr>");
+                    $('#div' + thisid).prepend('<tr> <form id="this'+ thisid +'" method="post" action="process.php?paypal=checkout"> <td class="label"> <input type="text" name="itemname" value="'+ thisname +'" disabled/> </td> <td class="id"> <input type="hidden" name="itemnumber" value="20000" /> </td> <td class="price"> <input type="text" name="itemprice" value="'+ thisprice +'" disabled/> </td> <td class="quant"> <select name="itemQty"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> </select> </td> <td class="buy"> <input id="'+ thisid +'" class="dw-button" type="button" name="button" value="Buy" /> </td></form> </tr>');
+                    
+                    $('.welcome').append('<input id="input'+ thisid +'" type="submit" name="submitbutton" value="Buy" form="this'+ thisid +'" style="display:none;" />');
                 }
             }
-            
-            
-            $('.dw_button').on("click", function(){
-                $("input").prop('disabled', false);
+
+
+            $('.dw-button').on("click", function () {
+                $('.server').fadeIn();
+                $('input').prop('disabled',false);
+                
+                console.log("teste");
+                var id = $(this).attr('id');
+                console.log(id);
+                document.getElementById('input'+id).click();
             });
-            
             
         </script>
 

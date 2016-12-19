@@ -94,6 +94,10 @@ include("config.php");
                 <div id="login"> <a href="login.php">Login</a></div>
             </nav>
         </div>
+        
+        <p id="warning"> Couldn't connect to database, try later. </p>
+
+        
         <div id="form">
             <form action="" method="post">
                 <input type="text" name="username" placeholder="Username">
@@ -107,6 +111,11 @@ include("config.php");
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if (connfailed)
+                $('#warning').fadeIn();
+        </script>
         </body>
 
     </html>

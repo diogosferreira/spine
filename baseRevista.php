@@ -110,7 +110,8 @@ if($_REQUEST['btn-submit']=="Submit") {
                 <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
             </nav>
         </div>
-
+        
+        <p id="warning"> Couldn't connect to database, try later. </p>
 
         <!--——————————————— Revista —————————————————-->
 
@@ -158,6 +159,12 @@ if($_REQUEST['btn-submit']=="Submit") {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="js/script.js"></script>
         <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if(connfailed)
+                $('#warning').fadeIn();
+            
+            
+            
             var user = <?php echo json_encode($user); ?>;
             var usertype = <?php echo json_encode($sessionusertype); ?>;
             var usercart = <?php echo json_encode($sessionusercart); ?>;

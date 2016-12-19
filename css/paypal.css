@@ -6,7 +6,9 @@
     width: 100%;
 }
 
-
+.table-header .label {
+    padding-left: 1vw;
+}
 
 /*-- TABLES --*/
 
@@ -22,7 +24,6 @@ table td {
 
 table input {
     font-size: 12pt;
-    text-align: center;
 }
 
 
@@ -33,21 +34,23 @@ table input {
 
 
 
-/*REMOVE*/
-.remove {
-    width: 15%;
-}
-
-
 
 /*LABEL*/
 .label {
-    width: 35%;
+    text-align: left;
+    width: 50%;
 }
 label {
+    text-align: left;
     width: 100%;
 }
 
+
+
+.price {
+        text-align: left;
+
+}
 
 
 
@@ -72,10 +75,11 @@ form {
 
 }
 
-.dw_button {
+.dw-button {
     width: 100%;
     color: red;
     text-decoration: underline;
+    font-weight: bold;
 }
 
 
@@ -84,7 +88,24 @@ input[type=submit] {
     font-weight: bold;
     font-family: BlinkMacSystemFont;
 }
-input[type=submit]:focus {
-    color: red;
+
+
+input:focus, textarea:focus {
+    color: black;
     border: none;
+    outline-color: transparent;
+    outline-style: none;
+}
+
+input[type=button]:focus {
+    color: red;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+}
+
+
+#none {
+    display: none;
 }

@@ -233,6 +233,9 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                 <div id="login"> <a href="logout.php">Logout</a></div>
             </nav>
         </div>
+        
+        <p id="warning"> Couldn't connect to database, try later. </p>
+
         <div class="welcome" id="profile">
             <div id="main">
                 <form method="post" enctype="multipart/form-data">
@@ -365,6 +368,10 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
 
 
         <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if (connfailed)
+                $('#warning').fadeIn();            
+            
             //-- PROFILE --
             var pic = <?php echo json_encode($login_pic); ?>;
             var addedusername = <?php echo json_encode($myusername); ?>;

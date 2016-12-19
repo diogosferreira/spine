@@ -159,7 +159,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </nav>
         </div>
 
+        <p id="warning"> Couldn't connect to database, try later. </p>
 
+        
         <div class="welcome" id="add-mag">
             <h2> Edit Magazine </h2>
             <div id="info">
@@ -233,6 +235,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <script>
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if(connfailed)
+                $('#warning').fadeIn();
+            
+            
             var till = <?php echo json_encode($contador); ?>;
             var id = <?php echo json_encode($id); ?>;
             for (i = 0; i < till; i++)

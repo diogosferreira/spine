@@ -43,13 +43,15 @@ else
                 <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
             </nav>
     </div>
+        <p id="warning"> Couldn't connect to database, try later. </p>
 
+    
     <section id="firstPage" class="fullPage"></section>
 
 
 
 
-    <!--teste ler revistas———————————————————-->
+    <!--teste ler revistas———————————————————
 
     <a href="lerrevistahtml.php"> ler revistas </a>
 
@@ -60,11 +62,17 @@ else
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="js/script.js"></script>
-    <script>
+        <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if(connfailed)
+                $('#warning').fadeIn();
+        
         var user = <?php echo json_encode($user); ?>;
         if (user)
             $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
         console.log(user);
+        
+        
     </script>
 </body>
 

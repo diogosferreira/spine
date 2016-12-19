@@ -92,7 +92,10 @@ else
                         </div>
                     </div>
                 </div>
+        
+                <p id="warning"> Couldn't connect to database, try later. </p>
 
+                
                 <form class="pesquisa" method="post">
                     <i class="material-icons md-30">search</i>
                     <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
@@ -143,6 +146,12 @@ else
 
 
         <script type="text/javascript" language="javascript">
+            var connfailed = <?php echo json_encode($failed); ?>;
+            if (connfailed)
+                $('#warning').fadeIn();
+            
+            
+            
             /* ———————————————————  search magazines  ————————————————————————— */
 
             for (i = 0; i < 8; i++) {
