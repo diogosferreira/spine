@@ -5,6 +5,7 @@ session_start();
 if(!empty($_SESSION['login_user'])) {
     $user = true;
     $sessionusername = $_SESSION['login_username'];
+    $sessionusertype = $_SESSION['login_usertype'];
 } else
     $user = false;
 
@@ -110,9 +111,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src="js/script.js"></script>
         <script type="text/javascript" language="javascript">
             var user = <?php echo json_encode($user); ?>;
-            if (user)
+            var usertype = <?php echo json_encode($sessionusertype); ?>;
+                console.log("userrr: "+usertype);
+            if (user) {
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
             console.log(user);
+                
+                if(usertype == 0)
+                    $('#heart').css("display","block");
+                else
+                    $('#heart').css("display","none");
+            } else
+                $('#heart').css("display","none");
 
 
             var till = <?php echo json_encode($contador); ?>;
@@ -127,16 +137,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             var favourite = <?php echo json_encode($favourite); ?>;
-            var id = <?php echo json_encode($id); ?>;
-            var r = <?php echo json_encode($rows); ?>;
-
             if(favourite) 
                 $('svg').addClass('active');
             
-            console.log("fav "+favourite);
-            console.log("id "+id);
-            console.log("r "+r);
-            
+
             
             
             $('svg').on("click", function () {

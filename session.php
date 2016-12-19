@@ -24,6 +24,7 @@
 
 
     $_SESSION['login_username'] = $login_session;
+    $_SESSION['login_usertype'] = $login_type;
 
     //-- SELECT USER MESSAGES --
 
