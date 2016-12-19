@@ -37,10 +37,10 @@ if ($conn->connect_error) {
 	
 	define('PPL_LANG', 'EN');
 	
-	define('PPL_LOGO_IMG', 'http://localhost/images/paypalbutton.png');
+	define('PPL_LOGO_IMG', 'https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png');
 	
-	define('PPL_RETURN_URL', 'http://localhost/paypal/process.php');
-	define('PPL_CANCEL_URL', 'http://localhost/paypal/cancel_url.php');
+	define('PPL_RETURN_URL', $_SERVER["HTTP_REFERER"]);
+	define('PPL_CANCEL_URL', $_SERVER["HTTP_REFERER"]);
 
 	define('PPL_CURRENCY_CODE', 'EUR');
 

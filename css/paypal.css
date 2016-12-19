@@ -1,16 +1,48 @@
+/*-- TABLE HEADER --*/
+.table-header {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-bottom: 1px solid black;
+}
+
+
+
+/*-- TABLES --*/
+
+
 table {
     font-size: 16pt;
 }
 
+table td {
+    width: 20%;
+    text-align: center;
+}
+
+table input {
+    font-size: 12pt;
+    text-align: center;
+}
+
+
+/*ID*/
+.id {
+    display: none;
+}
+
+
+
+/*REMOVE*/
+.remove {
+    width: 15%;
+}
 
 
 
 /*LABEL*/
-
 .label {
-    width: 40%;
+    width: 35%;
 }
-
 label {
     width: 100%;
 }
@@ -18,9 +50,7 @@ label {
 
 
 
-
 /*QUANT and BUY*/
-
 form {
     text-align: right;
 }
@@ -28,19 +58,17 @@ form {
 
 
 /*QUANT*/
-
 .quant {
-    text-align: right;
-    font-size: 12pt;
-    width: 30%;
+    width: 15%;
+
 }
 
 
 
 /*BUY*/
-
 .buy {
-    width: 30%;
+    width: 15%;
+
 }
 
 .dw_button {
@@ -51,7 +79,11 @@ form {
 
 
 input[type=submit] {
-    text-align: right;
     font-size: 12pt;
-    font-family: Century Gothic;
+    font-weight: bold;
+    font-family: BlinkMacSystemFont;
+}
+input[type=submit]:focus {
+    color: red;
+    border: none;
 }

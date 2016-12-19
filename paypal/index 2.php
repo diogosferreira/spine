@@ -60,26 +60,42 @@ include_once("config.php");
                 </div>
             </div>-->
 
-            <table class="line" border="0">
+            <table class="table-header">
                 <tr>
-                    <td class="label">
-                        <label for=""> <a href="#"> Canon EOS Rebel XS </a></label>
-                    </td>
-                    <form method="post" action="process.php?paypal=checkout">
-                        <input type="hidden" name="itemname" value="Nikon COOLPIX" />
-                        <input type="hidden" name="itemnumber" value="20000" />
-                        <input type="hidden" name="itemdesc" value="Nikon Coolpix S9050 26355 digital camera capture vibrant photos up to 12.1 megapixels." />
-                        <input type="hidden" name="itemprice" value="109.99" />
+                    <td class="remove"> Remove </td>
+                    <td class="label"> Item </td>
+                    <td class="price"> Price </td>
+                    <td class="quant"> Quantity </td>
+                    <td class="buy"> Buy </td>
+                </tr>
+            </table>
 
-                        <td class="quant">Quantity :
+            <table class="line">
+                <tr>
+                    <form method="post" action="process.php?paypal=checkout">
+
+                        <td class="remove">
+                            <input type="checkbox" name="itemcheck" /> </td>
+
+                        <td class="label">
+                            <input type="text" name="itemname" value="Nikon COOLPIX" disabled/> </td>
+
+                        <td class="id">
+                            <input type="hidden" name="itemnumber" value="20000" /> </td>
+
+                        <td class="price">
+                            <input type="text" name="itemprice" value="109.99" /> </td>
+
+
+                        <td class="quant">
                             <select name="itemQty">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                             </select>
                         </td>
-                        <td  class="buy">
-                            <input class="dw_button" type="submit" name="submitbutt" value="Buy (109.99 <?php echo PPL_CURRENCY_CODE; ?>)" />
+                        <td class="buy">
+                            <input class="dw_button" type="submit" name="submitbutt" value="Buy <?php echo PPL_CURRENCY_CODE; ?>" />
                         </td>
 
                     </form>
