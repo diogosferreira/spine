@@ -133,6 +133,11 @@ if ($result->num_rows > 0  ) {
             <div id="posts">
                 <!--  cria as divs aqui   -->
             </div>
+
+
+            <div id="infoEcistencia"></div>
+
+
         </section>
 
 
@@ -186,11 +191,12 @@ if ($result->num_rows > 0  ) {
 
             }
 
-            
-            
+
+
             //  mostrar todas as revistas
             var palmas = <?php echo json_encode($didi); ?>;
             var cont1 = <?php echo json_encode($contador); ?>;
+
             function showAll() {
                 for (i = 0; i < cont1; i++) {
                     var id = palmas[i].id;
@@ -206,9 +212,9 @@ if ($result->num_rows > 0  ) {
                     $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
                 }
             }
-            
-            
-            
+
+
+
 
             /* ———————————————————  search categories   —————————————————————————— */
 
@@ -220,19 +226,23 @@ if ($result->num_rows > 0  ) {
                     var palmas2 = <?php echo json_encode($didi2); ?>;
                     var cont2 = <?php echo json_encode($contador2); ?>;
                 }
-                    
-                    
+
+
                 var divNome = $(this).attr('id');
 
                 $("div").remove(".post");
                 if (divNome === 'all') {
                     showAll();
                 } else if (divNome === 'favourites') {
+                    var andaLaSenaoApanhas1 = 0;
+
+
                     for (i = 0; i < cont2; i++) {
+
                         var img = palmas2[i].img;
-                        console.log("img: "+img);
+                        console.log("img: " + img);
                         var id = palmas2[i].id;
-                        console.log("id: "+id);
+                        console.log("id: " + id);
                         jQuery('<div/>', {
                             id: '' + id,
                             class: 'post',
@@ -240,9 +250,27 @@ if ($result->num_rows > 0  ) {
                         }).appendTo('#posts'); //id/class so sitio
 
                         $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
-                    }                
+
+                        andaLaSenaoApanhas1++;
+                        /*if(palmas2.length){
+                        $('#posts').prepend("<p> Não Existem revistas desta categoria. </p>");  
+                        }*/
+                    }
+
+                    if (andaLaSenaoApanhas1 == 0) {
+                        $("#infoEcistencia").empty();
+                        console.log("passa");
+                        $('#infoEcistencia').prepend("<p> Ainda não tem favoritos. </p>");
+                    }
                 } else {
+
+                    
+                    var andaLaSenaoApanhas = 0;
+                    
+
                     for (i = 0; i < cont1; i++) {
+
+                        
                         var id = palmas[i].id;
                         var img = palmas[i].img;
 
@@ -254,11 +282,18 @@ if ($result->num_rows > 0  ) {
                             }).appendTo('#posts'); //id/class so sitio
 
                             // meter id e imagem em variável
-
                             $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
 
+                            andaLaSenaoApanhas++;
+
                         }
+                        if (andaLaSenaoApanhas == 0 ) {
+                            $("#infoEcistencia").empty();
+                            $('#infoEcistencia').prepend("<p> Ainda não existem revistas nesta categoria </p>");
+                        }
+
                     }
+
                 }
             });
 
@@ -278,8 +313,8 @@ if ($result->num_rows > 0  ) {
         </script>
 
 
-</body>
-<script src="js/script.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </body>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-</html>
+    </html>

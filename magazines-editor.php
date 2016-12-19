@@ -171,7 +171,6 @@ else
                 }).appendTo('#posts');
                 $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
 
-
             }
 
 
