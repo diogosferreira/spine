@@ -1,57 +1,56 @@
-<?php 
-include('categorias.php'); 
-session_start();
+    <?php 
+    include('categorias.php'); 
+    session_start();
 
-if(!empty($_SESSION['login_user'])) {
-    $user = true;
-    $sessionusername = $_SESSION['login_user'];
-}
-else
-    $user = false;
-
-
-
-
-// -- FAVORITOS
-    
-//$sql2 = "SELECT idRevista FROM Utilizador_RevistaNum WHERE userName = '$sessionusername'";
-$sql2 = "SELECT userName, u.idRevista, imgRevista FROM RevistaNum r JOIN Utilizador_RevistaNum u on (u.idRevista = r.idRevista) WHERE userName = '$sessionusername'";
-$result2 = $conn->query($sql2);
-
-
-$contador2=0;
-if ($result2->num_rows > 0) {
-    while($row2 = $result2->fetch_assoc()) {
-        $didi2[$contador2] = array("id"=>$row2["idRevista"], "img"=>$row2["imgRevista"]);
-
-        $contador2++;
+    if(!empty($_SESSION['login_user'])) {
+        $user = true;
+        $sessionusername = $_SESSION['login_user'];
     }
-} else {
-    //echo "0 results";
-}
+    else
+        $user = false;
 
 
 
 
-// -- SEARCH
+    // -- FAVORITOS
+
+    //$sql2 = "SELECT idRevista FROM Utilizador_RevistaNum WHERE userName = '$sessionusername'";
+    $sql2 = "SELECT userName, u.idRevista, imgRevista FROM RevistaNum r JOIN Utilizador_RevistaNum u on (u.idRevista = r.idRevista) WHERE userName = '$sessionusername'";
+    $result2 = $conn->query($sql2);
 
 
-$option = $_POST["option"];  //o que foi escrito na pesquisa
-$sql = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
-$result = $conn->query($sql);
-$contador=0;
+    $contador2=0;
+    if ($result2->num_rows > 0) {
+        while($row2 = $result2->fetch_assoc()) {
+            $didi2[$contador2] = array("id"=>$row2["idRevista"], "img"=>$row2["imgRevista"]);
 
-if ($result->num_rows > 0  ) {
-    while($row = $result->fetch_assoc()) {
-        $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
-        $contador++; 
-        //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
+            $contador2++;
+        }
+    } else {
+        //echo "0 results";
     }
-} else {
-    echo "No products were found matching your selection.";
-}
 
-?>
+
+
+    // -- SEARCH
+
+
+    $option = $_POST["option"];  //o que foi escrito na pesquisa
+    $sql = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
+    $result = $conn->query($sql);
+    $contador=0;
+
+    if ($result->num_rows > 0  ) {
+        while($row = $result->fetch_assoc()) {
+            $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
+            $contador++; 
+            //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
+        }
+    } else {
+        echo "No products were found matching your selection.";
+    }
+
+    ?>
 
 
     <html>
@@ -115,6 +114,17 @@ if ($result->num_rows > 0  ) {
                         </div>
                     </div>
                 </div>
+
+
+                <!--filtros-->
+
+                <select>
+                    <option value="data">Data</option>
+                    <option value="artigos">Artigos</option>
+                    <option value="nome">Nome</option>
+                </select>
+
+                <!--filtros-->
 
                 <form class="pesquisa" method="post">
                     <i class="material-icons md-30">search</i>
@@ -221,12 +231,10 @@ if ($result->num_rows > 0  ) {
             $("#list li").on("click", function () {
                 $(".post").remove();
 
-
                 for (i = 0; i < 8; i++) {
                     var palmas2 = <?php echo json_encode($didi2); ?>;
                     var cont2 = <?php echo json_encode($contador2); ?>;
                 }
-
 
                 var divNome = $(this).attr('id');
 
@@ -264,13 +272,13 @@ if ($result->num_rows > 0  ) {
                     }
                 } else {
 
-                    
+
                     var andaLaSenaoApanhas = 0;
-                    
+
 
                     for (i = 0; i < cont1; i++) {
 
-                        
+
                         var id = palmas[i].id;
                         var img = palmas[i].img;
 
@@ -287,7 +295,7 @@ if ($result->num_rows > 0  ) {
                             andaLaSenaoApanhas++;
 
                         }
-                        if (andaLaSenaoApanhas == 0 ) {
+                        if (andaLaSenaoApanhas == 0) {
                             $("#infoEcistencia").empty();
                             $('#infoEcistencia').prepend("<p> Ainda não existem revistas nesta categoria </p>");
                         }
