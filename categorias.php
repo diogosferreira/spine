@@ -2,7 +2,7 @@
 include('db.php');
 
 
-$sql = "SELECT categoria, idRevista FROM revistaNum";
+$sql = "SELECT categoria, idRevista, imgRevista FROM revistaNum";
 $result = $conn->query($sql);
 
 
@@ -11,7 +11,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
        // $d = $row["email"];
         //echo "nome: " . $row["email"]. " - pass: " . $row["userPassword"]. "<br>";
-        $didi[$contador] = array("categoria"=>$row["categoria"], "id"=>$row["idRevista"]);
+        $didi[$contador] = array("categoria"=>$row["categoria"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
 
         $contador++;
     }

@@ -27,178 +27,190 @@
         <link rel="stylesheet" href="css/welcome.css">
     </head>
 
-    <body class="index">
-        <header>
-            <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-            <div id="login"> <a href="magazines.php">Magazines</a> / <a href="logout.php">Logout</a> </div>
-        </header>
+    <body>
+        <div class="barraMenu">
+            <header>
+                <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            </header>
 
 
-        <nav>
-            <ul>
-                <li> <a href="#profile"> Profile </a></li>
-                <li> <a href="#messages"> Messages </a></li>
-                <li> <a href="#cart"> Cart </a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul id="nav-menu">
+                    <li> <a href="magazines.php"> Magazines </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
+                    <li> --- </li>
+                    <li> <a href="#profile"> Profile </a></li>
+                    <li> <a href="#messages"> Messages </a></li>
+                    <li> <a href="#cart"> Cart </a></li>
+                </ul>
 
-        <div class="welcome" id="profile">
-            <div id="main">
-                <form method="post" enctype="multipart/form-data">
-                    <input id="profile-pic" onclick="document.getElementById('profile-pic-button').click();"/>
-                </form>
-                <div id="profile-main">
-                    <div id="profile-name"> </div>
-                    <input class="button" type="submit" name="submit" value="Edit" />
+
+                <br>
+
+                <div id="login"><a href="logout.php">Logout</a></div>
+
+
+            </nav>
+        </div>
+
+            <div class="welcome" id="profile">
+                <div id="main">
+                    <form method="post" enctype="multipart/form-data">
+                        <input id="profile-pic" onclick="document.getElementById('profile-pic-button').click();" />
+                    </form>
+                    <div id="profile-main">
+                        <div id="profile-name"> </div>
+                        <input class="button" type="submit" name="submit" value="Edit" />
+                    </div>
                 </div>
-            </div>
-            <div id="info">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input class="changeable" id="profile-pic-button" type="file" name="image" onchange="previewFile()" disabled accept=".jpg, .jpeg, .png"/>
-                    <div class="line">
-                        <label for="username"> Username </label>
-                        <input type="text" id="username" name="username" placeholder="" disabled>
-                    </div>
-                    <div class="line">
-                        <label for="email"> Email </label>
-                        <input type="text" id="email" name="email" placeholder="" disabled>
-                    </div>
-                    <div class="line">
-                        <label for="password"> Password </label>
-                        <input class="changeable" type="password" id="password" name="password" placeholder="*" disabled>
-                    </div>
-                    <div class="line">
-                        <label for="nif"> NIF </label>
-                        <input class="changeable" type="text" id="nif" name="nif" placeholder="" disabled>
-                    </div>
-                    <div class="line">
-                        <label for="address"> Address </label>
-                        <input class="changeable" type="text" id="address" name="address" placeholder="" disabled>
-                    </div>
-                    <input style="display:none;" id="hidden-button" type="submit" name="submit" value="Hidden" />
+                <div id="info">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input class="changeable" id="profile-pic-button" type="file" name="image" onchange="previewFile()" disabled accept=".jpg, .jpeg, .png" />
+                        <div class="line">
+                            <label for="username"> Username </label>
+                            <input type="text" id="username" name="username" placeholder="" disabled>
+                        </div>
+                        <div class="line">
+                            <label for="email"> Email </label>
+                            <input type="text" id="email" name="email" placeholder="" disabled>
+                        </div>
+                        <div class="line">
+                            <label for="password"> Password </label>
+                            <input class="changeable" type="password" id="password" name="password" placeholder="*" disabled>
+                        </div>
+                        <div class="line">
+                            <label for="nif"> NIF </label>
+                            <input class="changeable" type="text" id="nif" name="nif" placeholder="" disabled>
+                        </div>
+                        <div class="line">
+                            <label for="address"> Address </label>
+                            <input class="changeable" type="text" id="address" name="address" placeholder="" disabled>
+                        </div>
+                        <input style="display:none;" id="hidden-button" type="submit" name="submit" value="Hidden" />
 
-                    <!--<div class="line-button">
+                        <!--<div class="line-button">
                         <input type="submit" value="Save">
                     </div>-->
-                </form>
+                    </form>
+                </div>
+                <p class="answer"></p>
             </div>
-            <p class="answer"></p>
-        </div>
 
 
-        <div class="welcome" id="messages">
-            <h2> Messages </h2>
-            <div id="msg-container"></div>
-        </div>
-
-
-        <div class="welcome" id="cart">
-            <h2> Cart </h2>
-            <div class="line">
-                <div class="date"></div>
-                <div class="msg"></div>
+            <div class="welcome" id="messages">
+                <h2> Messages </h2>
+                <div id="msg-container"></div>
             </div>
-            <div class="line" id="total">
-                Your total is 0 euros.
+
+
+            <div class="welcome" id="cart">
+                <h2> Cart </h2>
+                <div class="line">
+                    <div class="date"></div>
+                    <div class="msg"></div>
+                </div>
+                <div class="line" id="total">
+                    Your total is 0 euros.
+                </div>
             </div>
-        </div>
 
 
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="js/script.js"></script>
+            <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="js/script.js"></script>
 
 
-        <script type="text/javascript" language="javascript">
-            //-- PROFILE --
-            var pic = <?php echo json_encode($login_pic); ?>;
-            var username = <?php echo json_encode($login_session); ?>;
-            var email = <?php echo json_encode($login_email); ?>;
-            var nif = <?php echo json_encode($login_nif); ?>;
-            var address = <?php echo json_encode($login_address); ?>;
+            <script type="text/javascript" language="javascript">
+                //-- PROFILE --
+                var pic = <?php echo json_encode($login_pic); ?>;
+                var username = <?php echo json_encode($login_session); ?>;
+                var email = <?php echo json_encode($login_email); ?>;
+                var nif = <?php echo json_encode($login_nif); ?>;
+                var address = <?php echo json_encode($login_address); ?>;
 
 
-            //change message when data edited
-            var newmsg = <?php echo json_encode($_SESSION['welcome-msg']); ?>;
-            if (newmsg != null)
-                $('.answer').text(newmsg);
+                //change message when data edited
+                var newmsg = <?php echo json_encode($_SESSION['welcome-msg']); ?>;
+                if (newmsg != null)
+                    $('.answer').text(newmsg);
 
-            setTimeout(function () {
-                $('.answer').fadeOut();
-            }, 2000);
-
-
-            $('#profile-name').text(username);
-            $('#profile-pic').css("background-image", "url('images/users/"+pic+"')");
-            $('#username').attr("placeholder", username);
-            $('#email').attr("placeholder", email);
-            $('#nif').attr("placeholder", nif);
-            $('#address').attr("placeholder", address);
+                setTimeout(function () {
+                    $('.answer').fadeOut();
+                }, 2000);
 
 
+                $('#profile-name').text(username);
+                $('#profile-pic').css("background-image", "url('images/users/" + pic + "')");
+                $('#username').attr("placeholder", username);
+                $('#email').attr("placeholder", email);
+                $('#nif').attr("placeholder", nif);
+                $('#address').attr("placeholder", address);
 
-            //-- EDIT PROFILE --
-            $('.button').on("click", function () {
-                $(".changeable").toggleClass('enabled');
-                $("#profile-pic").toggleClass('profile-pic-enabled');
 
-                if ($("form input").hasClass('enabled')) {
-                    $(this).val('Save');
-                    $("form input").prop('disabled', false);
-                } else {
-                    document.getElementById('hidden-button').click();
-                    $(this).val('Edit');
-                    $("form input").prop('disabled', true);
+
+                //-- EDIT PROFILE --
+                $('.button').on("click", function () {
+                    $(".changeable").toggleClass('enabled');
+                    $("#profile-pic").toggleClass('profile-pic-enabled');
+
+                    if ($("form input").hasClass('enabled')) {
+                        $(this).val('Save');
+                        $("form input").prop('disabled', false);
+                    } else {
+                        document.getElementById('hidden-button').click();
+                        $(this).val('Edit');
+                        $("form input").prop('disabled', true);
+                    }
+                });
+
+
+                //PROFILE PHOTO
+                function previewFile() {
+                    var preview = document.querySelector('#profile-pic'); //selects the query named img
+                    var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                    var reader = new FileReader();
+
+                    reader.onloadend = function () {
+                        preview.style.backgroundImage = "url(" + reader.result + ")";
+                    }
+
+                    if (file) {
+                        reader.readAsDataURL(file); //reads the data as a URL
+                    } else {
+                        preview.style.backgroundImage = "url('')";
+                    }
                 }
-            });
 
 
-            //PROFILE PHOTO
-            function previewFile() {
-                var preview = document.querySelector('#profile-pic'); //selects the query named img
-                var file = document.querySelector('input[type=file]').files[0]; //sames as here
-                var reader = new FileReader();
 
-                reader.onloadend = function () {
-                    preview.style.backgroundImage = "url("+reader.result+")";
+                //-- MESSAGES --
+
+                var msg_amount = <?php echo json_encode($contador); ?>;
+                for (i = 0; i < msg_amount; i++) {
+                    var palmas = <?php echo json_encode($didi); ?>;
                 }
 
-                if (file) {
-                    reader.readAsDataURL(file); //reads the data as a URL
-                } else {
-                    preview.style.backgroundImage = "url('')";
+                console.log(msg_amount);
+                console.log(palmas);
+
+                for (i = 0; i < msg_amount; i++) {
+                    var date = palmas[i].date;
+                    var msg = palmas[i].message;
+
+                    jQuery('<div/>', {
+                        id: 'msg' + i,
+                        class: 'line',
+                        // text: 'div bem criada' + i
+                    }).appendTo('#msg-container'); //id/class so sitio
+
+
+                    $('#msg' + i).prepend("<div class='date'> " + date + "</div> <div class='msg'> " + msg + " </div>");
+
+
                 }
-            }
+            </script>
 
-
-
-            //-- MESSAGES --
-
-            var msg_amount = <?php echo json_encode($contador); ?>;
-            for (i = 0; i < msg_amount; i++) {
-                var palmas = <?php echo json_encode($didi); ?>;
-            }
-
-            console.log(msg_amount);
-            console.log(palmas);
-
-            for (i = 0; i < msg_amount; i++) {
-                var date = palmas[i].date;
-                var msg = palmas[i].message;
-
-                jQuery('<div/>', {
-                    id: 'msg' + i,
-                    class: 'line',
-                    // text: 'div bem criada' + i
-                }).appendTo('#msg-container'); //id/class so sitio
-
-
-                $('#msg' + i).prepend("<div class='date'> " + date + "</div> <div class='msg'> " + msg + " </div>");
-
-
-            }
-        </script>
-
-        <?php 
+            <?php 
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
            if(isset($_FILES['image'])){

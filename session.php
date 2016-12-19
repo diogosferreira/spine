@@ -23,6 +23,7 @@
    $login_type = $ses_row['dono'];
 
 
+    $_SESSION['login_username'] = $login_session;
 
     //-- SELECT USER MESSAGES --
 
@@ -36,7 +37,7 @@
             $contador++;
         }
     } else {
-        echo "0 results";
+        //echo "0 results";
     }
 
 

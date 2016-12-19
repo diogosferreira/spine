@@ -214,22 +214,28 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
         <link rel="stylesheet" href="css/welcome.css">
     </head>
 
-    <body class="index">
-        <header>
-            <a href="#"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-            <div id="login"> <a href="logout.php"> Logout </a> </div>
-        </header>
+    <body>
+        <div class="barraMenu">
+            <header>
+                <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            </header>
 
 
-        <nav>
-            <ul>
+            <nav>
+                <ul id="nav-menu">
+                    <li> <a href="magazines.php"> Magazines </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
+                    <li> --- </li>
                 <li> <a href="#profile"> Profile </a></li>
                 <li> <a href="#add-editor"> Add Editor </a></li>
                 <li> <a href="#add-mag"> Add Mag </a></li>
                 <li> <a href="magazines-editor.php"> Edit Mag </a></li>
             </ul>
-        </nav>
-
+                
+                <div id="login"> <a href="logout.php">Logout</a></div>
+   </nav>
+        </div>
         <div class="welcome" id="profile">
             <div id="main">
                 <form method="post" enctype="multipart/form-data">

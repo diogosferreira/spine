@@ -75,19 +75,25 @@ include("config.php");
     </head>
 
     <body class="index">
-        <header>
-            <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-            <div id="login"> <a href="login.php">Login</a></div>
-        </header>
+        <div class="barraMenu">
+            <header>
+                <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            </header>
 
 
-        <nav>
-            <ul>
-                <li> <a href="magazines.php"> Magazines </a></li>
-                <li> <a href="about.html"> About </a></li>
-                <li> <a href="contacts.html"> Contact </a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul id="nav-menu">
+                    <li> <a href="magazines.php"> Magazines </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
+                </ul>
+
+
+                <br>
+                
+                <div id="login"> <a href="login.php">Login</a></div>
+            </nav>
+        </div>
         <div id="form">
             <form action="" method="post">
                 <input type="text" name="username" placeholder="Username">

@@ -41,6 +41,7 @@ nav ul li:nth-child(1) {
 
 #dropdown-list {
     position: absolute;
+    top: 20vh;
     width: 180px;
     display: block;
     margin: 50px auto;
@@ -55,7 +56,7 @@ nav ul li:nth-child(1) {
     width: 190px;
     text-align: left;
     /* color: #343C3F; */
-    border: 2px solid #b7b7b7;
+    /*border: 2px solid #b7b7b7;*/
     background: rgba(220, 220, 220, 1);
 }
 

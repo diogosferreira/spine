@@ -24,22 +24,25 @@ else
 </head>
 
 <body class="index">
-    <header>
-        <a href="#firstPage"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-        <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
-    </header>
-
-    <p class="dbresult"></p>
+        <div class="barraMenu">
+            <header>
+                <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            </header>
 
 
+            <nav>
+                <ul id="nav-menu">
+                    <li> <a href="magazines.php"> Magazines </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
+                </ul>
 
-    <nav>
-        <ul>
-            <li> <a href="magazines.php"> Magazines </a></li>
-            <li> <a href="about.php"> About </a></li>
-            <li> <a href="contacts.php"> Contact </a></li>
-        </ul>
-    </nav>
+
+                <br>
+                
+                <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
+            </nav>
+    </div>
 
     <section id="firstPage" class="fullPage"></section>
 

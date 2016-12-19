@@ -13,10 +13,8 @@ section {
     margin: 0 auto;
     height: 100vh;
     overflow-y: scroll;
-    padding: 10vh 0;
-
+    padding: 18vh 0;
 }
-
 
 #left {
     float: left;
@@ -30,15 +28,12 @@ section {
     float: right;
 }
 
-
-
-#right{
+#right {
     float: right;
     overflow-y: scroll;
 }
 
-#text{
-    float: right;
+#text {
     padding-right: 4vw;
     overflow-y: scroll;
     margin-bottom: 25vh;
@@ -59,24 +54,25 @@ p {
     font-size: 18pt;
 }
 
-
 #preco {
     color: red;
     padding-left: 3%;
     text-decoration: underline;
 }
 
-
-
 pre {
     padding-top: 3vh;
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
 }
-
 
 
 /*#voltar {
@@ -87,52 +83,53 @@ pre {
     .revista {
         margin: 0 auto;
         width: 92%;
-         min-width: 50px;
+        min-width: 50px;
     }
 }
 
 
-
-
 /* HEART ANIMATION */
 
-
-
 input[type=checkbox] {
-	clear: both;
-	display: none;
+    clear: both;
+    display: none;
 }
 
 input[type="checkbox"] {
-  display: none;
+    display: none;
 }
 
 label svg {
-	display: inline-flex;
-	vertical-align: middle;
-	width: 35px;
-	fill: rgb(167, 167, 167);
+    display: inline-flex;
+    vertical-align: middle;
+    width: 35px;
+    fill: rgb(206, 206, 206);
 }
 
 #heart {
-  position: absolute;
-  display: block;
-  padding: 40vh 48vw;
-  fill: #CDCDCD;
-  transition: fill 200ms;
-  z-index: 1;
+    float: right;
+    margin-right: 3vw;
+    margin-top: -4vh;
+    display: block;
+    fill: #CDCDCD;
+    transition: fill 200ms;
+    z-index: 1;
 }
 
-#heart.active {
-  fill: #FFA600;
-  animation: fav 600ms ease;
+svg:hover {
+    cursor: pointer;
+}
+
+.active {
+    fill: black;
+    animation: fav 600ms ease;
 }
 
 @keyframes fav {
-  15% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(1);
-  }
+    15% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
 }

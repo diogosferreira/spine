@@ -136,24 +136,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="css/welcome.css">
     </head>
 
-    <body class="index">
-        <header>
-            <a href="#"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-            <div id="login"> <a href="logout.php"> Logout </a> </div>
-        </header>
+    <body >
+        <div class="barraMenu">
+            <header>
+                <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+            </header>
 
 
-        <nav>
-            <ul>
-                <li> <a id="voltar" href="magazines-editor.php"> &larr; Show all magazines </a></li>
-                <br>
-                <li> <a href="welcomeowner.php#profile"> Profile </a></li>
-                <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
-                <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>
-                <li> <a href="#"> Edit Mag </a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul id="nav-menu">
+                    <li> <a href="magazines.php"> Magazines </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
+                    <li> --- </li>
+                    <li> <a href="welcomeowner.php#profile"> Profile </a></li>
+                    <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
+                    <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>
+                    <li> <a href="magazines-editor.php"> Edit Mag </a></li>
+                </ul>
 
+                <div id="login"> <a href="logout.php">Logout</a></div>
+            </nav>
+        </div>
 
 
         <div class="welcome" id="add-mag">

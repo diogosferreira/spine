@@ -91,6 +91,10 @@ select:-webkit-autofill {
     background-color: #F2F1EF;
 }
 
+input::-webkit-input-placeholder {
+  color: black;
+}
+
 .answer {
     width: 65vw;
     position: absolute;
