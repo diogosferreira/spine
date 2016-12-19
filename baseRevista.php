@@ -6,13 +6,31 @@ if(!empty($_SESSION['login_user'])) {
     $user = true;
     $sessionusername = $_SESSION['login_username'];
     $sessionusertype = $_SESSION['login_usertype'];
+    $sessionusercart = $_SESSION['login_usercart'];
 } else
     $user = false;
 
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+// SELECTION TO CHECK IF HAS BEEN ALREADY ADDED TO THE CART
+if ($sessionusercart != NULL) {
+    $query0 = "SELECT * FROM `Carrinho` WHERE (`idCarrinho` ='$sessionusercart' and `idRevista`='$id')";
+    $endresult0 = $conn->query($query0);
 
+
+    if ($endresult0->num_rows > 0) {
+        $added = true;
+    } else {
+        $added = false;
+    }
+}
+
+        
+        
+        
+        
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_REQUEST['btn-submit']=="Submit") {
     if (isset($_POST['like'])) {
         $query1 = "INSERT INTO `Utilizador_RevistaNum` (`userName`, `idRevista`) VALUES ('$sessionusername', '$id')";
         $endresult1 = mysqli_query($conn, $query1);
@@ -32,7 +50,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         } 
     }
     
+} else if($_REQUEST['btn-submit']=="Buy") {
+    if (isset($_POST['buy']) && ($added==false)) {
+        $query3 = "INSERT INTO `Carrinho` (`idCarrinho`, `idRevista`) VALUES ('$sessionusercart', '$id')";
+        $endresult3 = mysqli_query($conn, $query3);
+        if($endresult3){
+            $msg = "Added to favourites";
+        }else{
+            $msg ="Sorry, action Failed.";
+        }
+        
+    } else if ($added==true){
+        $query4 = "DELETE FROM `Carrinho` WHERE (`idCarrinho` ='$sessionusercart' and `idRevista`='$id')";
+        $endresult4 = mysqli_query($conn, $query4);
+        if($endresult4){
+            $msg = "Deleted from favourites";
+        }else{
+            $msg ="Sorry, action Failed.";
+        } 
+    }    
+}
     echo"<script language='javascript'> window.location.href = 'baseRevista.php'; </script> ";
+
 }
     
 ?>
@@ -91,32 +130,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31z" />
                                 </svg>
                             </label>
-                            <input type="submit" id="submit" value="Submit" style="display:none;">
+                            <input type="submit" name="btn-submit" id="submit" value="Submit" style="display:none;">
                         </form>
                     </div>
                     <br>
-                    <!--      <p id="compra"> <span id="t-preco"> </span>€ <a id="preco" href="#"> BUYY NOW </a></p>-->
-                    <p id="compra"> <span id="t-preco"> </span>€ </p>
-
-
-                    <!--<form id="pagamento" target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_s-xclick">
-                        <input type="hidden" name="hosted_button_id" value="R2QKGRBY9GMLJ">
-                        <input type="image" style="width:70px;" src="images/buynow.png" border="0" name="submit" alt="PayPal - A forma mais fácil e segura de efetuar pagamentos online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-                    </form>-->
-
-                    <div class="btn-wrapper-right highlightable hotspot pp-checkout-btn">
-                        <div onclick="window.parent.location.href = '/us/demo/navigation?merchant=bigbox&amp;page=classicCheckout';gaClickHotspot('bigbox','Shopping Cart Page - Checkout with PayPal');">
-                            <a class="pp-checkout btn">Check Out with PayPal</a>
-                            <div class="gotonextstep checkout">
-                                <span class="gotonextstep-text">Go to Next Step</span>
-                            </div>
-                        </div>
-                        <div class="gotonextstep" id="ppcheckreview" hidden=""></div>
-                    </div>
-
-
+                    <form action="" method="post">
+                        <p id="compra">
+                            <span id="t-preco"> </span>€
+                            <a id="preco"> ADD TO CART </a>
+                            <input type="checkbox" id="buy" name="buy" />
+                            <input type="submit" name="btn-submit" id="submit-buy" value="Buy" style="display:none;">
+                        </p>
+                    </form>
 
                     <br>
 
@@ -134,7 +159,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <script type="text/javascript" language="javascript">
             var user = <?php echo json_encode($user); ?>;
             var usertype = <?php echo json_encode($sessionusertype); ?>;
+            var usercart = <?php echo json_encode($sessionusercart); ?>;
+            console.log("user: " + user);
             console.log("userrr: " + usertype);
+            console.log("userrrrrrr: " + usercart);
             if (user) {
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
                 console.log(user);
@@ -158,13 +186,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $('#descricao').text(palmas[0].descricao);
 
 
+
+            //----- FAVOURITE -----
+
+            //check if it is favourite
             var favourite = <?php echo json_encode($favourite); ?>;
             if (favourite)
                 $('svg').addClass('active');
 
 
 
-
+            //add or remove favourite
             $('svg').on("click", function () {
                 console.log('rumor');
                 $(this).toggleClass('active');
@@ -177,6 +209,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $('#like').attr('checked', false);
                 }
                 document.getElementById('submit').click();
+            });
+
+
+
+
+            //----- ADDED TO CART -----
+
+            //check if already added
+            var added = <?php echo json_encode($added); ?>;
+                    console.log('added '+added);
+
+            if (added)
+                $('#preco').text('REMOVE FROM CART');
+            else
+                $('#preco').text('ADD TO CART');
+
+
+
+            $('#preco').on("click", function () {
+                console.log('rumor');
+                $(this).toggleClass('remove');
+
+                if ($(this).hasClass('remove')) {
+                    console.log('has it');
+                    $('#buy').attr('checked', true);
+                } else {
+                    console.log('dont has it');
+                    $('#buy').attr('checked', false);
+                }
+                document.getElementById('submit-buy').click();
             });
         </script>
 

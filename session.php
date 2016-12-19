@@ -21,10 +21,12 @@
    $login_nif = $ses_row['nif'];
    $login_address = $ses_row['morada'];
    $login_type = $ses_row['dono'];
+   $login_cart = $ses_row['idCarrinho'];
 
 
     $_SESSION['login_username'] = $login_session;
     $_SESSION['login_usertype'] = $login_type;
+    $_SESSION['login_usercart'] = $login_cart;
 
     //-- SELECT USER MESSAGES --
 
