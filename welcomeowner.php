@@ -68,7 +68,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
     else if(empty($_POST['password']))
         $msg ="Forgot to insert password.";
     else {
-
+  
         $myusername = mysqli_real_escape_string($conn,$_POST['username']);
         $myemail = mysqli_real_escape_string($conn,$_POST['email']);
         $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
