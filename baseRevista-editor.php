@@ -146,9 +146,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <nav>
                 <ul id="nav-menu">
                     <li> <a href="magazines.php"> Magazines </a></li>
-                    <li> <a href="about.php"> About </a></li>
-                    <li> <a href="contacts.php"> Contact </a></li>
-                    <li> --- </li>
                     <li> <a href="welcomeowner.php#profile"> Profile </a></li>
                     <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
                     <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>

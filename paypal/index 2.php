@@ -94,13 +94,13 @@ if ($sessionusercart != NULL) {
                     <form id="this0" method="post" action="process.php?paypal=checkout">
 
                         <td class="label">
-                            <input type="text" name="itemname" value="Nikon COOLPIX" disabled/> </td>
+                            <input type="text" name="itemname" value="Frankie 73" disabled/> </td>
 
                         <td class="id">
                             <input type="hidden" name="itemnumber" value="20000" /> </td>
 
                         <td class="price">
-                            <input type="text" name="itemprice" value="109.99" disabled/> </td>
+                            <input type="text" name="itemprice" value="19.99" disabled/> </td>
 
 
                         <td class="quant">

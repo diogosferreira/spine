@@ -61,9 +61,6 @@ else
             <nav>
                 <ul id="nav-menu">
                     <li> <a href="magazines.php"> Magazines </a></li>
-                    <li> <a href="about.php"> About </a></li>
-                    <li> <a href="contacts.php"> Contact </a></li>
-                    <li> --- </li>
                     <li> <a href="welcomeowner.php#profile"> Profile </a></li>
                     <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
                     <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>
@@ -178,7 +175,7 @@ else
                     class: 'post',
                     //text: 'div bem criada' + i
                 }).appendTo('#posts');
-                $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                $('#' + procura).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
 
             }
 
@@ -220,7 +217,7 @@ else
 
                             // meter id e imagem em variável
 
-                            $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                            $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
 
                         }
                     }
@@ -240,7 +237,7 @@ else
 
                     //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
 
-                    $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                    $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
                 }
             }
 

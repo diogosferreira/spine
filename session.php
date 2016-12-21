@@ -30,7 +30,7 @@
 
     //-- SELECT USER MESSAGES --
 
-   $result = $conn->query("select * from Utilizador_Msg where userName = '$login_session' ORDER BY `date` ASC ");
+   $result = $conn->query("select * from Utilizador_Msg where userName = '$login_session' ORDER BY `date` DESC ");
 
     $contador=0;
     if ($result->num_rows > 0) {
