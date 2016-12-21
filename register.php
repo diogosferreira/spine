@@ -17,7 +17,8 @@ include("config.php");
             $myemail = mysqli_real_escape_string($conn,$_POST['email']);
             $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
             $owner = 0;
- 
+            $myhashpassword = sha1($mypassword);
+
             //check if the username exists
             $sql1 = "SELECT * FROM Utilizador WHERE userName = '$myusername'";
             $result1 = mysqli_query($conn,$sql1);
@@ -39,7 +40,7 @@ include("config.php");
             } else if (!preg_match($regex, $myemail)) {
                     $msg ="Sorry, the email is invalid.";
             } else {
-                $query = "INSERT INTO `Utilizador` (`userName`, `userEmail`, `userPassword`, `dono`) VALUES ('$myusername',  '$myemail', '$mypassword', '$owner')";
+                $query = "INSERT INTO `Utilizador` (`userName`, `userEmail`, `userPassword`, `dono`) VALUES ('$myusername',  '$myemail', '$myhashpassword', '$owner')";
                 $endresult = mysqli_query($conn, $query);
                 if($endresult){
                     $msg = "User Created Successfully!";
@@ -106,7 +107,7 @@ include("config.php");
                 <input type="submit" value="Register">
             </form>
             <p id="loginError">
-                <?php echo $msg; ?>
+                <?php echo $msg . $pass1 . $pass2; ?>
             </p>
         </div>
 

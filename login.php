@@ -7,8 +7,9 @@ session_start();
       
       $myusername = mysqli_real_escape_string($conn,$_POST['username']);
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+      $myhashpassword = sha1($mypassword);
       
-      $sql = "SELECT * FROM Utilizador WHERE (userName = '$myusername' and userPassword = '$mypassword') or (userEmail = '$myusername' and userPassword = '$mypassword')";
+       $sql = "SELECT * FROM Utilizador WHERE (userName = '$myusername' and userPassword = '$myhashpassword') or (userEmail = '$myusername' and userPassword = '$myhashpassword')";
       $result = $conn->query($sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
