@@ -1,16 +1,76 @@
 <?php 
-include('categorias.php'); 
-session_start();
+    include('db.php');
+    session_start();
 
-if(!empty($_SESSION['login_user']))
-    $user = true;
-else
-    $user = false;
+    if(!empty($_SESSION['login_user'])) {
+        $user = true;
+        $sessionusername = $_SESSION['login_user'];
+    }
+    else
+        $user = false;
 
-    $_SESSION['welcomeowner-msg0'] = '';
-    $_SESSION['welcomeowner-msg1'] = '';
-    $_SESSION['welcomeowner-msg2'] = '';
-?>
+
+
+    // -- TODOS
+
+    $sql = "SELECT categoria, idRevista, imgRevista FROM revistaNum";
+    $result = $conn->query($sql);
+
+
+    $contador=0;
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+           // $d = $row["email"];
+            //echo "nome: " . $row["email"]. " - pass: " . $row["userPassword"]. "<br>";
+            $didi[$contador] = array("categoria"=>$row["categoria"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
+
+            $contador++;
+        }
+    } else {
+        //echo "0 results";
+    }
+
+
+    // -- FAVORITOS
+
+    //$sql2 = "SELECT idRevista FROM Utilizador_RevistaNum WHERE userName = '$sessionusername'";
+    $sql2 = "SELECT userName, u.idRevista, imgRevista FROM RevistaNum r JOIN Utilizador_RevistaNum u on (u.idRevista = r.idRevista) WHERE userName = '$sessionusername'";
+    $result2 = $conn->query($sql2);
+
+
+    $contador2=0;
+    if ($result2->num_rows > 0) {
+        while($row2 = $result2->fetch_assoc()) {
+            $didi2[$contador2] = array("id"=>$row2["idRevista"], "img"=>$row2["imgRevista"]);
+
+            $contador2++;
+        }
+    } else {
+        $nofav = "No products were found matching your selection.";
+    }
+
+
+
+    // -- SEARCH
+
+
+    $option = $_POST["option"];  //o que foi escrito na pesquisa
+    $sql3 = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
+    $result3 = $conn->query($sql3);
+    $contador3=0;
+
+    if ($result3->num_rows > 0  ) {
+        while($row3 = $result3->fetch_assoc()) {
+            $pesquisa[$contador3] = array("nome"=>$row3["nomeRevista"], "id"=>$row3["idRevista"], "img"=>$row3["imgRevista"]);
+            $contador3++; 
+            //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
+        }
+    } else {
+        $nosearch = "No products were found matching your selection.";
+    }
+
+    ?>
+
 
     <html>
 
@@ -29,25 +89,7 @@ else
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
-    <style>
-        #dropdown-list {
-            top: 35vh;
-        }
-        
-        .pesquisa {
-            top: 5vh;
-        }
-        
-        nav ul li:nth-child(1) {
-            text-decoration: none;
-        }
-        
-        nav ul li:nth-child(8) {
-            text-decoration: underline;
-        }
-    </style>
-
-    <body>
+    <body class="index">
 
 
         <!--barra de menu  ———————————————————————————————-->
@@ -55,19 +97,21 @@ else
         <div class="barraMenu">
             <header>
                 <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
+                <a href="paypal/index%202.php"> <img src="images/cart.png" alt="cart" id="cart"> </a>
             </header>
 
 
             <nav>
                 <ul id="nav-menu">
                     <li> <a href="magazines.php"> Magazines </a></li>
-                    <li> <a href="welcomeowner.php#profile"> Profile </a></li>
-                    <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
-                    <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>
-                    <li> <a href="magazines-editor.php"> Edit Mag </a></li>
+                    <li> <a href="about.php"> About </a></li>
+                    <li> <a href="contacts.php"> Contact </a></li>
                 </ul>
 
-                <div id="login"> <a href="logout.php">Logout</a></div>
+
+                <br>
+
+                <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
 
 
                 <div id="dropdown-list">
@@ -78,6 +122,7 @@ else
                             <div class="dropdown-menu">
                                 <ul id="list">
                                     <li id="all">All</li>
+                                    <li id="favourites">Favourites</li>
                                     <li id="design">Design</li>
                                     <li id="social">Social</li>
                                     <li id="illustration">Illustration</li>
@@ -89,10 +134,18 @@ else
                         </div>
                     </div>
                 </div>
-        
-                <p id="warning"> Couldn't connect to database, try later. </p>
 
-                
+
+                <!--filtros
+
+                <select>
+                    <option value="data">Data</option>
+                    <option value="artigos">Artigos</option>
+                    <option value="nome">Nome</option>
+                </select>
+
+                <!--filtros-->
+
                 <form class="pesquisa" method="post">
                     <i class="material-icons md-30">search</i>
                     <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
@@ -105,11 +158,17 @@ else
             </nav>
         </div>
 
+        <p id="warning"> Couldn't connect to database, try later. </p>
 
         <section id="postPage">
+
+            <p id="msg"> </p>
             <div id="posts">
                 <!--  cria as divs aqui   -->
             </div>
+
+
+            <div id="infoEcistencia"></div>
         </section>
 
 
@@ -117,94 +176,122 @@ else
 
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-
-
-        <!--————————————————   Search   —————————————————-->
-
-        <?php 
-        
-        $option = $_POST["option"];  //o que foi escrito na pesquisa
-        $sql = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
-        $result = $conn->query($sql);
-        $contador=0;
-
-        if ($result->num_rows > 0  ) {
-            while($row = $result->fetch_assoc()) {
-                $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
-                $contador++; 
-                //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
-            }
-        } else {
-            echo "No products were found matching your selection.";
-        }
-        
-        ?>
-
-
         <script type="text/javascript" language="javascript">
             var connfailed = <?php echo json_encode($failed); ?>;
             if (connfailed)
                 $('#warning').fadeIn();
-            
-            
-            
+
+
+            var user = <?php echo json_encode($user); ?>;
+            if (user) {
+                $('#login').html('<a href="welcomeowner.php">Profile</a> / <a href="logout.php">Logout</a>');
+                console.log(user);
+                $('#favourites').css("display", "block");
+            } else
+                $('#favourites').css("display", "none");
+
+
+
+            //  variables from php
+            var palmas = <?php echo json_encode($didi); ?>;
+            var cont1 = <?php echo json_encode($contador); ?>;
+            var palmas2 = <?php echo json_encode($didi2); ?>;
+            var cont2 = <?php echo json_encode($contador2); ?>;
+            var no2 = <?php echo json_encode($nofav); ?>;
+            var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
+            var option = <?php echo json_encode($option); ?>;
+            var no3 = <?php echo json_encode($nosearch); ?>;
+
+
+
+            //  mostrar todas as revistas
+            function showAll() {
+                for (i = 0; i < cont1; i++) {
+                    var id = palmas[i].id;
+                    var img = palmas[i].img;
+                    jQuery('<div/>', {
+                        id: '' + id,
+                        class: 'post',
+                        // text: 'div bem criada' + i
+                    }).appendTo('#posts'); //id/class so sitio
+
+                    $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
+                }
+            }
+
+
+
+
             /* ———————————————————  search magazines  ————————————————————————— */
 
-            for (i = 0; i < 8; i++) {
-                var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
-                //var procura = resultadoPesquisa[i].id;
-                $("div").remove(".post");
-            }
+            if (option == null) {
+                $(".post").remove();
+                showAll();
 
-            var tamanho = resultadoPesquisa.length;
-            //console.log("tamanho  " + tamanho);
+            } else if (resultadoPesquisa == null) {
+                $('#msg').text(no3);
+                $('#msg').css('display', 'block');
+            } else {
+                var tamanho = resultadoPesquisa.length;
+                $(".post").remove();
 
-
-            $(".post").remove();
-
-            for (i = 0; i < tamanho; i++) {
-                console.log("top  " + resultadoPesquisa[i].id);
-
-                var procura = resultadoPesquisa[i].id;
-                var img = resultadoPesquisa[i].img;
+                for (i = 0; i < tamanho; i++) {
+                    var procura = resultadoPesquisa[i].id;
+                    var img = resultadoPesquisa[i].img;
 
 
-                jQuery('<div/>', {
-                    id: '' + procura,
-                    class: 'post',
-                    //text: 'div bem criada' + i
-                }).appendTo('#posts');
-                $('#' + procura).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
+                    jQuery('<div/>', {
+                        id: '' + procura,
+                        class: 'post',
+                        //text: 'div bem criada' + i
+                    }).appendTo('#posts');
+                    $('#' + procura).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
+                }
 
             }
 
 
 
-            /* ———————————————————  search categories   —————————————————————————— */
+
+
+            /* ———————————————————  Mostrar categorias   —————————————————————————— */
 
             $("#list li").on("click", function () {
                 $(".post").remove();
-
-
-                var testeaula = $('#posts').text();
-
-
-                for (i = 0; i < 8; i++) {
-                    var palmas = <?php echo json_encode($didi); ?>;
-                    //console.log("i é: " +palmas[i].categoria);
-                }
-                //showAll();
-                //ver qual a categoria selecionada
-
-
+                $('#msg').css('display', 'none');
                 var divNome = $(this).attr('id');
 
                 $("div").remove(".post");
+
                 if (divNome === 'all') {
                     showAll();
+                } else if (divNome === 'favourites') {
+                    if (cont2 == 0) {
+                        $('#msg').text(no2);
+                        $('#msg').css('display', 'block');
+
+                    } else {
+                        for (i = 0; i < cont2; i++) {
+
+                            var img = palmas2[i].img;
+                            console.log("img: " + img);
+                            var id = palmas2[i].id;
+                            console.log("id: " + id);
+                            jQuery('<div/>', {
+                                id: '' + id,
+                                class: 'post',
+                                // text: 'div bem criada' + i
+                            }).appendTo('#posts'); //id/class so sitio
+
+                            $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
+                        }
+                    }
+
                 } else {
-                    for (i = 0; i < 8; i++) {
+                    var andaLaSenaoApanhas = 0;
+
+
+                    for (i = 0; i < cont1; i++) {
                         var id = palmas[i].id;
                         var img = palmas[i].img;
 
@@ -216,33 +303,26 @@ else
                             }).appendTo('#posts'); //id/class so sitio
 
                             // meter id e imagem em variável
-
                             $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
 
+                            andaLaSenaoApanhas++;
+
                         }
+
+
+                    }
+                    if (andaLaSenaoApanhas == 0) {
+                        $('#msg').text("We currently don't have magazine in this category.");
+                        $('#msg').css('display', 'block');
                     }
                 }
             });
 
-            //mostrar todas as revistas
-            function showAll() {
-                for (i = 0; i < 8; i++) {
-                    var id = palmas[i].id;
-                    var img = palmas[i].img;
-                    jQuery('<div/>', {
-                        id: '' + id,
-                        class: 'post',
-                        // text: 'div bem criada' + i
-                    }).appendTo('#posts'); //id/class so sitio
-
-                    //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-
-                    $('#' + id).prepend("<a href='baseRevista-editor.php'> <img src='images/mags/" + img + "'> </a>");
-                }
-            }
 
 
-            //  -- p da pesquisa 
+
+            //  -- p da pesquisa  PRESS ENTER TO SEARCH
+
             $("#enter").hide();
 
             $(".inputtext").on("click", function () {
@@ -255,10 +335,8 @@ else
         </script>
 
 
+    </body>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-
-</body>
-<script src="js/script.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-</html>
+    </html>

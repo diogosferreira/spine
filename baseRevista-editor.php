@@ -11,6 +11,7 @@ $id = $_COOKIE['mag_chosen'];
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($_REQUEST['btn-submit']=="Save Magazine") {
+        $counter =0;
             if(!empty($_POST['name']) && !empty($_POST['issue'])) {
                 $newname = $_POST['name'];
                 $newissue = $_POST['issue'];
@@ -26,7 +27,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $changenameissue = "UPDATE RevistaNum SET nomeRevista = '$newname'". ", numRevista = '$newissue'"."WHERE idRevista='$id'";
                 
                 if ($conn->query($changenameissue) === TRUE) 
-                    $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
                 
             } else  {
                 if(!empty($_POST['name'])) {
@@ -41,7 +45,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $changeissue = "UPDATE RevistaNum SET numRevista = '$newissue' WHERE idRevista='$id'"; 
                     
                     if ($conn->query($changeissue) === TRUE) 
-                        $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
                 }
             }
             if(!empty($_POST['barcode'])){
@@ -59,50 +66,97 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $changebarcode = "UPDATE RevistaNum SET codBarras = '$newbarcode' WHERE idRevista='$id'";  
                 
                 if ($conn->query($changebarcode) === TRUE) 
-                    $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
             }
             if(!empty($_POST['price'])) {
                 $newprice = $_POST['price'];
                 $changeprice = "UPDATE RevistaNum SET preco = '$newprice' WHERE idRevista='$id'"; 
                 
                 if ($conn->query($changeprice) === TRUE) 
-                    $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
             }
             if(!empty($_POST['category'])){
                 $newcategory = $_POST['category'];
                 $changecategory = "UPDATE RevistaNum SET categoria = '$newcategory' WHERE idRevista='$id'";  
                 
                 if ($conn->query($changecategory) === TRUE) 
-                    $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
             }
             if(!empty($_POST['quantity'])){
                 $newquantity = $_POST['quantity'];
                 $changequantity = "UPDATE RevistaNum SET quantExistente = '$newquantity' WHERE idRevista='$id'"; 
                 
                 if ($conn->query($changequantity) === TRUE) 
-                    $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
             }
             if(!empty($_POST['description'])){
                 $newdescription = $_POST['description'];
                 $changedescription = "UPDATE RevistaNum SET descricao = '$newdescription' WHERE idRevista='$id'"; 
                 
                 if ($conn->query($changedescription) === TRUE) 
-                    $m = 1;
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
             }
+          
         
+            if(!($_FILES['magimage']['size'] == 0)){
+              $errors= array();
+              $file_size = $_FILES['magimage']['size'];
+              $file_tmp = $_FILES['magimage']['tmp_name'];
+              $file_type = $_FILES['magimage']['type'];
+              $file_ext=strtolower(end(explode('.',$_FILES['magimage']['name'])));
 
-            
-            if($m == 1)
-                $msg = "Magazine saved successfully!";
-            else {
+              $expensions= array("jpeg","jpg","png");
+
+              if(in_array($file_ext,$expensions)=== false){
+                 $errors[]="Extension not allowed, please choose a JPEG or PNG file. ";
+                 $m01 ="Extension not allowed, please choose a JPEG or PNG file. ";
+              }
+
+              if($file_size > 2097152) {
+                 $errors[]='File size must be inferior to 2 MB. ';
+                 $m02 ='File size must be inferior to 2 MB. ';
+              }
+                
+              if(empty($errors)==false) {
+                $msg3 = 'Sorry, could not upload image. ' . $m01 . $m02;
+            }
+            }
+
                 if($msg1 != null)
                     $msg = $msg1;
                 else if ($msg2 != null)
                     $msg = $msg2;
+                else if ($msg3 != null)
+                    $msg = $msg3;
+                else {
+                    for($i=0; $i<$m.length; $i++){
+                        if($m[$i]==false)
+                            $error=1;
+                    }
+                }
+                
+                if(!empty($error))
+                    $msg ="Sorry, error ocurred. Some of your data might not have been saved.";
                 else
-                    $msg ="Sorry, the magazine couldn't be saved.";
-            }
+                    $msg = "Magazine saved successfully!";
         
+    echo"<script language='javascript'> window.location.href = 'baseRevista-editor.php'; </script> ";
+            
         
     } else  if($_REQUEST['btn-submit']=="Delete Magazine") {
         $query2 = "DELETE FROM `RevistaNum` WHERE `idRevista`='$id'";
@@ -209,6 +263,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="description"> Description </label>
                         <textarea type="text" name="description" id="description" placeholder=""></textarea>
                     </div>
+                    <div class="line">
+                        <label for="image"> Image </label>
+                        <input id="mag-pic" onclick="document.getElementById('mag-pic-button').click();" placeholder="Choose Image" />
+                        <input onchange="pressed()" style="display:none;" id="mag-pic-button" type="file" name="magimage" accept=".jpg, .jpeg, .png" />
+                    </div>
                     <div class="button add-button" id="btn-edit-mag">
                         <input type="submit" name="btn-submit" value="Save Magazine">
                     </div>
@@ -255,6 +314,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             //$('#').attr('placeholder', palmas[0].categoria);
             $('#quantity').attr('placeholder', palmas[0].quant);
             $('#description').attr('placeholder', palmas[0].descricao);
+            $('#mag-pic').attr('placeholder', palmas[0].img);
+            
+            
+            
+            //-- MAGAZINES --
+
+            function pressed() {
+                var a = document.getElementById('mag-pic-button');
+                if (a.value == "")
+                    $("#mag-pic").attr("placeholder", "Choose Image");
+                else {
+                    var theSplit = a.value.split('\\');
+                    var theSplitofSplits = theSplit[theSplit.length - 1];
+                    $("#mag-pic").attr("placeholder", theSplitofSplits);
+                }
+            };
         </script>
 
     </body>

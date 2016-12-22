@@ -73,6 +73,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         $myemail = mysqli_real_escape_string($conn,$_POST['email']);
         $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
         $owner = 1;
+        $myhashpassword = sha1($mypassword);
 
         //check if the username exists
         $sql1 = "SELECT * FROM Utilizador WHERE userName = '$myusername'";
@@ -95,7 +96,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         } else if (!preg_match($regex, $myemail)) {
                 $msg ="Sorry, the email is invalid.";
         } else {
-            $query = "INSERT INTO `Utilizador` (`userName`, `userEmail`, `userPassword`, `dono`) VALUES ('$myusername',  '$myemail', '$mypassword', '$owner')";
+            $query = "INSERT INTO `Utilizador` (`userName`, `userEmail`, `userPassword`, `dono`) VALUES ('$myusername',  '$myemail', '$myhashpassword', '$owner')";
             $endresult = mysqli_query($conn, $query);
             if($endresult){
                 $msg = "User created successfully!";
