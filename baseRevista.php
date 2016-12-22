@@ -12,6 +12,21 @@ if(!empty($_SESSION['login_user'])) {
 
 
 
+
+// SELECTION TO CHECK IF IT IS ALREADY A FAVOURITE
+$sql0 = "SELECT * FROM `Utilizador_RevistaNum` WHERE (`userName`='$sessionusername' and `idRevista` = '$id')";
+$result0 = $conn->query($sql0);
+
+
+if ($result0->num_rows > 0) {
+    $favourite = true;
+} else {
+    $favourite = false;
+}
+
+
+
+
 // SELECTION TO CHECK IF HAS BEEN ALREADY ADDED TO THE CART
 if ($sessionusercart != NULL) {
     $query0 = "SELECT * FROM `Carrinho` WHERE (`idCarrinho` ='$sessionusercart' and `idRevista`='$id')";
@@ -166,13 +181,16 @@ if($_REQUEST['btn-submit']=="Submit") {
             
             
             var user = <?php echo json_encode($user); ?>;
+            var username = <?php echo json_encode($sessionusername); ?>;
             var usertype = <?php echo json_encode($sessionusertype); ?>;
             var usercart = <?php echo json_encode($sessionusercart); ?>;
             console.log("user: " + user);
+            console.log("userr: " + username);
             console.log("userrr: " + usertype);
             console.log("userrrrrrr: " + usercart);
             if (user) {
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
+                $('#cart').css('display','block');
                 console.log(user);
 
                 if (usertype == 0)
@@ -192,13 +210,14 @@ if($_REQUEST['btn-submit']=="Submit") {
             $('#nome').text(palmas[0].nome + " #" + palmas[0].num);
             $('#t-preco').text(palmas[0].preco);
             $('#descricao').text(palmas[0].descricao);
-
+                console.log(<?php echo json_encode($id); ?>);
 
 
             //----- FAVOURITE -----
 
             //check if it is favourite
             var favourite = <?php echo json_encode($favourite); ?>;
+                console.log("favourite "+favourite);
             if (favourite)
                 $('svg').addClass('active');
 

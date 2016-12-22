@@ -27,14 +27,3 @@ if ($result->num_rows > 0) {
 }
 
 
-$sql0 = "SELECT * FROM Utilizador_RevistaNum WHERE idRevista = $id";
-$result0 = $conn->query($sql0);
-
-
-if ($result0->num_rows > 0) {
-    $favourite = true;
-} else {
-    $favourite = false;
-}
-
-?>

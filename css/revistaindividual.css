@@ -91,6 +91,10 @@ pre {
 }
 
 
+#cart {
+    display: none;
+}
+
 /* HEART ANIMATION */
 
 input[type=checkbox] {
