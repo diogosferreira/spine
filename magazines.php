@@ -1,4 +1,8 @@
 <?php 
+
+/*error_reporting(E_ALL);
+ini_set('display_errors', 1);*/
+
     include('db.php');
     session_start();
 
@@ -33,6 +37,11 @@
 
     // -- FAVORITOS
 
+
+
+
+
+
     //$sql2 = "SELECT idRevista FROM Utilizador_RevistaNum WHERE userName = '$sessionusername'";
     $sql2 = "SELECT userName, u.idRevista, imgRevista FROM RevistaNum r JOIN Utilizador_RevistaNum u on (u.idRevista = r.idRevista) WHERE userName = '$sessionusername'";
     $result2 = $conn->query($sql2);
@@ -53,9 +62,30 @@
 
     // -- SEARCH
 
+   
+
 
     $option = $_POST["option"];  //o que foi escrito na pesquisa
-    $sql3 = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
+    $date = $_POST["date"];
+    
+    $filtro="";
+    if ($option!=""){
+        $filtro = "(nomeRevista LIKE '%$option%' OR descricao LIKE '%$option%')";
+    }
+
+    if ($date !=''){
+        if ($option!=''){
+             $filtro = "$filtro AND ";
+        }
+       $filtro = "$filtro ano = $date";
+    }
+     if ($filtro=="") {$filtro="1=1";}
+  
+    $sql3 = "SELECT nomeRevista, idRevista, imgRevista, ano, descricao FROM revistaNum WHERE $filtro";
+    //$sql3=$sql3+$filtro;
+
+    /*$sql3 = "SELECT nomeRevista, idRevista, imgRevista, ano FROM revistaNum WHERE nomeRevista LIKE '%$option%' and ano LIKE '%$name%'";*/
+    
     $result3 = $conn->query($sql3);
     $contador3=0;
 
@@ -92,6 +122,30 @@
     <body class="index">
 
 
+
+
+        <!--filtros-->
+
+        <!-- <select name="taskOption">
+            <option value="data">Data</option>
+            <option value="descricao">Descrição</option>
+        </select>
+
+ 
+        -->
+        <!--
+                <form class="pesquisa" method="post">
+                    <i class="material-icons md-30">search</i>
+                    <input class="inputtext" type="text" autocomplete="off" name="date" placeholder="Date" />
+                </form>
+        -->
+
+
+        <!--filtros-->
+
+
+
+
         <!--barra de menu  ———————————————————————————————-->
 
         <div class="barraMenu">
@@ -112,7 +166,6 @@
                 <br>
 
                 <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
-
 
                 <div id="dropdown-list">
                     <div class="dropdown closed">
@@ -136,25 +189,17 @@
                 </div>
 
 
-                <!--filtros
-
-                <select>
-                    <option value="data">Data</option>
-                    <option value="artigos">Artigos</option>
-                    <option value="nome">Nome</option>
-                </select>
-
-                <!--filtros-->
 
                 <form class="pesquisa" method="post">
                     <i class="material-icons md-30">search</i>
                     <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
                     <br>
-
+                    <input class="inputtext" type="text" autocomplete="off" name="date" placeholder="Date" />
                     <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
-                    <!--<input class="btn" type="submit" value="Search" />-->
 
+                    <input class="btn" type="submit" value="Search" style="display:none;" />
                 </form>
+
             </nav>
         </div>
 
