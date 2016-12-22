@@ -256,6 +256,7 @@ ini_set('display_errors', 1);*/
             var user = <?php echo json_encode($user); ?>;
             if (user) {
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
+                $('#cart').css('display','block');
                 console.log(user);
                 $('#favourites').css("display", "block");
             } else
