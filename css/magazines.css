@@ -8,6 +8,7 @@ nav ul li:nth-child(1) {
 }
 
 #postPage {
+    padding-top: 1vh;
     width: 77vw;
     height: 100%;
     float: right;
@@ -40,6 +41,7 @@ nav ul li:nth-child(1) {
 
 
 #msg {
+    display: none;
     padding-left: 20vh;
     padding-top: 40vh;
 }

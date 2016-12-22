@@ -1,5 +1,5 @@
 <?php 
-    include('categorias.php'); 
+    include('db.php');
     session_start();
 
     if(!empty($_SESSION['login_user'])) {
@@ -10,6 +10,25 @@
         $user = false;
 
 
+
+    // -- TODOS
+
+    $sql = "SELECT categoria, idRevista, imgRevista FROM revistaNum";
+    $result = $conn->query($sql);
+
+
+    $contador=0;
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+           // $d = $row["email"];
+            //echo "nome: " . $row["email"]. " - pass: " . $row["userPassword"]. "<br>";
+            $didi[$contador] = array("categoria"=>$row["categoria"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
+
+            $contador++;
+        }
+    } else {
+        //echo "0 results";
+    }
 
 
     // -- FAVORITOS
@@ -27,7 +46,7 @@
             $contador2++;
         }
     } else {
-        //echo "0 results";
+        $nofav = "No products were found matching your selection.";
     }
 
 
@@ -36,18 +55,18 @@
 
 
     $option = $_POST["option"];  //o que foi escrito na pesquisa
-    $sql = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
-    $result = $conn->query($sql);
-    $contador=0;
+    $sql3 = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
+    $result3 = $conn->query($sql3);
+    $contador3=0;
 
-    if ($result->num_rows > 0  ) {
-        while($row = $result->fetch_assoc()) {
-            $pesquisa[$contador] = array("nome"=>$row["nomeRevista"], "id"=>$row["idRevista"], "img"=>$row["imgRevista"]);
-            $contador++; 
+    if ($result3->num_rows > 0  ) {
+        while($row3 = $result3->fetch_assoc()) {
+            $pesquisa[$contador3] = array("nome"=>$row3["nomeRevista"], "id"=>$row3["idRevista"], "img"=>$row3["imgRevista"]);
+            $contador3++; 
             //echo "<div class=" . "posts" . ">" . $row["nomeRevista"] . "</div>";  
         }
     } else {
-        $no = "No products were found matching your selection.";
+        $nosearch = "No products were found matching your selection.";
     }
 
     ?>
@@ -142,8 +161,8 @@
         <p id="warning"> Couldn't connect to database, try later. </p>
 
         <section id="postPage">
-            
-        <p id="msg"> <?php echo $no;?> </p>
+
+            <p id="msg"> </p>
             <div id="posts">
                 <!--  cria as divs aqui   -->
             </div>
@@ -160,9 +179,9 @@
         <script type="text/javascript" language="javascript">
             var connfailed = <?php echo json_encode($failed); ?>;
             if (connfailed)
-                $('#warning').fadeIn();            
-            
-            
+                $('#warning').fadeIn();
+
+
             var user = <?php echo json_encode($user); ?>;
             if (user) {
                 $('#login').html('<a href="welcome.php">Profile</a> / <a href="logout.php">Logout</a>');
@@ -173,44 +192,19 @@
 
 
 
-
-            /* ———————————————————  search magazines  ————————————————————————— */
-
-            for (i = 0; i < 8; i++) {
-                var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
-                //var procura = resultadoPesquisa[i].id;
-                $("div").remove(".post");
-            }
-
-            var tamanho = resultadoPesquisa.length;
-            //console.log("tamanho  " + tamanho);
-
-
-            $(".post").remove();
-
-            for (i = 0; i < tamanho; i++) {
-                console.log("top  " + resultadoPesquisa[i].id);
-
-                var procura = resultadoPesquisa[i].id;
-                var img = resultadoPesquisa[i].img;
-
-
-                jQuery('<div/>', {
-                    id: '' + procura,
-                    class: 'post',
-                    //text: 'div bem criada' + i
-                }).appendTo('#posts');
-                $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
-
-
-            }
+            //  variables from php
+            var palmas = <?php echo json_encode($didi); ?>;
+            var cont1 = <?php echo json_encode($contador); ?>;
+            var palmas2 = <?php echo json_encode($didi2); ?>;
+            var cont2 = <?php echo json_encode($contador2); ?>;
+            var no2 = <?php echo json_encode($nofav); ?>;
+            var resultadoPesquisa = <?php echo json_encode($pesquisa); ?>;
+            var option = <?php echo json_encode($option); ?>;
+            var no3 = <?php echo json_encode($nosearch); ?>;
 
 
 
             //  mostrar todas as revistas
-            var palmas = <?php echo json_encode($didi); ?>;
-            var cont1 = <?php echo json_encode($contador); ?>;
-
             function showAll() {
                 for (i = 0; i < cont1; i++) {
                     var id = palmas[i].id;
@@ -221,14 +215,41 @@
                         // text: 'div bem criada' + i
                     }).appendTo('#posts'); //id/class so sitio
 
-                    //$('#div' + i).prepend("<a href='revistasCodbarras/" + codBarras + ".html'> <img src='imagesCodbarras/" + codBarras + ".jpg'> </a>");
-
                     $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
                 }
             }
 
 
-            /* ———————————————————  search magazines FIM  —————————————————————————— */
+
+
+            /* ———————————————————  search magazines  ————————————————————————— */
+
+            if (option == null) {
+                $(".post").remove();
+                showAll();
+
+            } else if (resultadoPesquisa == null) {
+                $('#msg').text(no3);
+                $('#msg').css('display', 'block');
+            } else {
+                var tamanho = resultadoPesquisa.length;
+                $(".post").remove();
+
+                for (i = 0; i < tamanho; i++) {
+                    var procura = resultadoPesquisa[i].id;
+                    var img = resultadoPesquisa[i].img;
+
+
+                    jQuery('<div/>', {
+                        id: '' + procura,
+                        class: 'post',
+                        //text: 'div bem criada' + i
+                    }).appendTo('#posts');
+                    $('#' + procura).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                }
+
+            }
+
 
 
 
@@ -237,55 +258,40 @@
 
             $("#list li").on("click", function () {
                 $(".post").remove();
-
-                for (i = 0; i < 8; i++) {
-                    var palmas2 = <?php echo json_encode($didi2); ?>;
-                    var cont2 = <?php echo json_encode($contador2); ?>;
-                }
-
+                $('#msg').css('display', 'none');
                 var divNome = $(this).attr('id');
 
                 $("div").remove(".post");
+
                 if (divNome === 'all') {
                     showAll();
                 } else if (divNome === 'favourites') {
-                    var andaLaSenaoApanhas1 = 0;
+                    if (cont2 == 0) {
+                        $('#msg').text(no2);
+                        $('#msg').css('display', 'block');
 
+                    } else {
+                        for (i = 0; i < cont2; i++) {
 
-                    for (i = 0; i < cont2; i++) {
+                            var img = palmas2[i].img;
+                            console.log("img: " + img);
+                            var id = palmas2[i].id;
+                            console.log("id: " + id);
+                            jQuery('<div/>', {
+                                id: '' + id,
+                                class: 'post',
+                                // text: 'div bem criada' + i
+                            }).appendTo('#posts'); //id/class so sitio
 
-                        var img = palmas2[i].img;
-                        console.log("img: " + img);
-                        var id = palmas2[i].id;
-                        console.log("id: " + id);
-                        jQuery('<div/>', {
-                            id: '' + id,
-                            class: 'post',
-                            // text: 'div bem criada' + i
-                        }).appendTo('#posts'); //id/class so sitio
-
-                        $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
-
-                        andaLaSenaoApanhas1++;
-                        /*if(palmas2.length){
-                        $('#posts').prepend("<p> Não Existem revistas desta categoria. </p>");  
-                        }*/
+                            $('#' + id).prepend("<a href='baseRevista.php'> <img src='images/mags/" + img + "'> </a>");
+                        }
                     }
 
-                    if (andaLaSenaoApanhas1 == 0) {
-                        $("#infoEcistencia").empty();
-                        console.log("passa");
-                        $('#infoEcistencia').prepend("<p> Ainda não tem favoritos. </p>");
-                    }
                 } else {
-
-
                     var andaLaSenaoApanhas = 0;
 
 
                     for (i = 0; i < cont1; i++) {
-
-
                         var id = palmas[i].id;
                         var img = palmas[i].img;
 
@@ -302,17 +308,16 @@
                             andaLaSenaoApanhas++;
 
                         }
-                        if (andaLaSenaoApanhas == 0) {
-                            $("#infoEcistencia").empty();
-                            $('#infoEcistencia').prepend("<p> Ainda não existem revistas nesta categoria </p>");
-                        }
+
 
                     }
-
+                    if (andaLaSenaoApanhas == 0) {
+                        $('#msg').text("We currently don't have magazine in this category.");
+                        $('#msg').css('display', 'block');
+                    }
                 }
             });
 
-            /* ———————————————————  Mostrar categorias FIM —————————————————————— */
 
 
 
@@ -327,8 +332,6 @@
             $("#postPage").on("click", function () {
                 $("#enter").fadeOut("slow");
             });
-
-            //  -- p da pesquisa  PRESS ENTER TO SEARCH
         </script>
 
 
