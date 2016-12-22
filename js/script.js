@@ -1,12 +1,9 @@
 //-- IMAGES CHANGING --
-var img = ['564839846', '645849867', '938477833', '648592332', '76543678'];
-var imgi = 0;
-
-$('#firstPage').css('background-image', 'url(images/mags/76543678.jpg)');
-
+$('#firstPage').css('background-image', 'url(images/mags/'+palmas[4].img+')');
+var imgi=0;
 setInterval(function () {
-    var src = "images/mags/" + img[imgi] + ".jpg";
-
+    var src = "images/mags/" + palmas[imgi].img;
+    console.log(palmas[imgi].img);
     $('#firstPage').css('background-image', 'url(' + src + ')');
 
     imgi++;
