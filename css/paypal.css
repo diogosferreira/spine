@@ -12,12 +12,24 @@
 
 /*-- TABLES --*/
 
+form {
+    width: 65vw;
+    margin: 2vh 0;
+}
+
+.col {
+    display: inline-block;
+}
 
 table {
     font-size: 16pt;
+    width: 100%;
 }
 
-table td {
+table tbody, table tr {
+    width: 100%;
+}
+table td, .col {
     width: 20%;
     text-align: center;
 }

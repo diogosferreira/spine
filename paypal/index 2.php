@@ -89,9 +89,10 @@ if ($sessionusercart != NULL) {
             </p>
 
 
-            <table id="div0" class="line">
-                <tr>
-                    <form id="this0" method="post" action="process.php?paypal=checkout">
+            <table id="list">
+                <!-- TEST
+                <tr class="line">
+                    <form method="post" action="process.php?paypal=checkout">
 
                         <td class="label">
                             <input type="text" name="itemname" value="Frankie 73" disabled/> </td>
@@ -112,14 +113,16 @@ if ($sessionusercart != NULL) {
                         </td>
                         
                         <td class="buy">
-                            <input id="0" class="dw-button" type="button" name="button" value="Buy" />
+                            <input id="0" class="dw-button" type="submit" name="button" value="Buy" />
                         </td>
 
                     </form>
-                </tr>
+                </tr> -->
+                
+                <!-- ITEMS GO HERE -->
+                
+                
             </table>
-
-            <input id="input0" type="submit" name="submitbutton" value="Buy" form="this0" style="display:none;" />
         </div>
 
 
@@ -146,13 +149,12 @@ if ($sessionusercart != NULL) {
                     console.log(thisname);
                     console.log(thisprice);
 
-                    jQuery('<table/>', {
+                    jQuery('<tr/>', {
                         id: 'div' + thisid,
                         class: 'line',
-                    }).appendTo('.welcome');
-                    $('#div' + thisid).prepend('<tr> <form id="this'+ thisid +'" method="post" action="process.php?paypal=checkout"> <td class="label"> <input type="text" name="itemname" value="'+ thisname +'" disabled/> </td> <td class="id"> <input type="hidden" name="itemnumber" value="20000" /> </td> <td class="price"> <input type="text" name="itemprice" value="'+ thisprice +'" disabled/> </td> <td class="quant"> <select name="itemQty"> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> </select> </td> <td class="buy"> <input id="'+ thisid +'" class="dw-button" type="button" name="button" value="Buy" /> </td></form> </tr>');
+                    }).appendTo('#list');
                     
-                    $('.welcome').append('<input id="input'+ thisid +'" type="submit" name="submitbutton" value="Buy" form="this'+ thisid +'" style="display:none;" />');
+                    $('#div' + thisid).prepend('<form method="post" action="process.php?paypal=checkout"><div class="col label"><input type="text" name="itemname" value="'+ thisname +'" disabled/></div><div class="id"><input type="hidden" name="itemnumber" value="'+thisid+'" /></div><div class="col price"><input type="text" name="itemprice" value="'+ thisprice +'" disabled/></div><div class="col quant"><select name="itemQty"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div><div class="col buy"><input id="0" class="dw-button" type="submit" name="button" value="Buy" /></div></form>');
                 }
             }
 
@@ -160,11 +162,6 @@ if ($sessionusercart != NULL) {
             $('.dw-button').on("click", function () {
                 $('.server').fadeIn();
                 $('input').prop('disabled',false);
-                
-                console.log("teste");
-                var id = $(this).attr('id');
-                console.log(id);
-                document.getElementById('input'+id).click();
             });
             
         </script>
