@@ -190,15 +190,41 @@ ini_set('display_errors', 1);*/
 
 
 
+
+
                 <form class="pesquisa" method="post">
-                    <i class="material-icons md-30">search</i>
-                    <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
+
+                    <div id="nomedesc">
+
+                        <i class="material-icons md-30">search</i>
+                        <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
+
+                        <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
+                    </div>
+
                     <br>
-                    <input class="inputtext" type="text" autocomplete="off" name="date" placeholder="Date" />
-                    <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
+                    <br>
+                    <br>
+
+
+                    <div id="data">
+                        <input id="datain" class="inputtext" type="text" autocomplete="off" name="date" placeholder="Search Date" maxlength="4" />
+                        <i class="material-icons md-30">search</i>
+
+                    </div>
+                    <span id="spanSearch"><p id="enter1"> Press <u>enter</u> to search.</p></span>
+                    <br>
+
+                    <p id="tutorial"> You can searh products by name, description, date, and also combine both.</p>
 
                     <input class="btn" type="submit" value="Search" style="display:none;" />
                 </form>
+
+
+
+
+
+
 
             </nav>
         </div>
@@ -369,14 +395,26 @@ ini_set('display_errors', 1);*/
             //  -- p da pesquisa  PRESS ENTER TO SEARCH
 
             $("#enter").hide();
+            $("#enter1").hide();
 
-            $(".inputtext").on("click", function () {
-                $("#enter").fadeIn("slow");
+            $("#data").on("click", function () {
+                $("#enter1").fadeIn("slow");
+                $("#enter").fadeOut("slow");
             });
+
+            $("#nomedesc").on("click", function () {
+                $("#enter").fadeIn("slow");
+                $("#enter1").fadeOut("slow");
+            });
+
 
             $("#postPage").on("click", function () {
                 $("#enter").fadeOut("slow");
+                $("#enter1").fadeOut("slow");
             });
+
+
+            $("#tutorial").delay(4000).fadeOut("slow");
         </script>
 
 

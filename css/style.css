@@ -143,6 +143,7 @@ input::-webkit-input-placeholder {
 }
 
 .inputtext {
+    position: relative;
     font-family: Century Gothic;
     font-size: 11pt;
     display: inline-block;
@@ -202,7 +203,9 @@ input::-webkit-input-placeholder {
 }
 
 #enter {
+    position: absolute;
     margin-top: 15px;
+     padding: 0px !important;
 }
 
 #pagamento {
@@ -221,4 +224,23 @@ input::-webkit-input-placeholder {
     height: 55vh;
     text-align: center;
     background-color: rgba(200,0,0,0.8);
+}
+
+
+#data {
+    margin-top: -30px;
+    margin-left: -12px;
+    background-color: rgba(220, 220, 220, 1);
+    padding: 10px;
+}
+
+#tutorial {
+position: relative;
+    font-size: 9pt;
+    line-height: 100%;
+    padding: 0px !important;
+}
+
+#enter1 {
+     padding: 0px !important;
 }
