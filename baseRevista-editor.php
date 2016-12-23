@@ -112,6 +112,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $counter++;
             }
           
+            if(!empty($_POST['year'])){
+                $newyear = $_POST['year'];
+                $changeyear = "UPDATE RevistaNum SET ano = '$newyear' WHERE idRevista='$id'"; 
+                
+                if ($conn->query($changeyear) === TRUE) 
+                    $m[$counter] = 1;
+                else
+                    $m[$counter] = 0;
+                $counter++;
+            }
+          
         
             if(!($_FILES['magimage']['size'] == 0)){
               $errors= array();
@@ -264,6 +275,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <textarea type="text" name="description" id="description" placeholder=""></textarea>
                     </div>
                     <div class="line">
+                        <label for="year"> Year </label>
+                        <input type="text" name="year" id="year" placeholder=""></input>
+                    </div>
+                    <div class="line">
                         <label for="image"> Image </label>
                         <input id="mag-pic" onclick="document.getElementById('mag-pic-button').click();" placeholder="Choose Image" />
                         <input onchange="pressed()" style="display:none;" id="mag-pic-button" type="file" name="magimage" accept=".jpg, .jpeg, .png" />
@@ -314,6 +329,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             //$('#').attr('placeholder', palmas[0].categoria);
             $('#quantity').attr('placeholder', palmas[0].quant);
             $('#description').attr('placeholder', palmas[0].descricao);
+            $('#year').attr('placeholder', palmas[0].ano);
             $('#mag-pic').attr('placeholder', palmas[0].img);
             
             
