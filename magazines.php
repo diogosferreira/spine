@@ -82,10 +82,7 @@ ini_set('display_errors', 1);*/
      if ($filtro=="") {$filtro="1=1";}
   
     $sql3 = "SELECT nomeRevista, idRevista, imgRevista, ano, descricao FROM revistaNum WHERE $filtro";
-    //$sql3=$sql3+$filtro;
 
-    /*$sql3 = "SELECT nomeRevista, idRevista, imgRevista, ano FROM revistaNum WHERE nomeRevista LIKE '%$option%' and ano LIKE '%$name%'";*/
-    
     $result3 = $conn->query($sql3);
     $contador3=0;
 
@@ -212,7 +209,7 @@ ini_set('display_errors', 1);*/
                         <i class="material-icons md-30">search</i>
 
                     </div>
-                    <span id="spanSearch"><p id="enter1"> Press <u>enter</u> to search.</p></span>
+                    <span id="spanSearch"><p id="enter1"> Write a year like <u>2016</u> and press <u>enter</u>.</p></span>
                     <br>
 
                     <p id="tutorial"> You can searh products by name, description, date, and also combine both.</p>
