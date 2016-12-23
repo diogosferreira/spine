@@ -118,10 +118,10 @@ if ($sessionusercart != NULL) {
 
                     </form>
                 </tr> -->
-                
+
                 <!-- ITEMS GO HERE -->
-                
-                
+
+
             </table>
         </div>
 
@@ -131,9 +131,13 @@ if ($sessionusercart != NULL) {
 
         <script type="text/javascript" language="javascript">
             var connfailed = <?php echo json_encode($failed); ?>;
-            if(connfailed)
+            if (connfailed)
                 $('#warning').fadeIn();
-            
+
+
+            var soma = 0;
+
+
             var cont = <?php echo json_encode($contador); ?>;
             var items = <?php echo json_encode($selected); ?>;
 
@@ -153,17 +157,26 @@ if ($sessionusercart != NULL) {
                         id: 'div' + thisid,
                         class: 'line',
                     }).appendTo('#list');
-                    
-                    $('#div' + thisid).prepend('<form method="post" action="process.php?paypal=checkout"><div class="col label"><input type="text" name="itemname" value="'+ thisname +'" disabled/></div><div class="id"><input type="hidden" name="itemnumber" value="'+thisid+'" /></div><div class="col price"><input type="text" name="itemprice" value="'+ thisprice +'" disabled/></div><div class="col quant"><select name="itemQty"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div><div class="col buy"><input id="0" class="dw-button" type="submit" name="button" value="Buy" /></div></form>');
+
+                    $('#div' + thisid).prepend('<form method="post" action="process.php?paypal=checkout"><div class="col label"><input type="text" name="itemname" value="' + thisname + '" disabled/></div><div class="id"><input type="hidden" name="itemnumber" value="' + thisid + '" /></div><div class="col price"><input type="text" name="itemprice" value="' + thisprice +  " €" + '" disabled/></div><div class="col quant"><select name="itemQty"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div><div class="col buy"><input id="0" class="dw-button" type="submit" name="button" value="Buy" /></div></form>');
+                    var soma = soma + parseInt(items[i].price);
+                    console.log("qusnndifrikdça " + thisquant);
+
                 }
+                console.log("TOTALALALALAL  " + soma);
             }
+
+
+            $('#list').append("<br><br>");
+            $('#list').append("<p> <b>Total: " + soma + " €" + "</b> </p>");
+
+
 
 
             $('.dw-button').on("click", function () {
                 $('.server').fadeIn();
-                $('input').prop('disabled',false);
+                $('input').prop('disabled', false);
             });
-            
         </script>
 
     </body>
