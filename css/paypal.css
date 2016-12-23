@@ -119,5 +119,35 @@ input[type=button]:hover {
 
 
 #none {
+    margin: 4vh 0;
+    padding: 1vh 1vw;
     display: none;
+}
+
+
+
+
+#totalbuy {
+    widows: 65vw;
+    margin-top: 7vh;
+    padding-top: 2vh;
+    border-top: 1px solid black;
+}
+#total, #buyall {
+    font-family: century gothic;
+    font-size: 16pt;
+    display: inline-block;
+    width: 50%;
+    padding: 0px;
+}
+
+#buyall {
+    color: red;
+    text-decoration: underline;
+    float: right;
+    text-align: right;
+}
+
+#buyall:hover {
+    cursor: pointer;
 }

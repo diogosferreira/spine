@@ -84,9 +84,7 @@ if ($sessionusercart != NULL) {
                 </tr>
             </table>
 
-            <p id="none">
-                <?php echo msg; ?>
-            </p>
+            <p id="none"> <?php echo $msg; ?> </p>
 
 
             <table id="list">
@@ -123,6 +121,11 @@ if ($sessionusercart != NULL) {
 
 
             </table>
+            
+            <div id="totalbuy">
+                <p id="total"> </p>            
+                <p id="buyall"> Buy all </p>
+            </div>
         </div>
 
 
@@ -159,7 +162,8 @@ if ($sessionusercart != NULL) {
                     }).appendTo('#list');
 
                     $('#div' + thisid).prepend('<form method="post" action="process.php?paypal=checkout"><div class="col label"><input type="text" name="itemname" value="' + thisname + '" disabled/></div><div class="id"><input type="hidden" name="itemnumber" value="' + thisid + '" /></div><div class="col price"><input type="text" name="itemprice" value="' + thisprice +  " €" + '" disabled/></div><div class="col quant"><select name="itemQty"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div><div class="col buy"><input id="0" class="dw-button" type="submit" name="button" value="Buy" /></div></form>');
-                    var soma = soma + parseInt(items[i].price);
+                    
+                    soma = soma + parseInt(items[i].price);
                     console.log("qusnndifrikdça " + thisquant);
 
                 }
@@ -167,8 +171,7 @@ if ($sessionusercart != NULL) {
             }
 
 
-            $('#list').append("<br><br>");
-            $('#list').append("<p> <b>Total: " + soma + " €" + "</b> </p>");
+            $('#total').html("<b>Total: " + soma + " €" + "</b>");
 
 
 
