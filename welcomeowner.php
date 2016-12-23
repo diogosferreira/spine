@@ -119,7 +119,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
     
 else if($_REQUEST['btn-submit']=="Add Magazine") {
 if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) && isset($_POST['price']) && isset($_POST['category']) && isset($_POST['quantity']) && isset($_POST['description']) && isset($_FILES['magimage'])){
-    if(empty($_POST['name']) || empty($_POST['issue']) || empty($_POST['barcode']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['quantity']) || empty($_POST['description']) || ($_FILES['magimage']['size'] == 0))
+    if(empty($_POST['name']) || empty($_POST['issue']) || empty($_POST['barcode']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['quantity']) || empty($_POST['description']) || empty($_POST['year']) || ($_FILES['magimage']['size'] == 0))
         $msg2 ="Insert all values please.";
     else {
 
@@ -130,6 +130,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
         $magcategory = mysqli_real_escape_string($conn,$_POST['category']);
         $magquantity = mysqli_real_escape_string($conn,$_POST['quantity']);
         $magdescription = mysqli_real_escape_string($conn,$_POST['description']);
+        $magyear = mysqli_real_escape_string($conn,$_POST['year']);
 
 
         //check if the barcode already exists
@@ -170,7 +171,7 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
             $msg2 = 'Sorry, the issue for this magazine already exists.';
         } else {
             $directory = $magbarcode . "." . $file_ext;
-            $query = "INSERT INTO `RevistaNum` (`codBarras`, `nomeRevista`, `numRevista`, `imgRevista`, `preco`, `quantExistente`, `categoria`, `descricao`) VALUES ('$magbarcode', '$magname', '$magissue', '$directory', '$magprice', '$magquantity', '$magcategory', '$magdescription')";
+            $query = "INSERT INTO `RevistaNum` (`codBarras`, `nomeRevista`, `numRevista`, `imgRevista`, `preco`, `quantExistente`, `categoria`, `descricao`, `ano`) VALUES ('$magbarcode', '$magname', '$magissue', '$directory', '$magprice', '$magquantity', '$magcategory', '$magdescription', '$magyear')";
             $endresult = mysqli_query($conn, $query);
             
             if($endresult){
@@ -343,6 +344,10 @@ if (isset($_POST['name']) && isset($_POST['issue']) && isset($_POST['barcode']) 
                     <div class="line">
                         <label for="description"> Description </label>
                         <textarea type="text" name="description" placeholder="Description"></textarea>
+                    </div>
+                    <div class="line">
+                        <label for="year"> Year </label>
+                        <input type="text" name="year" placeholder="Year"></input>
                     </div>
                     <div class="line">
                         <label for="image"> Image </label>

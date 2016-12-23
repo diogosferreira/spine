@@ -1,4 +1,8 @@
 <?php 
+
+/*error_reporting(E_ALL);
+ini_set('display_errors', 1);*/
+
     include('db.php');
     session_start();
 
@@ -33,6 +37,11 @@
 
     // -- FAVORITOS
 
+
+
+
+
+
     //$sql2 = "SELECT idRevista FROM Utilizador_RevistaNum WHERE userName = '$sessionusername'";
     $sql2 = "SELECT userName, u.idRevista, imgRevista FROM RevistaNum r JOIN Utilizador_RevistaNum u on (u.idRevista = r.idRevista) WHERE userName = '$sessionusername'";
     $result2 = $conn->query($sql2);
@@ -53,9 +62,30 @@
 
     // -- SEARCH
 
+   
+
 
     $option = $_POST["option"];  //o que foi escrito na pesquisa
-    $sql3 = "SELECT nomeRevista, idRevista, imgRevista FROM revistaNum WHERE nomeRevista LIKE '%$option%'";
+    $date = $_POST["date"];
+    
+    $filtro="";
+    if ($option!=""){
+        $filtro = "(nomeRevista LIKE '%$option%' OR descricao LIKE '%$option%')";
+    }
+
+    if ($date !=''){
+        if ($option!=''){
+             $filtro = "$filtro AND ";
+        }
+       $filtro = "$filtro ano = $date";
+    }
+     if ($filtro=="") {$filtro="1=1";}
+  
+    $sql3 = "SELECT nomeRevista, idRevista, imgRevista, ano, descricao FROM revistaNum WHERE $filtro";
+    //$sql3=$sql3+$filtro;
+
+    /*$sql3 = "SELECT nomeRevista, idRevista, imgRevista, ano FROM revistaNum WHERE nomeRevista LIKE '%$option%' and ano LIKE '%$name%'";*/
+    
     $result3 = $conn->query($sql3);
     $contador3=0;
 
@@ -92,27 +122,51 @@
     <body class="index">
 
 
+
+
+        <!--filtros-->
+
+        <!-- <select name="taskOption">
+            <option value="data">Data</option>
+            <option value="descricao">Descrição</option>
+        </select>
+
+ 
+        -->
+        <!--
+                <form class="pesquisa" method="post">
+                    <i class="material-icons md-30">search</i>
+                    <input class="inputtext" type="text" autocomplete="off" name="date" placeholder="Date" />
+                </form>
+        -->
+
+
+        <!--filtros-->
+
+
+
+
         <!--barra de menu  ———————————————————————————————-->
 
         <div class="barraMenu">
             <header>
                 <a href="index.php"> <img src="images/logo.png" alt="spinelogo" id="logo"> </a>
-                <a href="paypal/index%202.php"> <img src="images/cart.png" alt="cart" id="cart"> </a>
             </header>
 
 
             <nav>
                 <ul id="nav-menu">
                     <li> <a href="magazines.php"> Magazines </a></li>
-                    <li> <a href="about.php"> About </a></li>
-                    <li> <a href="contacts.php"> Contact </a></li>
+                    <li> <a href="welcomeowner.php#profile"> Profile </a></li>
+                    <li> <a href="welcomeowner.php#add-editor"> Add Editor </a></li>
+                    <li> <a href="welcomeowner.php#add-mag"> Add Mag </a></li>
+                    <li> <a href="magazines-editor.php"> Edit Mag </a></li>
                 </ul>
 
 
                 <br>
 
                 <div id="login"> <a href="login.php">Login</a> / <a href="register.php">Register</a></div>
-
 
                 <div id="dropdown-list">
                     <div class="dropdown closed">
@@ -136,25 +190,43 @@
                 </div>
 
 
-                <!--filtros
 
-                <select>
-                    <option value="data">Data</option>
-                    <option value="artigos">Artigos</option>
-                    <option value="nome">Nome</option>
-                </select>
 
-                <!--filtros-->
 
                 <form class="pesquisa" method="post">
-                    <i class="material-icons md-30">search</i>
-                    <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
+
+                    <div id="nomedesc">
+
+                        <i class="material-icons md-30">search</i>
+                        <input class="inputtext" type="text" autocomplete="off" name="option" placeholder="Search Products " />
+
+                        <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
+                    </div>
+
+                    <br>
+                    <br>
                     <br>
 
-                    <span id="spanSearch"><p id="enter"> Press <u>enter</u> to search.</p></span>
-                    <!--<input class="btn" type="submit" value="Search" />-->
 
+                    <div id="data">
+                        <input id="datain" class="inputtext" type="text" autocomplete="off" name="date" placeholder="Search Date" maxlength="4" />
+                        <i class="material-icons md-30">search</i>
+
+                    </div>
+                    <span id="spanSearch"><p id="enter1"> Press <u>enter</u> to search.</p></span>
+                    <br>
+
+                    <p id="tutorial"> You can searh products by name, description, date, and also combine both.</p>
+
+                    <input class="btn" type="submit" value="Search" style="display:none;" />
                 </form>
+
+
+
+
+
+
+
             </nav>
         </div>
 
@@ -324,14 +396,26 @@
             //  -- p da pesquisa  PRESS ENTER TO SEARCH
 
             $("#enter").hide();
+            $("#enter1").hide();
 
-            $(".inputtext").on("click", function () {
-                $("#enter").fadeIn("slow");
+            $("#data").on("click", function () {
+                $("#enter1").fadeIn("slow");
+                $("#enter").fadeOut("slow");
             });
+
+            $("#nomedesc").on("click", function () {
+                $("#enter").fadeIn("slow");
+                $("#enter1").fadeOut("slow");
+            });
+
 
             $("#postPage").on("click", function () {
                 $("#enter").fadeOut("slow");
+                $("#enter1").fadeOut("slow");
             });
+
+
+            $("#tutorial").delay(4000).fadeOut("slow");
         </script>
 
 
